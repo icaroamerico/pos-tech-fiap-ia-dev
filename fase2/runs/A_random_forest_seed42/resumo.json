@@ -1,0 +1,9 @@
+{
+  "motivo_parada": "maximo_de_geracoes",
+  "geracoes_executadas": 10,
+  "melhor_fitness": 0.8715904231088938,
+  "tempo_total_s": 34.56885266606696,
+  "total_avaliacoes": 200,
+  "total_cache_hits": 33,
+  "taxa_cache_hit": 0.165
+}

@@ -1,0 +1,5 @@
+21:25:24 | INFO    | AG SMOKE | pop=10 ger=3 mut=0.15(int=0.10) cx=0.80 k=2 elite=2 sel=torneio familia=livre
+21:25:30 | INFO    | ger  0 | melhor=0.8640 medio=0.7294 sd=0.2202 | H=2.171 unicos=10 | logistic_regression | cache= 0/10 | 6.0s
+21:25:32 | INFO    | ger  1 | melhor=0.8640 medio=0.8338 sd=0.0436 | H=1.722 unicos=10 | logistic_regression | cache= 3/10 | 2.2s
+21:25:34 | INFO    | ger  2 | melhor=0.8640 medio=0.8413 sd=0.0184 | H=0.881 unicos=10 | logistic_regression | cache= 2/10 | 2.1s
+21:25:34 | INFO    | FIM SMOKE | melhor=0.8640 (logistic_regression) | 3 gerações | parada=maximo_de_geracoes | 10.4s | cache 17%

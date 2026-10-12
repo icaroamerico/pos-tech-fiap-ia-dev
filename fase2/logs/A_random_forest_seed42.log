@@ -1,0 +1,12 @@
+21:32:54 | INFO    | AG A_random_forest | pop=20 ger=10 mut=0.15(int=0.10) cx=0.80 k=2 elite=2 sel=torneio familia=random_forest
+21:32:59 | INFO    | ger  0 | melhor=0.8653 medio=0.8375 sd=0.0145 | H=-0.000 unicos=20 | random_forest | cache= 0/20 | 5.7s
+21:33:02 | INFO    | ger  1 | melhor=0.8659 medio=0.8451 sd=0.0163 | H=-0.000 unicos=19 | random_forest | cache= 4/20 | 3.1s
+21:33:06 | INFO    | ger  2 | melhor=0.8660 medio=0.8496 sd=0.0146 | H=-0.000 unicos=20 | random_forest | cache= 2/20 | 3.1s
+21:33:08 | INFO    | ger  3 | melhor=0.8675 medio=0.8571 sd=0.0105 | H=-0.000 unicos=20 | random_forest | cache= 3/20 | 2.9s
+21:33:12 | INFO    | ger  4 | melhor=0.8684 medio=0.8621 sd=0.0065 | H=-0.000 unicos=20 | random_forest | cache= 4/20 | 3.2s
+21:33:14 | INFO    | ger  5 | melhor=0.8684 medio=0.8486 sd=0.0249 | H=-0.000 unicos=20 | random_forest | cache= 5/20 | 2.9s
+21:33:17 | INFO    | ger  6 | melhor=0.8687 medio=0.8567 sd=0.0154 | H=-0.000 unicos=20 | random_forest | cache= 8/20 | 2.6s
+21:33:21 | INFO    | ger  7 | melhor=0.8687 medio=0.8513 sd=0.0215 | H=-0.000 unicos=20 | random_forest | cache= 2/20 | 3.8s
+21:33:25 | INFO    | ger  8 | melhor=0.8716 medio=0.8590 sd=0.0135 | H=-0.000 unicos=20 | random_forest | cache= 2/20 | 4.1s
+21:33:28 | INFO    | ger  9 | melhor=0.8716 medio=0.8568 sd=0.0171 | H=-0.000 unicos=20 | random_forest | cache= 3/20 | 3.2s
+21:33:28 | INFO    | FIM A_random_forest | melhor=0.8716 (random_forest) | 10 gerações | parada=maximo_de_geracoes | 34.6s | cache 16%

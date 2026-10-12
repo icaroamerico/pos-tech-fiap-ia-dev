@@ -1,0 +1,802 @@
+[
+  {
+    "familia": "decision_tree",
+    "random_forest": {
+      "n_estimators": 169,
+      "max_depth": 10,
+      "min_samples_split": 17,
+      "min_samples_leaf": 5,
+      "max_features": 0.5,
+      "criterion": "entropy",
+      "class_weight": "balanced"
+    },
+    "svm_rbf": {
+      "C": 2.0973333400347483,
+      "gamma": -1.3941573210578186,
+      "class_weight": null
+    },
+    "logistic_regression": {
+      "C": -0.18699363644731298,
+      "penalty_solver": [
+        "elasticnet",
+        "saga"
+      ],
+      "l1_ratio": 0.0837646216304057,
+      "class_weight": "balanced"
+    },
+    "decision_tree": {
+      "max_depth": 14,
+      "min_samples_split": 10,
+      "min_samples_leaf": 8,
+      "criterion": "entropy",
+      "ccp_alpha": 0.03591592025135611,
+      "class_weight": "balanced"
+    },
+    "knn": {
+      "n_neighbors": 21,
+      "weights": "distance",
+      "metric": "euclidean",
+      "p": 1
+    }
+  },
+  {
+    "familia": "decision_tree",
+    "random_forest": {
+      "n_estimators": 123,
+      "max_depth": 17,
+      "min_samples_split": 17,
+      "min_samples_leaf": 8,
+      "max_features": 0.8,
+      "criterion": "entropy",
+      "class_weight": "balanced"
+    },
+    "svm_rbf": {
+      "C": 1.9320295439430941,
+      "gamma": -1.4026035225909719,
+      "class_weight": "balanced"
+    },
+    "logistic_regression": {
+      "C": 0.08072716342884939,
+      "penalty_solver": [
+        "l1",
+        "liblinear"
+      ],
+      "l1_ratio": 0.13107838636863556,
+      "class_weight": null
+    },
+    "decision_tree": {
+      "max_depth": 16,
+      "min_samples_split": 10,
+      "min_samples_leaf": 9,
+      "criterion": "entropy",
+      "ccp_alpha": 0.0360763998779228,
+      "class_weight": "balanced"
+    },
+    "knn": {
+      "n_neighbors": 25,
+      "weights": "uniform",
+      "metric": "manhattan",
+      "p": 1
+    }
+  },
+  {
+    "familia": "decision_tree",
+    "random_forest": {
+      "n_estimators": 165,
+      "max_depth": 10,
+      "min_samples_split": 17,
+      "min_samples_leaf": 5,
+      "max_features": 0.5,
+      "criterion": "entropy",
+      "class_weight": "balanced"
+    },
+    "svm_rbf": {
+      "C": 2.068542630495315,
+      "gamma": -1.676020152911121,
+      "class_weight": null
+    },
+    "logistic_regression": {
+      "C": -0.17767155206391316,
+      "penalty_solver": [
+        "l1",
+        "liblinear"
+      ],
+      "l1_ratio": 0.06244094854974564,
+      "class_weight": null
+    },
+    "decision_tree": {
+      "max_depth": 14,
+      "min_samples_split": 7,
+      "min_samples_leaf": 8,
+      "criterion": "entropy",
+      "ccp_alpha": 0.03670482463202345,
+      "class_weight": "balanced"
+    },
+    "knn": {
+      "n_neighbors": 21,
+      "weights": "distance",
+      "metric": "euclidean",
+      "p": 1
+    }
+  },
+  {
+    "familia": "decision_tree",
+    "random_forest": {
+      "n_estimators": 123,
+      "max_depth": 17,
+      "min_samples_split": 17,
+      "min_samples_leaf": 7,
+      "max_features": "sqrt",
+      "criterion": "entropy",
+      "class_weight": "balanced"
+    },
+    "svm_rbf": {
+      "C": 2.1936618636440306,
+      "gamma": -1.4062378623415501,
+      "class_weight": null
+    },
+    "logistic_regression": {
+      "C": -0.05595550068099926,
+      "penalty_solver": [
+        "l2",
+        "lbfgs"
+      ],
+      "l1_ratio": 0.09079615217892265,
+      "class_weight": "balanced"
+    },
+    "decision_tree": {
+      "max_depth": 13,
+      "min_samples_split": 10,
+      "min_samples_leaf": 9,
+      "criterion": "entropy",
+      "ccp_alpha": 0.0364698419992464,
+      "class_weight": "balanced"
+    },
+    "knn": {
+      "n_neighbors": 23,
+      "weights": "distance",
+      "metric": "manhattan",
+      "p": 1
+    }
+  },
+  {
+    "familia": "decision_tree",
+    "random_forest": {
+      "n_estimators": 153,
+      "max_depth": 13,
+      "min_samples_split": 17,
+      "min_samples_leaf": 7,
+      "max_features": 0.8,
+      "criterion": "entropy",
+      "class_weight": "balanced"
+    },
+    "svm_rbf": {
+      "C": 1.4796722385838494,
+      "gamma": -1.097933348773616,
+      "class_weight": null
+    },
+    "logistic_regression": {
+      "C": -0.34833377252049963,
+      "penalty_solver": [
+        "l1",
+        "liblinear"
+      ],
+      "l1_ratio": 0.1296608700932489,
+      "class_weight": null
+    },
+    "decision_tree": {
+      "max_depth": 14,
+      "min_samples_split": 10,
+      "min_samples_leaf": 9,
+      "criterion": "entropy",
+      "ccp_alpha": 0.038250683898582244,
+      "class_weight": "balanced"
+    },
+    "knn": {
+      "n_neighbors": 29,
+      "weights": "distance",
+      "metric": "minkowski",
+      "p": 1
+    }
+  },
+  {
+    "familia": "decision_tree",
+    "random_forest": {
+      "n_estimators": 104,
+      "max_depth": 10,
+      "min_samples_split": 18,
+      "min_samples_leaf": 8,
+      "max_features": 0.8,
+      "criterion": "entropy",
+      "class_weight": "balanced"
+    },
+    "svm_rbf": {
+      "C": 2.738367680299064,
+      "gamma": -2.069536338914208,
+      "class_weight": "balanced"
+    },
+    "logistic_regression": {
+      "C": -1.272265570811288,
+      "penalty_solver": [
+        "l1",
+        "liblinear"
+      ],
+      "l1_ratio": 0.10853642670652161,
+      "class_weight": "balanced"
+    },
+    "decision_tree": {
+      "max_depth": 15,
+      "min_samples_split": 10,
+      "min_samples_leaf": 8,
+      "criterion": "entropy",
+      "ccp_alpha": 0.03774805688068944,
+      "class_weight": "balanced"
+    },
+    "knn": {
+      "n_neighbors": 27,
+      "weights": "uniform",
+      "metric": "euclidean",
+      "p": 2
+    }
+  },
+  {
+    "familia": "decision_tree",
+    "random_forest": {
+      "n_estimators": 122,
+      "max_depth": 12,
+      "min_samples_split": 18,
+      "min_samples_leaf": 6,
+      "max_features": "sqrt",
+      "criterion": "gini",
+      "class_weight": "balanced"
+    },
+    "svm_rbf": {
+      "C": 2.357046189010515,
+      "gamma": -0.649761299346924,
+      "class_weight": null
+    },
+    "logistic_regression": {
+      "C": 0.23773616346925228,
+      "penalty_solver": [
+        "l2",
+        "lbfgs"
+      ],
+      "l1_ratio": 0.0816255367893429,
+      "class_weight": null
+    },
+    "decision_tree": {
+      "max_depth": 13,
+      "min_samples_split": 8,
+      "min_samples_leaf": 8,
+      "criterion": "entropy",
+      "ccp_alpha": 0.040771890024654825,
+      "class_weight": "balanced"
+    },
+    "knn": {
+      "n_neighbors": 17,
+      "weights": "distance",
+      "metric": "minkowski",
+      "p": 2
+    }
+  },
+  {
+    "familia": "decision_tree",
+    "random_forest": {
+      "n_estimators": 88,
+      "max_depth": 11,
+      "min_samples_split": 18,
+      "min_samples_leaf": 5,
+      "max_features": 0.3,
+      "criterion": "entropy",
+      "class_weight": null
+    },
+    "svm_rbf": {
+      "C": 1.9798105691186925,
+      "gamma": -0.18556970678123352,
+      "class_weight": "balanced"
+    },
+    "logistic_regression": {
+      "C": -0.49156734311429645,
+      "penalty_solver": [
+        "l2",
+        "lbfgs"
+      ],
+      "l1_ratio": 0.0751429290090415,
+      "class_weight": "balanced"
+    },
+    "decision_tree": {
+      "max_depth": 12,
+      "min_samples_split": 8,
+      "min_samples_leaf": 8,
+      "criterion": "entropy",
+      "ccp_alpha": 0.042864279248478444,
+      "class_weight": "balanced"
+    },
+    "knn": {
+      "n_neighbors": 25,
+      "weights": "uniform",
+      "metric": "manhattan",
+      "p": 1
+    }
+  },
+  {
+    "familia": "decision_tree",
+    "random_forest": {
+      "n_estimators": 147,
+      "max_depth": 12,
+      "min_samples_split": 16,
+      "min_samples_leaf": 8,
+      "max_features": 0.5,
+      "criterion": "gini",
+      "class_weight": "balanced"
+    },
+    "svm_rbf": {
+      "C": 2.0257483809068715,
+      "gamma": -1.4178542928743303,
+      "class_weight": null
+    },
+    "logistic_regression": {
+      "C": -0.05645962116028134,
+      "penalty_solver": [
+        "elasticnet",
+        "saga"
+      ],
+      "l1_ratio": 0.09642580543536708,
+      "class_weight": null
+    },
+    "decision_tree": {
+      "max_depth": 16,
+      "min_samples_split": 13,
+      "min_samples_leaf": 9,
+      "criterion": "entropy",
+      "ccp_alpha": 0.04334689407722633,
+      "class_weight": "balanced"
+    },
+    "knn": {
+      "n_neighbors": 21,
+      "weights": "uniform",
+      "metric": "manhattan",
+      "p": 1
+    }
+  },
+  {
+    "familia": "decision_tree",
+    "random_forest": {
+      "n_estimators": 116,
+      "max_depth": 11,
+      "min_samples_split": 17,
+      "min_samples_leaf": 4,
+      "max_features": "log2",
+      "criterion": "entropy",
+      "class_weight": "balanced"
+    },
+    "svm_rbf": {
+      "C": 2.655809549837428,
+      "gamma": -1.630272683376596,
+      "class_weight": null
+    },
+    "logistic_regression": {
+      "C": 0.053577567585633756,
+      "penalty_solver": [
+        "l1",
+        "liblinear"
+      ],
+      "l1_ratio": 0.03730565080638746,
+      "class_weight": null
+    },
+    "decision_tree": {
+      "max_depth": 17,
+      "min_samples_split": 9,
+      "min_samples_leaf": 8,
+      "criterion": "entropy",
+      "ccp_alpha": 0.044786957711005125,
+      "class_weight": "balanced"
+    },
+    "knn": {
+      "n_neighbors": 23,
+      "weights": "uniform",
+      "metric": "minkowski",
+      "p": 2
+    }
+  },
+  {
+    "familia": "decision_tree",
+    "random_forest": {
+      "n_estimators": 129,
+      "max_depth": 14,
+      "min_samples_split": 17,
+      "min_samples_leaf": 7,
+      "max_features": 0.5,
+      "criterion": "gini",
+      "class_weight": "balanced"
+    },
+    "svm_rbf": {
+      "C": 1.6441037144955217,
+      "gamma": -0.9840615075909545,
+      "class_weight": null
+    },
+    "logistic_regression": {
+      "C": -0.0743544279240223,
+      "penalty_solver": [
+        "l1",
+        "liblinear"
+      ],
+      "l1_ratio": 0.09720782270548066,
+      "class_weight": "balanced"
+    },
+    "decision_tree": {
+      "max_depth": 13,
+      "min_samples_split": 10,
+      "min_samples_leaf": 8,
+      "criterion": "gini",
+      "ccp_alpha": 0.035978739786708555,
+      "class_weight": "balanced"
+    },
+    "knn": {
+      "n_neighbors": 25,
+      "weights": "uniform",
+      "metric": "euclidean",
+      "p": 1
+    }
+  },
+  {
+    "familia": "decision_tree",
+    "random_forest": {
+      "n_estimators": 158,
+      "max_depth": 15,
+      "min_samples_split": 17,
+      "min_samples_leaf": 7,
+      "max_features": 0.5,
+      "criterion": "entropy",
+      "class_weight": "balanced"
+    },
+    "svm_rbf": {
+      "C": 2.1373177964977743,
+      "gamma": -0.9864708772598233,
+      "class_weight": null
+    },
+    "logistic_regression": {
+      "C": -0.25342668533092877,
+      "penalty_solver": [
+        "l1",
+        "liblinear"
+      ],
+      "l1_ratio": 0.1228769756396795,
+      "class_weight": null
+    },
+    "decision_tree": {
+      "max_depth": 15,
+      "min_samples_split": 10,
+      "min_samples_leaf": 9,
+      "criterion": "gini",
+      "ccp_alpha": 0.03433047334162984,
+      "class_weight": "balanced"
+    },
+    "knn": {
+      "n_neighbors": 21,
+      "weights": "uniform",
+      "metric": "manhattan",
+      "p": 1
+    }
+  },
+  {
+    "familia": "decision_tree",
+    "random_forest": {
+      "n_estimators": 128,
+      "max_depth": 11,
+      "min_samples_split": 18,
+      "min_samples_leaf": 3,
+      "max_features": 0.3,
+      "criterion": "gini",
+      "class_weight": null
+    },
+    "svm_rbf": {
+      "C": 2.4205982771242542,
+      "gamma": -1.1693357960502366,
+      "class_weight": "balanced"
+    },
+    "logistic_regression": {
+      "C": -0.23634350363423604,
+      "penalty_solver": [
+        "l2",
+        "lbfgs"
+      ],
+      "l1_ratio": 0.044722152420875814,
+      "class_weight": null
+    },
+    "decision_tree": {
+      "max_depth": 10,
+      "min_samples_split": 9,
+      "min_samples_leaf": 8,
+      "criterion": "gini",
+      "ccp_alpha": 0.03866688067453315,
+      "class_weight": "balanced"
+    },
+    "knn": {
+      "n_neighbors": 23,
+      "weights": "uniform",
+      "metric": "minkowski",
+      "p": 1
+    }
+  },
+  {
+    "familia": "decision_tree",
+    "random_forest": {
+      "n_estimators": 101,
+      "max_depth": 16,
+      "min_samples_split": 18,
+      "min_samples_leaf": 5,
+      "max_features": 0.3,
+      "criterion": "entropy",
+      "class_weight": "balanced"
+    },
+    "svm_rbf": {
+      "C": 1.7725625521031667,
+      "gamma": -1.3694942569176656,
+      "class_weight": "balanced"
+    },
+    "logistic_regression": {
+      "C": 0.09805371895736864,
+      "penalty_solver": [
+        "l2",
+        "lbfgs"
+      ],
+      "l1_ratio": 0.13010143866168322,
+      "class_weight": null
+    },
+    "decision_tree": {
+      "max_depth": 13,
+      "min_samples_split": 14,
+      "min_samples_leaf": 8,
+      "criterion": "gini",
+      "ccp_alpha": 0.03676273392256122,
+      "class_weight": "balanced"
+    },
+    "knn": {
+      "n_neighbors": 23,
+      "weights": "uniform",
+      "metric": "manhattan",
+      "p": 2
+    }
+  },
+  {
+    "familia": "decision_tree",
+    "random_forest": {
+      "n_estimators": 156,
+      "max_depth": 11,
+      "min_samples_split": 19,
+      "min_samples_leaf": 5,
+      "max_features": 0.5,
+      "criterion": "gini",
+      "class_weight": null
+    },
+    "svm_rbf": {
+      "C": 2.571378179702329,
+      "gamma": -1.7303414804448245,
+      "class_weight": null
+    },
+    "logistic_regression": {
+      "C": -0.17733904725977967,
+      "penalty_solver": [
+        "l1",
+        "liblinear"
+      ],
+      "l1_ratio": 0.03273977649266252,
+      "class_weight": null
+    },
+    "decision_tree": {
+      "max_depth": 14,
+      "min_samples_split": 10,
+      "min_samples_leaf": 8,
+      "criterion": "gini",
+      "ccp_alpha": 0.037584738696634166,
+      "class_weight": "balanced"
+    },
+    "knn": {
+      "n_neighbors": 25,
+      "weights": "distance",
+      "metric": "minkowski",
+      "p": 1
+    }
+  },
+  {
+    "familia": "decision_tree",
+    "random_forest": {
+      "n_estimators": 133,
+      "max_depth": 15,
+      "min_samples_split": 17,
+      "min_samples_leaf": 6,
+      "max_features": 0.8,
+      "criterion": "gini",
+      "class_weight": "balanced"
+    },
+    "svm_rbf": {
+      "C": 1.9091288732956668,
+      "gamma": -1.6100992316008087,
+      "class_weight": null
+    },
+    "logistic_regression": {
+      "C": 0.06800695754292986,
+      "penalty_solver": [
+        "elasticnet",
+        "saga"
+      ],
+      "l1_ratio": 0.08151774468410322,
+      "class_weight": null
+    },
+    "decision_tree": {
+      "max_depth": 16,
+      "min_samples_split": 10,
+      "min_samples_leaf": 8,
+      "criterion": "gini",
+      "ccp_alpha": 0.03817145945823396,
+      "class_weight": "balanced"
+    },
+    "knn": {
+      "n_neighbors": 25,
+      "weights": "distance",
+      "metric": "euclidean",
+      "p": 1
+    }
+  },
+  {
+    "familia": "decision_tree",
+    "random_forest": {
+      "n_estimators": 117,
+      "max_depth": 16,
+      "min_samples_split": 17,
+      "min_samples_leaf": 7,
+      "max_features": 0.8,
+      "criterion": "entropy",
+      "class_weight": null
+    },
+    "svm_rbf": {
+      "C": 1.9315106574473553,
+      "gamma": -1.0990287074660092,
+      "class_weight": "balanced"
+    },
+    "logistic_regression": {
+      "C": -0.25997948091971707,
+      "penalty_solver": [
+        "l1",
+        "liblinear"
+      ],
+      "l1_ratio": 0.11780582921727811,
+      "class_weight": null
+    },
+    "decision_tree": {
+      "max_depth": 15,
+      "min_samples_split": 10,
+      "min_samples_leaf": 9,
+      "criterion": "gini",
+      "ccp_alpha": 0.03614734714835208,
+      "class_weight": null
+    },
+    "knn": {
+      "n_neighbors": 19,
+      "weights": "uniform",
+      "metric": "minkowski",
+      "p": 1
+    }
+  },
+  {
+    "familia": "decision_tree",
+    "random_forest": {
+      "n_estimators": 98,
+      "max_depth": 12,
+      "min_samples_split": 17,
+      "min_samples_leaf": 6,
+      "max_features": 0.8,
+      "criterion": "entropy",
+      "class_weight": "balanced"
+    },
+    "svm_rbf": {
+      "C": 1.6515916257295866,
+      "gamma": -1.0173262092004671,
+      "class_weight": "balanced"
+    },
+    "logistic_regression": {
+      "C": -0.2120976800176182,
+      "penalty_solver": [
+        "l2",
+        "lbfgs"
+      ],
+      "l1_ratio": 0.0,
+      "class_weight": null
+    },
+    "decision_tree": {
+      "max_depth": 13,
+      "min_samples_split": 10,
+      "min_samples_leaf": 8,
+      "criterion": "entropy",
+      "ccp_alpha": 0.036022391474493,
+      "class_weight": null
+    },
+    "knn": {
+      "n_neighbors": 23,
+      "weights": "distance",
+      "metric": "minkowski",
+      "p": 1
+    }
+  },
+  {
+    "familia": "decision_tree",
+    "random_forest": {
+      "n_estimators": 174,
+      "max_depth": 12,
+      "min_samples_split": 16,
+      "min_samples_leaf": 5,
+      "max_features": 0.5,
+      "criterion": "gini",
+      "class_weight": null
+    },
+    "svm_rbf": {
+      "C": 1.5994636936509772,
+      "gamma": 0.7669537078007224,
+      "class_weight": "balanced"
+    },
+    "logistic_regression": {
+      "C": -1.612068392515991,
+      "penalty_solver": [
+        "elasticnet",
+        "saga"
+      ],
+      "l1_ratio": 0.0,
+      "class_weight": "balanced"
+    },
+    "decision_tree": {
+      "max_depth": 17,
+      "min_samples_split": 8,
+      "min_samples_leaf": 8,
+      "criterion": "entropy",
+      "ccp_alpha": 0.03718854475769186,
+      "class_weight": null
+    },
+    "knn": {
+      "n_neighbors": 21,
+      "weights": "uniform",
+      "metric": "euclidean",
+      "p": 1
+    }
+  },
+  {
+    "familia": "decision_tree",
+    "random_forest": {
+      "n_estimators": 139,
+      "max_depth": 11,
+      "min_samples_split": 18,
+      "min_samples_leaf": 7,
+      "max_features": 0.5,
+      "criterion": "entropy",
+      "class_weight": "balanced"
+    },
+    "svm_rbf": {
+      "C": 1.9523548151287957,
+      "gamma": -0.5573813581287089,
+      "class_weight": "balanced"
+    },
+    "logistic_regression": {
+      "C": 0.15151347055452322,
+      "penalty_solver": [
+        "l1",
+        "liblinear"
+      ],
+      "l1_ratio": 0.0,
+      "class_weight": null
+    },
+    "decision_tree": {
+      "max_depth": 13,
+      "min_samples_split": 8,
+      "min_samples_leaf": 8,
+      "criterion": "entropy",
+      "ccp_alpha": 0.037872301330051435,
+      "class_weight": null
+    },
+    "knn": {
+      "n_neighbors": 17,
+      "weights": "uniform",
+      "metric": "minkowski",
+      "p": 2
+    }
+  }
+]

@@ -1,0 +1,19 @@
+{
+  "familia": "logistic_regression",
+  "acuracia": 0.8899082568807339,
+  "precisao": 0.8333333333333334,
+  "recall": 0.8333333333333334,
+  "f1_score": 0.8333333333333334,
+  "auc_roc": 0.9482496194824962,
+  "matriz_confusao": [
+    [
+      67,
+      6
+    ],
+    [
+      6,
+      30
+    ]
+  ],
+  "n_teste": 109
+}

@@ -1,0 +1,17 @@
+21:41:05 | INFO    | AG E3_aproveitamento | pop=15 ger=15 mut=0.05(int=0.05) cx=0.60 k=4 elite=2 sel=torneio familia=livre
+21:41:07 | INFO    | ger  0 | melhor=0.8595 medio=0.6667 sd=0.2305 | H=2.149 unicos=14 | random_forest | cache= 1/15 | 2.6s
+21:41:10 | INFO    | ger  1 | melhor=0.8595 medio=0.8250 sd=0.0385 | H=0.700 unicos=14 | random_forest | cache= 4/15 | 3.1s
+21:41:14 | INFO    | ger  2 | melhor=0.8651 medio=0.8549 sd=0.0075 | H=-0.000 unicos=13 | random_forest | cache= 6/15 | 3.8s
+21:41:17 | INFO    | ger  3 | melhor=0.8691 medio=0.8520 sd=0.0320 | H=0.353 unicos=14 | random_forest | cache= 5/15 | 2.9s
+21:41:20 | INFO    | ger  4 | melhor=0.8691 medio=0.8478 sd=0.0473 | H=0.353 unicos=12 | random_forest | cache= 5/15 | 3.5s
+21:41:24 | INFO    | ger  5 | melhor=0.8703 medio=0.8630 sd=0.0136 | H=-0.000 unicos= 8 | random_forest | cache= 9/15 | 3.2s
+21:41:26 | INFO    | ger  6 | melhor=0.8703 medio=0.8666 sd=0.0042 | H=-0.000 unicos= 8 | random_forest | cache= 9/15 | 1.9s
+21:41:27 | INFO    | ger  7 | melhor=0.8703 medio=0.8691 sd=0.0036 | H=-0.000 unicos= 3 | random_forest | cache=13/15 | 1.0s
+21:41:28 | INFO    | ger  8 | melhor=0.8703 medio=0.8528 sd=0.0405 | H=0.353 unicos= 5 | random_forest | cache=12/15 | 1.8s
+21:41:30 | INFO    | ger  9 | melhor=0.8758 medio=0.8684 sd=0.0071 | H=-0.000 unicos= 5 | random_forest | cache=11/15 | 2.0s
+21:41:32 | INFO    | ger 10 | melhor=0.8759 medio=0.8678 sd=0.0073 | H=-0.000 unicos=10 | random_forest | cache=10/15 | 1.4s
+21:41:34 | INFO    | ger 11 | melhor=0.8759 medio=0.8701 sd=0.0110 | H=-0.000 unicos= 8 | random_forest | cache=12/15 | 2.4s
+21:41:35 | INFO    | ger 12 | melhor=0.8759 medio=0.8733 sd=0.0062 | H=-0.000 unicos= 5 | random_forest | cache=13/15 | 1.2s
+21:41:36 | INFO    | ger 13 | melhor=0.8759 medio=0.8033 sd=0.2137 | H=0.700 unicos= 5 | random_forest | cache=11/15 | 1.1s
+21:41:36 | INFO    | ger 14 | melhor=0.8759 medio=0.8706 sd=0.0197 | H=0.353 unicos= 2 | random_forest | cache=14/15 | 0.0s
+21:41:36 | INFO    | FIM E3_aproveitamento | melhor=0.8759 (random_forest) | 15 gerações | parada=maximo_de_geracoes | 31.9s | cache 60%

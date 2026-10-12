@@ -1,0 +1,17 @@
+21:35:34 | INFO    | AG E1_baseline | pop=30 ger=15 mut=0.15(int=0.10) cx=0.80 k=2 elite=2 sel=torneio familia=livre
+21:35:38 | INFO    | ger  0 | melhor=0.8595 medio=0.6989 sd=0.2133 | H=2.220 unicos=29 | random_forest | cache= 1/30 | 3.3s
+21:35:40 | INFO    | ger  1 | melhor=0.8685 medio=0.7551 sd=0.1404 | H=2.171 unicos=30 | random_forest | cache= 3/30 | 2.2s
+21:35:42 | INFO    | ger  2 | melhor=0.8685 medio=0.8079 sd=0.0581 | H=2.044 unicos=30 | random_forest | cache= 2/30 | 2.3s
+21:35:45 | INFO    | ger  3 | melhor=0.8685 medio=0.8190 sd=0.0503 | H=1.505 unicos=29 | random_forest | cache= 5/30 | 3.1s
+21:35:49 | INFO    | ger  4 | melhor=0.8708 medio=0.8403 sd=0.0370 | H=1.379 unicos=29 | random_forest | cache= 4/30 | 3.4s
+21:35:52 | INFO    | ger  5 | melhor=0.8708 medio=0.8451 sd=0.0174 | H=0.922 unicos=30 | random_forest | cache= 3/30 | 3.8s
+21:35:56 | INFO    | ger  6 | melhor=0.8708 medio=0.8428 sd=0.0345 | H=1.032 unicos=30 | random_forest | cache= 2/30 | 4.0s
+21:36:02 | INFO    | ger  7 | melhor=0.8708 medio=0.8461 sd=0.0294 | H=0.561 unicos=29 | random_forest | cache= 4/30 | 5.5s
+21:36:06 | INFO    | ger  8 | melhor=0.8711 medio=0.8234 sd=0.1485 | H=0.561 unicos=28 | random_forest | cache= 6/30 | 3.9s
+21:36:09 | INFO    | ger  9 | melhor=0.8711 medio=0.8537 sd=0.0123 | H=0.353 unicos=28 | random_forest | cache= 7/30 | 3.6s
+21:36:13 | INFO    | ger 10 | melhor=0.8711 medio=0.8528 sd=0.0147 | H=0.211 unicos=30 | random_forest | cache= 3/30 | 3.8s
+21:36:18 | INFO    | ger 11 | melhor=0.8726 medio=0.8572 sd=0.0107 | H=0.211 unicos=30 | random_forest | cache= 4/30 | 4.7s
+21:36:22 | INFO    | ger 12 | melhor=0.8726 medio=0.8552 sd=0.0123 | H=0.211 unicos=29 | random_forest | cache= 6/30 | 3.8s
+21:36:25 | INFO    | ger 13 | melhor=0.8726 medio=0.8558 sd=0.0138 | H=0.469 unicos=29 | random_forest | cache= 6/30 | 3.3s
+21:36:28 | INFO    | ger 14 | melhor=0.8730 medio=0.8461 sd=0.0280 | H=0.767 unicos=30 | random_forest | cache= 9/30 | 3.3s
+21:36:28 | INFO    | FIM E1_baseline | melhor=0.8730 (random_forest) | 15 gerações | parada=maximo_de_geracoes | 53.9s | cache 14%

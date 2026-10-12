@@ -1,0 +1,5 @@
+00:30:43 | INFO    | AG TESTE | pop=6 ger=3 mut=0.15(int=0.10) cx=0.80 k=2 elite=1 sel=torneio familia=livre
+00:30:46 | INFO    | ger  0 | melhor=0.8640 medio=0.7158 sd=0.2758 | H=1.585 unicos= 6 | logistic_regression | cache= 0/ 6 | 2.9s
+00:30:46 | INFO    | ger  1 | melhor=0.8640 medio=0.8524 sd=0.0056 | H=-0.000 unicos= 3 | logistic_regression | cache= 5/ 6 | 0.1s
+00:30:47 | INFO    | ger  2 | melhor=0.8640 medio=0.8515 sd=0.0147 | H=-0.000 unicos= 4 | logistic_regression | cache= 3/ 6 | 1.4s
+00:30:47 | INFO    | FIM TESTE | melhor=0.8640 (logistic_regression) | 3 gerações | parada=maximo_de_geracoes | 4.5s | cache 44%

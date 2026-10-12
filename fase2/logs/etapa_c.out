@@ -1,0 +1,979 @@
+Base carregada: 541 linhas x 49 colunas
+Treino: 432 registros | Teste: 109 registros | Positivos no teste: 36/109
+
+=== Busca aleatória | 450 avaliações | semente 42
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_sag.py:349: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
+  warnings.warn(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_sag.py:349: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
+  warnings.warn(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_sag.py:349: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
+  warnings.warn(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_sag.py:349: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
+  warnings.warn(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_sag.py:349: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
+  warnings.warn(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_sag.py:349: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
+  warnings.warn(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_sag.py:349: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
+  warnings.warn(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_sag.py:349: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
+  warnings.warn(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_sag.py:349: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
+  warnings.warn(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_sag.py:349: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
+  warnings.warn(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_sag.py:349: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
+  warnings.warn(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_sag.py:349: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
+  warnings.warn(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_sag.py:349: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
+  warnings.warn(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_sag.py:349: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
+  warnings.warn(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_sag.py:349: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
+  warnings.warn(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_sag.py:349: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
+  warnings.warn(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_sag.py:349: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
+  warnings.warn(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_sag.py:349: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
+  warnings.warn(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_sag.py:349: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
+  warnings.warn(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_sag.py:349: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
+  warnings.warn(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_sag.py:349: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
+  warnings.warn(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_sag.py:349: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
+  warnings.warn(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_sag.py:349: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
+  warnings.warn(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_sag.py:349: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
+  warnings.warn(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_sag.py:349: ConvergenceWarning: The max_iter was reached which means the coef_ did not converge
+  warnings.warn(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+/Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/.venv/lib/python3.12/site-packages/sklearn/linear_model/_logistic.py:455: OptimizeWarning: Unknown solver options: iprint
+  opt_res = optimize.minimize(
+Base carregada: 541 linhas x 49 colunas
+Treino: 432 registros | Teste: 109 registros | Positivos no teste: 36/109
+  melhor fitness = 0.8745 (logistic_regression) | 430 avaliações efetivas | 25.0s
+
+=== Busca aleatória | 450 avaliações | semente 7
+Base carregada: 541 linhas x 49 colunas
+Treino: 432 registros | Teste: 109 registros | Positivos no teste: 36/109
+  melhor fitness = 0.8751 (logistic_regression) | 428 avaliações efetivas | 26.3s
+
+=== Busca aleatória | 450 avaliações | semente 2024
+Base carregada: 541 linhas x 49 colunas
+Treino: 432 registros | Teste: 109 registros | Positivos no teste: 36/109
+  melhor fitness = 0.8780 (logistic_regression) | 426 avaliações efetivas | 26.8s
+
+Resumo acumulado em /Users/icaroamerico/Documents/pos-tech-fiap-ia-dev-fase-2/runs/resumo_execucoes.json

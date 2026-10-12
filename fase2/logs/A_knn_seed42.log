@@ -1,0 +1,12 @@
+21:33:38 | INFO    | AG A_knn | pop=20 ger=10 mut=0.15(int=0.10) cx=0.80 k=2 elite=2 sel=torneio familia=knn
+21:33:39 | INFO    | ger  0 | melhor=0.7619 medio=0.7084 sd=0.0300 | H=-0.000 unicos=17 | knn | cache= 3/20 | 0.3s
+21:33:39 | INFO    | ger  1 | melhor=0.7619 medio=0.7147 sd=0.0262 | H=-0.000 unicos=19 | knn | cache= 7/20 | 0.2s
+21:33:39 | INFO    | ger  2 | melhor=0.7619 medio=0.7220 sd=0.0195 | H=-0.000 unicos=17 | knn | cache=11/20 | 0.1s
+21:33:39 | INFO    | ger  3 | melhor=0.7619 medio=0.7190 sd=0.0276 | H=-0.000 unicos=19 | knn | cache= 9/20 | 0.3s
+21:33:39 | INFO    | ger  4 | melhor=0.7684 medio=0.7366 sd=0.0218 | H=-0.000 unicos=16 | knn | cache=14/20 | 0.2s
+21:33:40 | INFO    | ger  5 | melhor=0.7684 medio=0.7471 sd=0.0109 | H=-0.000 unicos=14 | knn | cache=15/20 | 0.2s
+21:33:40 | INFO    | ger  6 | melhor=0.7684 medio=0.7521 sd=0.0099 | H=-0.000 unicos=10 | knn | cache=18/20 | 0.2s
+21:33:40 | INFO    | ger  7 | melhor=0.7684 medio=0.7518 sd=0.0133 | H=-0.000 unicos=11 | knn | cache=19/20 | 0.0s
+21:33:40 | INFO    | ger  8 | melhor=0.7684 medio=0.7501 sd=0.0159 | H=-0.000 unicos=12 | knn | cache=19/20 | 0.0s
+21:33:40 | INFO    | ger  9 | melhor=0.7684 medio=0.7541 sd=0.0147 | H=-0.000 unicos=10 | knn | cache=18/20 | 0.2s
+21:33:40 | INFO    | FIM A_knn | melhor=0.7684 (knn) | 10 gerações | parada=maximo_de_geracoes | 1.7s | cache 66%

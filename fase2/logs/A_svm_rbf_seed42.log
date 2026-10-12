@@ -1,0 +1,12 @@
+21:33:28 | INFO    | AG A_svm_rbf | pop=20 ger=10 mut=0.15(int=0.10) cx=0.80 k=2 elite=2 sel=torneio familia=svm_rbf
+21:33:29 | INFO    | ger  0 | melhor=0.8512 medio=0.4013 sd=0.3483 | H=-0.000 unicos=20 | svm_rbf | cache= 0/20 | 0.7s
+21:33:30 | INFO    | ger  1 | melhor=0.8541 medio=0.6897 sd=0.2736 | H=-0.000 unicos=20 | svm_rbf | cache= 2/20 | 0.5s
+21:33:30 | INFO    | ger  2 | melhor=0.8575 medio=0.8367 sd=0.0148 | H=-0.000 unicos=20 | svm_rbf | cache= 4/20 | 0.4s
+21:33:30 | INFO    | ger  3 | melhor=0.8575 medio=0.8403 sd=0.0113 | H=-0.000 unicos=20 | svm_rbf | cache= 2/20 | 0.4s
+21:33:31 | INFO    | ger  4 | melhor=0.8575 medio=0.8444 sd=0.0132 | H=-0.000 unicos=20 | svm_rbf | cache= 3/20 | 0.4s
+21:33:31 | INFO    | ger  5 | melhor=0.8575 medio=0.8453 sd=0.0099 | H=-0.000 unicos=20 | svm_rbf | cache= 3/20 | 0.4s
+21:33:32 | INFO    | ger  6 | melhor=0.8617 medio=0.8481 sd=0.0063 | H=-0.000 unicos=20 | svm_rbf | cache= 4/20 | 0.4s
+21:33:32 | INFO    | ger  7 | melhor=0.8617 medio=0.8468 sd=0.0073 | H=-0.000 unicos=20 | svm_rbf | cache= 2/20 | 0.4s
+21:33:32 | INFO    | ger  8 | melhor=0.8617 medio=0.8493 sd=0.0061 | H=-0.000 unicos=20 | svm_rbf | cache= 2/20 | 0.4s
+21:33:33 | INFO    | ger  9 | melhor=0.8617 medio=0.8460 sd=0.0119 | H=-0.000 unicos=20 | svm_rbf | cache= 6/20 | 0.3s
+21:33:33 | INFO    | FIM A_svm_rbf | melhor=0.8617 (svm_rbf) | 10 gerações | parada=maximo_de_geracoes | 4.4s | cache 14%

@@ -1,0 +1,11 @@
+21:39:44 | INFO    | AG E2_exploracao | pop=60 ger=15 mut=0.35(int=0.25) cx=0.90 k=2 elite=2 sel=torneio familia=livre
+21:39:50 | INFO    | ger  0 | melhor=0.8701 medio=0.7322 sd=0.1961 | H=2.235 unicos=58 | logistic_regression | cache= 2/60 | 5.5s
+21:39:58 | INFO    | ger  1 | melhor=0.8735 medio=0.7721 sd=0.1892 | H=1.736 unicos=60 | logistic_regression | cache= 2/60 | 7.9s
+21:40:05 | INFO    | ger  2 | melhor=0.8790 medio=0.8009 sd=0.1430 | H=1.584 unicos=60 | logistic_regression | cache= 4/60 | 6.8s
+21:40:12 | INFO    | ger  3 | melhor=0.8819 medio=0.8291 sd=0.0978 | H=1.333 unicos=59 | logistic_regression | cache= 3/60 | 7.2s
+21:40:19 | INFO    | ger  4 | melhor=0.8819 medio=0.8168 sd=0.1418 | H=1.096 unicos=60 | logistic_regression | cache= 3/60 | 7.4s
+21:40:25 | INFO    | ger  5 | melhor=0.8819 medio=0.7613 sd=0.2251 | H=1.046 unicos=60 | logistic_regression | cache= 3/60 | 6.2s
+21:40:32 | INFO    | ger  6 | melhor=0.8819 medio=0.7800 sd=0.2071 | H=1.108 unicos=60 | logistic_regression | cache= 3/60 | 6.4s
+21:40:38 | INFO    | ger  7 | melhor=0.8819 medio=0.8301 sd=0.0824 | H=1.081 unicos=60 | logistic_regression | cache= 2/60 | 6.5s
+21:40:46 | INFO    | ger  8 | melhor=0.8819 medio=0.8140 sd=0.1349 | H=1.105 unicos=60 | logistic_regression | cache= 3/60 | 7.3s
+21:40:46 | INFO    | FIM E2_exploracao | melhor=0.8819 (logistic_regression) | 9 gerações | parada=estagnacao_5_geracoes | 61.2s | cache 5%

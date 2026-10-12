@@ -1,0 +1,12 @@
+21:33:33 | INFO    | AG A_logistic_regression | pop=20 ger=10 mut=0.15(int=0.10) cx=0.80 k=2 elite=2 sel=torneio familia=logistic_regression
+21:33:33 | INFO    | ger  0 | melhor=0.8610 medio=0.7638 sd=0.1764 | H=-0.000 unicos=20 | logistic_regression | cache= 0/20 | 0.5s
+21:33:35 | INFO    | ger  1 | melhor=0.8678 medio=0.8066 sd=0.1629 | H=-0.000 unicos=20 | logistic_regression | cache= 5/20 | 1.6s
+21:33:35 | INFO    | ger  2 | melhor=0.8703 medio=0.7922 sd=0.1929 | H=-0.000 unicos=17 | logistic_regression | cache= 7/20 | 0.1s
+21:33:35 | INFO    | ger  3 | melhor=0.8703 medio=0.8570 sd=0.0093 | H=-0.000 unicos=20 | logistic_regression | cache= 4/20 | 0.2s
+21:33:35 | INFO    | ger  4 | melhor=0.8806 medio=0.8609 sd=0.0108 | H=-0.000 unicos=20 | logistic_regression | cache= 3/20 | 0.2s
+21:33:36 | INFO    | ger  5 | melhor=0.8818 medio=0.8610 sd=0.0188 | H=-0.000 unicos=18 | logistic_regression | cache= 5/20 | 0.4s
+21:33:36 | INFO    | ger  6 | melhor=0.8818 medio=0.8637 sd=0.0188 | H=-0.000 unicos=20 | logistic_regression | cache= 2/20 | 0.2s
+21:33:36 | INFO    | ger  7 | melhor=0.8818 medio=0.8622 sd=0.0147 | H=-0.000 unicos=20 | logistic_regression | cache= 3/20 | 0.2s
+21:33:36 | INFO    | ger  8 | melhor=0.8818 medio=0.8637 sd=0.0150 | H=-0.000 unicos=19 | logistic_regression | cache= 3/20 | 0.2s
+21:33:37 | INFO    | ger  9 | melhor=0.8818 medio=0.8715 sd=0.0111 | H=-0.000 unicos=19 | logistic_regression | cache= 4/20 | 0.2s
+21:33:37 | INFO    | FIM A_logistic_regression | melhor=0.8818 (logistic_regression) | 10 gerações | parada=maximo_de_geracoes | 3.7s | cache 18%

@@ -1,0 +1,43 @@
+RELATÓRIO DE TREINAMENTO E AVALIAÇÃO
+======================================================================
+
+Modelo: Regressão Logística
+  Acurácia : 0.8532
+  Precisão : 0.7381
+  Recall   : 0.8611
+  F1-Score : 0.7949
+  AUC-ROC  : 0.9277
+  Matriz de confusão: [[62, 11], [5, 31]]
+
+Modelo: Árvore de Decisão
+  Acurácia : 0.8624
+  Precisão : 0.8000
+  Recall   : 0.7778
+  F1-Score : 0.7887
+  AUC-ROC  : 0.8809
+  Matriz de confusão: [[66, 7], [8, 28]]
+
+Modelo: KNN (k=5)
+  Acurácia : 0.8624
+  Precisão : 0.8889
+  Recall   : 0.6667
+  F1-Score : 0.7619
+  AUC-ROC  : 0.9007
+  Matriz de confusão: [[70, 3], [12, 24]]
+
+Modelo: Random Forest
+  Acurácia : 0.9174
+  Precisão : 0.9355
+  Recall   : 0.8056
+  F1-Score : 0.8657
+  AUC-ROC  : 0.9365
+  Matriz de confusão: [[71, 2], [7, 29]]
+
+Modelo: SVM (RBF)
+  Acurácia : 0.8807
+  Precisão : 0.8108
+  Recall   : 0.8333
+  F1-Score : 0.8219
+  AUC-ROC  : 0.9315
+  Matriz de confusão: [[66, 7], [6, 30]]
+

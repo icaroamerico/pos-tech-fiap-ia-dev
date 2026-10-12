@@ -1,0 +1,28 @@
+{
+  "nome": "D_roleta",
+  "tamanho_populacao": 30,
+  "n_geracoes": 15,
+  "prob_mutacao": 0.15,
+  "intensidade_mutacao": 0.1,
+  "taxa_crossover": 0.8,
+  "torneio_k": 2,
+  "n_elite": 2,
+  "selecao": "roleta",
+  "prob_troca_familia": 0.05,
+  "normalizar_mutacao_por_familia": true,
+  "fracao_hotstart": 0.1,
+  "semente": 2024,
+  "familia_fixa": null,
+  "paciencia_estagnacao": 5,
+  "tolerancia_melhoria": 0.0001,
+  "piso_entropia": 0.0,
+  "n_jobs": -1,
+  "ambiente": {
+    "python": "3.12.13",
+    "plataforma": "macOS-26.6.2-arm64-arm-64bit",
+    "processador": "arm",
+    "numpy": "2.5.3",
+    "pandas": "2.2.2",
+    "scikit_learn": "1.5.2"
+  }
+}
