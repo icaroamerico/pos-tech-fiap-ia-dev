@@ -154,6 +154,55 @@ TERMOS_PROIBIDOS = (
     "receito",
 )
 
+#: Marcadores de negação que, imediatamente antes de um termo proibido, invertem o seu
+#: sentido — "não é um diagnóstico definitivo" é o CUMPRIMENTO da regra, não a violação dela.
+#: Descoberto na primeira execução com LLM real: as 10 "violações" detectadas eram todas
+#: frases de ressalva, porque a verificação era `termo in texto` (relatório §7, achado nº 12).
+MARCADORES_DE_NEGACAO = (
+    "não",
+    "nao",
+    "nunca",
+    "sem",
+    "longe de",
+    "em vez de",
+    "ao invés de",
+    "ao inves de",
+)
+
+#: Janela, em caracteres, olhada à esquerda do termo em busca de negação. 60 cobre
+#: "não constitui um", "não deve ser interpretado como", "isto não é um" — e para antes
+#: de alcançar a frase anterior, onde uma negação não governaria mais o termo.
+JANELA_DE_NEGACAO = 60
+
+
+def _posicoes(texto: str, termo: str) -> list[int]:
+    """Todas as posições de `termo` em `texto` (não só a primeira)."""
+    posicoes: list[int] = []
+    inicio = texto.find(termo)
+    while inicio != -1:
+        posicoes.append(inicio)
+        inicio = texto.find(termo, inicio + 1)
+    return posicoes
+
+
+def _esta_negado(texto: str, posicao: int) -> bool:
+    """Diz se o termo em `posicao` está sob escopo de negação.
+
+    Olha para a esquerda até `JANELA_DE_NEGACAO` caracteres, parando na fronteira de frase
+    (`.`, `;`, `!`, `?` ou quebra de linha) — uma negação na frase anterior não governa este
+    termo. Heurística, não análise sintática: erra em subordinação complexa, e isso está
+    declarado. O custo dos dois erros é assimétrico e justifica a escolha: um falso positivo
+    (o que havia antes) desqualifica uma ressalva correta e **inverte a conclusão do
+    experimento**; um falso negativo deixa passar uma violação que a rubrica manual ainda
+    pode pegar.
+    """
+    trecho = texto[max(0, posicao - JANELA_DE_NEGACAO) : posicao]
+    for fronteira in (".", ";", "!", "?", "\n"):
+        corte = trecho.rfind(fronteira)
+        if corte != -1:
+            trecho = trecho[corte + 1 :]
+    return any(marcador in trecho for marcador in MARCADORES_DE_NEGACAO)
+
 
 def verificar_saida(
     texto: str,
@@ -167,7 +216,12 @@ def verificar_saida(
     secoes_ausentes = [
         secao for secao in secoes_obrigatorias if secao.lower() not in texto_minusculo
     ]
-    proibidos = [termo for termo in TERMOS_PROIBIDOS if termo in texto_minusculo]
+    proibidos = [
+        termo
+        for termo in TERMOS_PROIBIDOS
+        for pos in _posicoes(texto_minusculo, termo)
+        if not _esta_negado(texto_minusculo, pos)
+    ]
 
     return ResultadoVerificacao(
         aprovado=not nao_justificados and not secoes_ausentes and not proibidos,

@@ -183,6 +183,52 @@ def test_verificador_detecta_termo_de_diagnostico():
     assert resultado.contem_termo_proibido
 
 
+@pytest.mark.parametrize(
+    "texto",
+    [
+        "Este resultado não constitui diagnóstico definitivo.",
+        "Isto não é um diagnóstico definitivo da paciente.",
+        "Não se pode dizer que a paciente certamente tem SOP.",
+        "Não prescrevo medicamentos; a conduta é do profissional de saúde.",
+        "O achado nao e um diagnostico definitivo.",
+    ],
+)
+def test_termo_proibido_sob_negacao_nao_conta_como_violacao(texto):
+    """Regressão do achado nº 12 (relatório §7).
+
+    `"diagnóstico definitivo" in texto` acusava violação em frases de RESSALVA — justamente
+    o que o prompt manda escrever. Na primeira execução com LLM real, as 10 "violações"
+    detectadas eram todas deste tipo, e o efeito era inverter a conclusão do experimento:
+    o template mais cuidadoso parecia o mais infrator, porque repetia mais a ressalva.
+    """
+    resultado = verificar_saida(texto, {"probabilidade": 0.5})
+    assert not resultado.contem_termo_proibido, (
+        f"falso positivo: a ressalva {texto!r} foi lida como violação"
+    )
+
+
+@pytest.mark.parametrize(
+    "texto",
+    [
+        "A paciente tem diagnóstico definitivo de SOP.",
+        "A paciente certamente tem SOP.",
+        "Prescrevo metformina 850mg.",
+        # negação na frase ANTERIOR não governa o termo — a fronteira de frase corta o escopo
+        "O exame foi normal. Diagnóstico definitivo de SOP.",
+        "Não houve alteração. A paciente certamente tem SOP.",
+    ],
+)
+def test_violacao_real_continua_detectada_apos_a_correcao(texto):
+    """Contraprova do teste acima: a correção de negação não pode cegar o verificador.
+
+    Sem este par, a correção do achado nº 12 passaria num verificador que simplesmente
+    parou de acusar qualquer coisa.
+    """
+    resultado = verificar_saida(texto, {"probabilidade": 0.5})
+    assert resultado.contem_termo_proibido, f"violação real não detectada: {texto!r}"
+    assert not resultado.aprovado
+
+
 def test_taxa_alucinacao_numerica_e_calculada():
     contexto = {"probabilidade": 0.73, "probabilidade_pct": "73.0%"}
     texto = "Probabilidade de 73%, AMH 450, FSH 820."

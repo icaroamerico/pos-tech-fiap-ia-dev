@@ -120,8 +120,8 @@ zero"*, e este relatório precisa descrever **meus** operadores. Usar biblioteca
 esvaziaria exatamente a parte avaliada. O fluxo segue o *Fluxograma Genérico do Algoritmo
 Genético* da Aula 3.
 
-**Tamanho da implementação:** 3.763 linhas em `src/` (17 módulos), 1.589 linhas em `tests/`
-(**205 testes, todos passando** — `pytest tests/ -q` em 105 s).
+**Tamanho da implementação:** 3.763 linhas em `src/` (17 módulos), 1.635 linhas em `tests/`
+(**215 testes, todos passando** — `pytest tests/ -q` em 113 s).
 
 ### 2.1 Codificação dos indivíduos — híbrida
 
@@ -930,7 +930,7 @@ pacientes de uma clínica de fertilidade, em território de LGPD. Privacidade ga
 
 | Provedor | Quando | Por quê |
 |---|---|---|
-| `ollama` (**padrão de produção**) | Local, `llama3.1:8b` | Nenhum dado sai da máquina. LLaMA é citada no enunciado e avaliada na Aula 3 de LLMs |
+| `ollama` (**padrão de produção**) | Local, `llama3.2:3b` nesta máquina (default do código: `llama3.1:8b`) | Nenhum dado sai da máquina. LLaMA é citada no enunciado e avaliada na Aula 3 de LLMs. O porte menor é imposto pelos 8 GB de RAM — ver §5.5 |
 | `openai` | Só com dados **agregados/anonimizados** | Comparação de qualidade. **Nunca** com linha de paciente |
 | `simulado` (**padrão dos notebooks**) | Determinístico, sem rede | Deixa o notebook executável por qualquer avaliador, sem chave de API e sem instalar modelo |
 
@@ -1050,53 +1050,128 @@ da mesma entrada; divergência numérica entre elas é sinal de temperatura alta
 | **Acionabilidade** | Sem indicação de próximo passo | Vago | Próximo passo claro e apropriado |
 | **Clareza para médico** | Confuso / jargão de ML cru | Aceitável | Direto e adequado ao público |
 
-### 5.5 Resultado da avaliação — e o que ele não mede
+### 5.5 Resultado da avaliação — com LLM real
 
-**Métricas automáticas, 45 saídas, provedor `simulado`:**
+**Execução de 14/10/2026.** Provedor `ollama`, modelo **`llama3.2:3b`** local, 45 saídas
+(15 pacientes × 3 templates), ~29 s por geração, ~2 h de execução total. Métricas automáticas:
 
-| Template | Alucinação numérica | Aderência estrutural | Termos proibidos | Nº de números citados | Caracteres |
-|---|---|---|---|---|---|
-| V1 — zero-shot | **0,0%** | **100%** | 0 | 13,0 | 1.364 |
-| V2 — few-shot | **0,0%** | **100%** | 0 | 13,0 | 1.364 |
-| V3 — few-shot estruturado | **0,0%** | **100%** | 0 | 13,0 | 1.364 |
+| Template | Alucinação numérica | Aderência estrutural | Termos proibidos | Nº de números citados | Caracteres | Latência |
+|---|---|---|---|---|---|---|
+| V1 — zero-shot | **0,0%** | **100%** | 0 | 10,5 | 1.804 | 31,4 s |
+| V2 — few-shot | **0,0%** | **100%** | 0 | **15,9** | 1.432 | 28,6 s |
+| V3 — few-shot estruturado | **0,0%** | **100%** | 0 | 13,0 | **1.333** | 28,2 s |
 
-> 🔴 **Estes três números idênticos não são um resultado — são uma tautologia, e é mais
-> honesto dizer isso do que apresentá-los como sucesso.** Verifiquei que as 15 saídas dos
-> três templates são **byte a byte idênticas** (mesmo hash MD5 para cada paciente): o
-> provedor `simulado` monta o texto a partir do contexto já formatado e **ignora o
-> template**. Daí decorre tudo:
->
-> - **Alucinação 0% é verdadeira por construção, não por mérito do prompt.** Os números são
->   injetados programaticamente (§5.3, guardrail 1) e o texto é montado a partir deles —
->   não existe passo generativo que possa inventar um número. O verificador está correto e
->   testado; é o *instrumento* que não tem o que detectar nesta configuração.
-> - **A comparação entre os 3 templates tem sinal nulo.** O sub-requisito 3d ("técnicas de
->   prompt engineering") está atendido no que é verificável — os três templates existem,
->   estão versionados, seguem os cinco achados de ICL da Aula 3, e têm testes que conferem
->   que os exemplares são diversos e consistentes. **Mas a comparação empírica entre eles
->   exige um provedor generativo real, e não foi executada.**
-> - **A rubrica manual não foi preenchida.** As 45 linhas do CSV estão com os seis critérios
->   em branco. Preenchê-las sobre textos idênticos significaria escrever a mesma nota três
->   vezes e apresentar isso como comparação de templates — seria pior do que declarar a
->   lacuna. Com `simulado`, só 15 saídas distintas existem para avaliar, e "template" não é
->   um fator.
+**Os três templates produzem textos genuinamente distintos** — 0 de 15 pacientes com saídas
+idênticas entre templates, conferido por hash MD5. É o que torna esta tabela um resultado, e
+não a tautologia que a execução anterior com o provedor `simulado` produzia (§7, achado nº 6).
 
-**O que precisaria acontecer para fechar o 3e por completo:** `ollama serve` +
-`ollama pull llama3.1:8b`, trocar `PROVEDOR = "simulado"` por `"ollama"` na §2 do Notebook
-03, e rodar a célula de avaliação — a infraestrutura toda já está no lugar e testada. Ollama
-não está instalado na máquina em que os resultados deste relatório foram produzidos, e
-instalar um modelo de 8B para gerar 45 textos ficou fora do escopo declarado deste trabalho.
+#### O que os guardrails entregaram
 
-**A lição que isso ensinou, e que vale mais que a tabela:** um instrumento de medida
-contaminado pelo próprio objeto não serve de controle. O provedor `simulado` existe para ter
-alucinação zero **por construção** e assim calibrar o verificador — e numa versão anterior
-ele falhava até nisso, raspando números dos exemplares *few-shot* do próprio prompt e
-produzindo **19% de alucinação** no que deveria ser o controle perfeito (§7, achado nº 6).
-Corrigido, ele cumpre seu papel; o que ele não pode fazer é substituir um modelo real na
-comparação de prompts.
+**Alucinação numérica 0% e aderência estrutural 100%, nos três templates, agora medidos de
+verdade.** Isto é resultado, não construção: um modelo generativo de 3B escreveu 45 laudos e
+**não inventou um único número** nem omitiu uma única das quatro seções obrigatórias. A razão
+é o guardrail de prevenção do §5.3: os números são pré-escritos no bloco `DADOS` do prompt, e
+ao modelo resta organizá-los em prosa. **A decisão de arquitetura — formatar antes, em vez de
+pedir ao modelo que calcule — é o que produziu esse número**, e ela vale mais que qualquer
+instrução de prompt, porque não depende da obediência do modelo.
+
+#### O que diferencia os templates — e não é o que eu esperava
+
+A diferença mensurável **não** está em fidelidade nem em estrutura (empate perfeito), e sim em
+**ancoragem nos dados e concisão**:
+
+- **V2 cita 51% mais números que V1** (15,9 contra 10,5) em **20% menos texto** (1.432 contra
+  1.804 caracteres). Os exemplares *few-shot* ensinaram o modelo a **referenciar os valores da
+  paciente** em vez de escrever prosa genérica em volta deles. É o ganho de ICL que a Aula 3 de
+  LLMs prevê, aparecendo numa métrica que eu não havia escolhido de antemão para medi-lo.
+- **V3 é o mais conciso** (1.333 caracteres) e fica entre os dois em números citados. O percurso
+  de raciocínio obrigatório (§5.3) aparenta funcionar como orçamento: o modelo cobre as cinco
+  etapas e para, em vez de divagar.
+- **V1 é o mais verboso e o menos ancorado** — o padrão clássico de zero-shot: cumpre a forma
+  pedida, mas preenche com texto de ligação em vez de dados.
+
+#### 🔴 O achado que quase virou um resultado falso
+
+A primeira leitura desta execução acusou **10 violações de termos proibidos — 9 no V1, 1 no
+V3, 0 no V2** — e a conclusão parecia escrever-se sozinha: *"o few-shot ensina o modelo a não
+diagnosticar"*. **Essa conclusão era falsa, e foi a inspeção dos contextos que mostrou por
+quê.** As dez ocorrências eram todas frases de ressalva:
+
+> "Este resultado **não** constitui diagnóstico definitivo."
+> "Isto **não** é um diagnóstico definitivo da paciente."
+
+O verificador testava `termo in texto`, **sem tratar negação**. Ou seja: ele acusava de violar a
+regra exatamente o texto que a **cumpria** — e, pior, acusava mais o template mais cuidadoso,
+porque V1 escreve mais ressalvas (é o mais verboso). **A métrica estava invertida: media o
+cumprimento da regra e reportava como violação.** Corrigido (§7, achado nº 12), o número real é
+**0 violações nos três templates** — nenhum dos 45 laudos emitiu ato diagnóstico.
+
+**Por que isto está no relatório em vez de ser silenciosamente corrigido:** é o segundo
+instrumento deste projeto que falhou ao medir o que dizia medir — o primeiro foi a métrica de
+diversidade do AG (§7, achado nº 3). Nos dois casos, o erro só apareceu porque **fui olhar o
+dado bruto em vez de aceitar o agregado**. É a lição metodológica mais transferível do trabalho.
+
+#### Calibração da incerteza: onde o modelo de 3B falha, e o few-shot piora
+
+O template manda sinalizar **baixa confiança** apenas para casos entre 40% e 60%. Medindo a
+aplicação dessa regra nos três estratos:
+
+| Template | Sinalizou no limiar (deveria) | Sinalizou em alta confiança (não deveria) | Acerto |
+|---|---|---|---|
+| V1 — zero-shot | **0 / 5** | 0 / 10 | 66,7% |
+| V2 — few-shot | 2 / 5 | **3 / 10** | 60,0% |
+| V3 — few-shot estruturado | 2 / 5 | **3 / 10** | 60,0% |
+
+**Nenhum template passa de 67%, e os dois modos de falha são opostos:**
+
+- **V1 nunca sinaliza baixa confiança** — nem nos 5 casos de limiar, onde é obrigatório. Acerta
+  66,7% por **omissão total**: nunca erra nos casos de alta confiança porque nunca usa a
+  expressão. É o pior resultado dos três disfarçado no melhor número — e um aviso sobre ler
+  acurácia agregada sem olhar a matriz.
+- **V2 e V3 aprenderam a expressão com o exemplar 3 e a aplicam mal.** Em 3 de 10 casos de alta
+  confiança, o modelo escreveu "baixa confiança" para probabilidades **baixas** —
+  **confundindo "probabilidade baixa" com "confiança baixa"**. Um exemplo real, para uma
+  paciente com probabilidade de 3,0%:
+
+  > "**Este é um caso de baixa confiança.** A 3.0%, a classificação é praticamente um empate
+  > estatístico"
+
+  Três erros numa frase: 3% não é empate; é um caso de confiança **alta** de que não há SOP; e a
+  frase é cópia quase literal do exemplar de 52,7% do template. **O modelo transferiu a forma do
+  exemplar sem transferir a condição que a justifica** — exatamente o risco que a Aula 3 de LLMs
+  atribui a exemplares, observado nos meus próprios dados.
+
+**Como isso qualifica o ganho do few-shot:** V2 melhora a ancoragem numérica (+51% de números
+citados) **e piora a calibração** (3 erros novos onde V1 tinha 0). Não é um trade-off que eu
+previ, e ele importa clinicamente mais que a ancoragem: um laudo que chama 3% de "baixa
+confiança" desorienta quem o lê. **Num uso real, a correção seria pré-computar a faixa de
+confiança em código** — como já se faz com os números — em vez de pedir ao modelo que a derive
+da probabilidade. É a mesma lição do guardrail que deu 0% de alucinação, aplicada a um campo
+que eu deixei de fora.
+
+#### O que fica pendente
+
+**A rubrica manual (6 critérios × 45 saídas) não foi preenchida.** Agora há 45 saídas
+genuinamente distintas e a rubrica é aplicável — a razão que impedia (textos idênticos) deixou
+de valer. Três dos seis critérios já têm medição objetiva nesta seção (fidelidade numérica,
+não-diagnóstico, calibração da incerteza); os outros três (fidelidade às features,
+acionabilidade, clareza para médico) exigem juízo qualitativo, e **preenchê-los é trabalho de
+avaliação humana que não cabe automatizar sem esvaziar o instrumento**.
+
+**Limitação do modelo usado, declarada.** `llama3.2:3b` e não `llama3.1:8b` porque a máquina de
+execução tem 8 GB de RAM: o 8B quantizado ocupa ~4,7 GB e, com o kernel do Jupyter e o servidor
+Ollama concorrendo, entra em swap. Continua sendo LLaMA — a família que o enunciado nomeia — mas
+**é um modelo pequeno, e parte dos erros de calibração acima é atribuível ao porte**. Um 8B ou
+70B provavelmente aplicaria a regra de faixa com mais consistência; o que **não** mudaria é a
+conclusão sobre os guardrails, porque 0% de alucinação vem da arquitetura do prompt, não da
+capacidade do modelo.
+
+**O controle `simulado` foi preservado** em `avaliacao_llm_simulado/`. Ele continua servindo ao
+propósito para o qual existe: alucinação zero por construção, para calibrar o verificador. Foi
+ele que expôs o achado nº 6 (o simulado raspando números dos exemplares, 19% de alucinação no
+que devia ser o controle perfeito).
 
 ---
-
 ## 6. Arquitetura, monitoramento e logging
 
 > Enunciado, requisito 2: *"Configurar recursos de escalabilidade automática para lidar com
@@ -1208,7 +1283,7 @@ orçamento quando a busca já terminou.
 
 A Fase 1 **não tinha** `tests/`. É requisito novo e explícito (4c), e num projeto centrado em
 notebooks é o mais fácil de esquecer. O núcleo do AG é código puro e determinístico — alvo
-ideal para pytest. **205 testes, 1.589 linhas, todos passando em 105 s.**
+ideal para pytest. **215 testes, 1.635 linhas, todos passando em 113 s.**
 
 | Arquivo | Testes | O que protege |
 |---|---|---|
@@ -1217,11 +1292,18 @@ ideal para pytest. **205 testes, 1.589 linhas, todos passando em 105 s.**
 | `test_fitness.py` | 23 | 🔴 **fitness nunca acessa o conjunto de teste**; `DadosTreino` sem campo de teste; splits disjuntos; determinismo; cache acerta quando só genes latentes diferem e **não** acerta quando o fenótipo difere; hotstart de **toda** família na vizinhança da Fase 1; nenhum hotstart degenerado |
 | `test_metricas.py` | 16 | **Entropia validada contra o 1,585 da Aula 3**; clonal → 0; uniforme → log₂(n); fenótipos idênticos contam como 1 solução |
 | `test_motor.py` | 18 | Melhor fitness **nunca piora**; população constante em todas as gerações; reprodutibilidade por semente; `familia_fixa` sem escapes; parada por estagnação dispara; artefatos escritos; JSONL carrega em DataFrame; 🔴 **anti-vazamento no laço completo** |
-| `test_llm_contexto.py` | 31 | 🔴 **Campo fora da allow-list nunca entra**; campos proibidos levantam exceção; rótulo verdadeiro nunca chega ao prompt; verificador detecta número inventado e aceita arredondamento; os 3 templates existem com exemplares diversos e consistentes |
+| `test_llm_contexto.py` | **41** | 🔴 **Campo fora da allow-list nunca entra**; campos proibidos levantam exceção; rótulo verdadeiro nunca chega ao prompt; verificador detecta número inventado e aceita arredondamento; os 3 templates existem com exemplares diversos e consistentes |
 
 **Os dois testes mais importantes** são os de anti-vazamento (§2.5). **Fora de escopo,
 declarado:** não há teste da saída da LLM por asserção de conteúdo — é não determinística, e
 a avaliação dela é a rubrica do §5.4.
+
+**Os 10 testes mais recentes vieram de um bug encontrado em produção**, não de cobertura
+planejada: o verificador de termos proibidos acusava ressalvas como violações (§7, achado nº 12).
+Eles vêm **em par** — 5 fixam que uma ressalva negada não conta como violação, e 5 fixam que
+violações reais continuam detectadas. **O segundo grupo é o que importa metodologicamente:** sem
+ele, a correção passaria num verificador que simplesmente parou de acusar qualquer coisa. É a
+mesma lição do achado nº 1 (§7): um teste que só confirma a direção que você quer não é teste.
 
 ### 6.5 Se fosse para produção — **não implementado**
 
@@ -1244,10 +1326,10 @@ dizer onde o desenho atual quebra é mais útil que desenhar uma arquitetura que
 
 ## 7. Desafios enfrentados e soluções implementadas
 
-Esta seção é a mais útil do relatório e a mais desconfortável de escrever. São onze achados:
-**seis** encontrados e corrigidos durante a implementação, e **cinco** encontrados na
-auditoria final, dos quais quatro permanecem abertos e estão declarados aqui em vez de
-silenciados. Cada um tem a mesma estrutura: o que estava errado → qual o impacto → como foi
+Esta seção é a mais útil do relatório e a mais desconfortável de escrever. São **doze** achados:
+**seis** encontrados e corrigidos durante a implementação, **cinco** na auditoria final (dos
+quais quatro permanecem abertos e estão declarados aqui em vez de silenciados), e **um** que só
+apareceu quando a camada de LLM rodou contra um modelo generativo real. Cada um tem a mesma estrutura: o que estava errado → qual o impacto → como foi
 pego → o que foi feito.
 
 ### Corrigidos durante a implementação
@@ -1288,6 +1370,8 @@ na vizinhança da Fase 1, e guarda explícita contra modelo degenerado (F1 = 0 o
 | **10** | **Cinco células erradas na documentação anterior**, por transcrição manual: entropia final de E2 (0,775 → **1,299**), entropia final de E3 (0,000 → **0,236**), cache de E1 (19% → **13,8%**), cache de E2 (15% → **4,9%**), tempo de D (33 s → **19,6 s**). E a conclusão sobre o alelo `class_weight` (§3.5) estava invertida, por ler um gráfico truncado como se fosse o fim da execução | **Era o risco mais sério para a credibilidade do trabalho**: números que não batem com os artefatos versionados ao lado deles | **Corrigido.** `README.md`, Notebook 02 e o ADR 003 foram alinhados aos valores de `analise.py`, e **todas as tabelas deste relatório são geradas a partir de `runs/`**. Três das cinco células erradas eram comparações **em gerações diferentes** — daí a regra de geração casada do §3.2 |
 | **11** | **O termo de AUC do fitness deixa de medir ordenação quando o KNN tem `n_neighbors = 1`**, porque `predict_proba` só emite 0,0 e 1,0 e `roc_auc_score` colapsa em acurácia balanceada. O AG encontrou e explorou essa região | Maior regressão isolada do projeto: AUC de holdout do KNN **0,9007 → 0,7924** (§4.1). Matematicamente correto pela fórmula, e indesejado | **Aberto, declarado** no §4.1. Correção: restringir `n_neighbors ≥ 3`, ou exigir `weights='distance'` para k pequeno. Deixado aberto porque corrigir mudaria o espaço de busca e invalidaria as execuções gravadas |
 
+| **12** | 🔴 **O verificador de termos proibidos media o cumprimento da regra e reportava como violação.** `termo in texto`, sem tratar negação: "**não** constitui diagnóstico definitivo" — a frase que o prompt **manda** escrever — era acusada de violar a proibição de diagnosticar | **Inverteria uma conclusão do relatório.** Na primeira leitura da execução com LLM real, acusou 10 violações (9 no V1, 0 no V2), sugerindo *"o few-shot ensina o modelo a não diagnosticar"*. Falso: V1 acusava mais porque é o mais verboso e escreve mais ressalvas. O número real é **0 nos três templates** | **Corrigido.** `_esta_negado()` olha 60 caracteres à esquerda do termo, parando na fronteira de frase (uma negação na frase anterior não governa o termo). 10 testes novos: 5 de ressalva que não deve acusar e **5 de violação real que deve continuar acusando** — sem esse par, a correção passaria num verificador que simplesmente parou de acusar. Os 45 artefatos foram regravados; `test_llm_contexto.py` foi de 31 para 41 testes |
+
 ### Lacunas menores de artefato
 
 - `runs/C_busca_aleatoria_*/history.jsonl` está **vazio**: `busca_aleatoria()` devolve
@@ -1299,13 +1383,14 @@ na vizinhança da Fase 1, e guarda explícita contra modelo degenerado (F1 = 0 o
   recalculados na auditoria, sorteando com a mesma semente.
 - O plano previa `env.json` separado; o conteúdo está dentro de `config.json` (§6.2).
 
-### O padrão que atravessa os onze achados
+### O padrão que atravessa os doze achados
 
-Sete dos onze (nº 1, 2, 3, 5, 9, 10, 11) são o **mesmo tipo de erro**: uma representação
+Oito dos doze (nº 1, 2, 3, 5, 9, 10, 11, 12) são o **mesmo tipo de erro**: uma representação
 interna confundida com o que ela representa. Genótipo confundido com fenótipo (2, 3); valor em
 log confundido com valor real (1); taxa nominal confundida com taxa efetiva (5); hotstart
 nominal confundido com hotstart expresso (9); métrica num ponto confundida com métrica no fim
-(10); objetivo declarado confundido com objetivo efetivo (11).
+(10); objetivo declarado confundido com objetivo efetivo (11); e presença literal de um termo
+confundida com a afirmação que o termo faz (12).
 
 **Por que isso vale registrar:** é a classe de erro característica de uma **codificação
 híbrida com genes latentes**. A decisão de projeto do §2.1 — que compra tamanho fixo,
@@ -1358,9 +1443,10 @@ amostra" fica mais forte justamente porque eu não tentei corrigi-lo com AG** (A
    como fator de confusão e viabiliza o cache, mas permite que o AG se ajuste àquela partição
    específica. **O preço é mensurável:** o fitness CV melhorou nas **cinco** famílias (§4.1),
    o score de holdout em **três**. A diferença é ajuste à partição.
-4. **A avaliação da LLM está incompleta** (§5.5): a rubrica não foi preenchida e a comparação
-   entre os três templates não tem sinal, porque o provedor `simulado` ignora o template. O
-   instrumento está construído e testado; a medição exige um provedor generativo real.
+4. **A avaliação da LLM está parcial** (§5.5): as métricas automáticas foram medidas contra
+   `llama3.2:3b` real e a comparação entre templates tem sinal, mas **três dos seis critérios da
+   rubrica — os qualitativos — não foram preenchidos**. E o modelo usado é pequeno por restrição
+   de hardware (8 GB de RAM), o que afeta a calibração mas não a fidelidade numérica.
 5. **A avaliação da LLM, mesmo completa, não seria validação clínica.** Avaliador único,
    não-médico, n=15 pacientes. É avaliação sistemática e reprodutível no escopo de um trabalho
    de faculdade — dizer isso vale mais que inflar a amostra para parecer rigoroso.
@@ -1377,7 +1463,7 @@ amostra" fica mais forte justamente porque eu não tentei corrigi-lo com AG** (A
 
 | Requisito do enunciado | Onde | Estado |
 |---|---|---|
-| 1 · AG para otimizar os modelos do Módulo 1 | §2, `src/ag/` | ✅ do zero, 205 testes |
+| 1 · AG para otimizar os modelos do Módulo 1 | §2, `src/ag/` | ✅ do zero, 215 testes |
 | 1a · Codificação adequada | §2.1, ADR 002 | ✅ híbrida, 24 genes, 6 tipos |
 | 1b · Seleção, cruzamento e mutação | §2.2, ADR 005/006 | ✅ despachados por tipo; **dois** operadores de seleção |
 | 1c · Fitness baseada em métricas | §2.4, ADR 003 | ✅ composto, com os pesos justificados clinicamente |
@@ -1390,19 +1476,20 @@ amostra" fica mais forte justamente porque eu não tentei corrigi-lo com AG** (A
 | 3a · Explicações em linguagem natural | §5.2 | ✅ |
 | 3b · Dados numéricos → insights acionáveis | §5.2 (2, 3) | ✅ relatório de experimento + resumo de coorte |
 | 3c · Base para dados textuais no Módulo 3 | §5.2, §9.3 | ✅ interface de uma função + `prompts/` versionados |
-| 3d · Técnicas de prompt engineering | §5.3 | ⚠️ 3 templates construídos e ancorados na Aula 3; **comparação empírica sem sinal** (§5.5) |
-| 3e · Avaliar a qualidade das interpretações | §5.4, §5.5 | ⚠️ instrumento completo e testado; **métricas automáticas degeneradas e rubrica não preenchida** (§5.5) |
+| 3d · Técnicas de prompt engineering | §5.3, §5.5 | ✅ 3 templates ancorados na Aula 3, **comparados com LLM real**: V2 cita +51% de números em −20% de texto, e o few-shot piora a calibração (§5.5) |
+| 3e · Avaliar a qualidade das interpretações | §5.4, §5.5 | ⚠️ métricas automáticas **medidas de verdade** (0% de alucinação, 100% de aderência, calibração ≤67%); **rubrica manual dos 3 critérios qualitativos não preenchida** (§5.5) |
 | 4a · Projeto Python com ambiente virtual | `README.md` | ✅ `venv` + `requirements.txt` |
 | 4b · Documentação com diagramas | `docs/arquitetura.md` | ✅ |
-| 4c · Testes automatizados | §6.4 | ✅ **205 testes**, 1.589 linhas |
+| 4c · Testes automatizados | §6.4 | ✅ **215 testes**, 1.635 linhas |
 | 4d · IaC | — | 🚫 fora de escopo (nuvem opcional) |
 
-**Os dois itens com ⚠️ estão marcados assim de propósito.** Estão construídos, testados e
-documentados; o que falta é uma execução com provedor generativo real, e o §5.5 diz
-exatamente qual comando falta rodar. Apresentar "alucinação 0% em três templates" como
-resultado seria apresentar uma tautologia como mérito.
+**O 3d fechou** com a execução de 14/10/2026 contra `llama3.2:3b` local: os três templates
+produzem saídas distintas e a comparação tem sinal. **O 3e segue com ⚠️** por uma razão
+específica e não por falta de instrumento — três dos seis critérios da rubrica têm medição
+objetiva no §5.5, e os outros três exigem juízo humano que não cabe automatizar sem esvaziar o
+instrumento.
 
-### 9.2 Os cinco resultados que eu defenderia
+### 9.2 Os seis resultados que eu defenderia
 
 1. **O melhor modelo da Fase 2 supera o da Fase 1 na métrica que importa clinicamente.**
    Regressão Logística ajustada pelo AG: recall de **0,8056 → 0,9167** sobre o Random Forest
@@ -1423,6 +1510,11 @@ resultado seria apresentar uma tautologia como mérito.
    diversidade mais alta em todas as gerações casadas e o alelo `balanced` caindo 0,234
    (§3.4, §3.5). **E a previsão que eu havia escrito tinha a observável invertida** — está
    mantida no texto, errada, com a explicação do porquê.
+6. **Um modelo de 3B escreveu 45 laudos sem inventar um número.** 0% de alucinação numérica e
+   100% de aderência estrutural, medidos contra `llama3.2:3b` local (§5.5). O mérito é da
+   **arquitetura do prompt** — números pré-escritos em código, não pedidos ao modelo — e a
+   contraprova está no mesmo experimento: o campo que eu **deixei** o modelo derivar (a faixa
+   de confiança) é exatamente o que nenhum template acertou acima de 67%.
 
 ### 9.3 Ponte para o Módulo 3
 
@@ -1461,7 +1553,7 @@ aleatória** (§4.2) e o que foi preciso para saber disso. Sem a Etapa C, eu ter
 AG melhorou os modelos", o que é verdade e é enganoso ao mesmo tempo. A comparação custou
 ~1,5 min de CPU e trocou uma afirmação ambígua por uma afirmação precisa.
 
-A segunda lição foi a do §7: **sete dos onze achados eram o mesmo erro** — confundir uma
+A segunda lição foi a do §7: **oito dos doze achados eram o mesmo erro** — confundir uma
 representação com o que ela representa. Foi o preço da codificação híbrida, que eu
 continuaria escolhendo; o que eu faria diferente é escrever os testes de ida-e-volta antes
 dos operadores.
@@ -1472,6 +1564,18 @@ mecanismo. As duas me ensinaram mais do que as previsões que acertaram, e é po
 valor de declarar hipóteses antes é poder ser contrariado por elas — não poder exibi-las
 confirmadas.
 
+A quarta chegou por último, quando a camada de LLM finalmente rodou contra um modelo real.
+Ela repete a segunda num contexto diferente e por isso é a que eu levo mais a sério:
+**três vezes neste projeto, um número agregado parecia um resultado e era um instrumento
+quebrado.** A métrica de diversidade contava genótipos quando o fitness depende de fenótipos
+(nº 3). O provedor `simulado` raspava os números dos próprios exemplares e chamava aquilo de
+alucinação zero (nº 6). O verificador de termos proibidos contava ressalvas como violações e
+quase me fez escrever que o few-shot ensina o modelo a não diagnosticar (nº 12). **Nos três
+casos o agregado era plausível, apontava para uma conclusão bonita, e só caiu quando eu abri o
+dado bruto.** A regra prática que fica: antes de escrever uma frase que começa com "os dados
+mostram que", abrir as linhas que produziram o número — e desconfiar especialmente quando o
+resultado é exatamente o que eu esperava encontrar.
+
 ---
 
 ## Anexos — onde está cada artefato
@@ -1479,7 +1583,8 @@ confirmadas.
 | Anexo | Onde |
 |---|---|
 | **Templates de prompt, texto integral** | **Anexo A**, abaixo — fonte em `prompts/*.md` |
-| **45 saídas brutas da LLM + planilha da rubrica** | `avaliacao_llm/` (JSON, Markdown, CSV) |
+| **45 saídas brutas da LLM + planilha da rubrica** | `avaliacao_llm/` (JSON, Markdown, CSV) — execução com `llama3.2:3b` |
+| **Execução de controle (`simulado`)** | `avaliacao_llm_simulado/` — alucinação zero por construção, calibra o verificador |
 | **Decisões arquiteturais (9 ADRs)** | `docs/decisoes/001` a `009` |
 | **Diagramas de componentes e de sequência** | `docs/arquitetura.md` |
 | **Artefatos das 22 execuções de AG** | `runs/<experimento>_seed<n>/` |
@@ -1492,7 +1597,7 @@ confirmadas.
 ```bash
 python3 -m venv .venv && source .venv/bin/activate && pip install -r requirements.txt
 python -m src.run_ml                                      # baseline da Fase 1 (~10 s)
-python -m pytest tests/ -q                                # 205 testes (~105 s)
+python -m pytest tests/ -q                                # 215 testes (~113 s)
 python -m src.experimentos.rodar_ag --experimento todos    # E1,E2,E3,D × 3 sementes (~3 min)
 python -m src.experimentos.rodar_ag --etapa-a              # AG por família (~2 min)
 python -m src.experimentos.rodar_ag --etapa-c              # busca aleatória (~1,5 min)

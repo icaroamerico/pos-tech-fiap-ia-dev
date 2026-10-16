@@ -28,11 +28,11 @@ foram copiados **sem alteração** (ver [ADR 009](docs/decisoes/009-scripts-da-f
 | 3a | Explicações em linguagem natural dos diagnósticos | NB 03 §6 |
 | 3b | Dados numéricos → insights acionáveis | NB 03 §8 |
 | 3c | Base para dados textuais no Módulo 3 | NB 03 §10 (interface fina + `prompts/`) |
-| 3d | Técnicas de prompt engineering | `prompts/*.md` · NB 03 §4 — ⚠️ 3 templates construídos; comparação empírica pendente de LLM real ([relatório §5.5](docs/relatorio-tecnico.md)) |
-| 3e | **Avaliar a qualidade das interpretações** | NB 03 §7 · `avaliacao_llm/` — ⚠️ instrumento completo; rubrica não preenchida ([relatório §5.5](docs/relatorio-tecnico.md)) |
+| 3d | Técnicas de prompt engineering | `prompts/*.md` · NB 03 §4 — ✅ 3 templates **comparados com LLM real** ([relatório §5.5](docs/relatorio-tecnico.md)) |
+| 3e | **Avaliar a qualidade das interpretações** | NB 03 §7 · `avaliacao_llm/` — ⚠️ métricas automáticas medidas; 3 critérios qualitativos da rubrica pendentes ([relatório §5.5](docs/relatorio-tecnico.md)) |
 | 4a | Projeto Python estruturado com ambiente virtual | `venv` + `requirements.txt` |
 | 4b | Documentação detalhada com diagramas de arquitetura | [`docs/arquitetura.md`](docs/arquitetura.md) (Mermaid) |
-| 4c | **Testes automatizados** | `tests/` — **205 testes** |
+| 4c | **Testes automatizados** | `tests/` — **215 testes** |
 | 4d | IaC (só se nuvem) | **fora de escopo** — nuvem é opcional no enunciado |
 
 ---
@@ -105,21 +105,43 @@ sem rodar nada.
 ### Passo 4 — testes
 
 ```bash
-python -m pytest tests/ -q        # 205 testes, ~3 min
+python -m pytest tests/ -q        # 215 testes, ~3 min
 python -m pytest tests/ -q -k "not motor"   # ~15 s, sem as execuções de AG reais
 ```
 
-### LLM com modelo real (opcional)
+### LLM com modelo real
 
-Os notebooks usam por padrão o provedor `simulado` (determinístico, sem rede), para abrir em
-qualquer máquina. Para rodar com LLM de verdade:
+**O Notebook 03 já está executado com LLM real** — `PROVEDOR = "ollama"`, modelo
+`llama3.2:3b`, 45 saídas em `avaliacao_llm/`. Para reproduzir:
 
 ```bash
-ollama serve
-ollama pull llama3.1:8b
+brew install ollama && brew services start ollama
+ollama pull llama3.2:3b   # 3B e não 8B: esta máquina tem 8 GB de RAM (relatório §5.5)
 ```
 
-e trocar `PROVEDOR = "simulado"` por `"ollama"` na §2 do Notebook 03.
+e reexecutar o Notebook 03 (~2 h: 50 chamadas a ~29 s cada).
+
+Para abrir o notebook em qualquer máquina sem Ollama, troque `PROVEDOR` por `"simulado"` na
+célula 6 — determinístico, sem rede. **Mas atenção:** o `simulado` ignora o template e produz
+saídas idênticas nos três, então ele serve de *controle* do verificador, não de comparação de
+prompts. A execução de controle está preservada em `avaliacao_llm_simulado/`.
+
+#### O que a execução real mediu
+
+| Template | Alucinação | Aderência | Termos proibidos | Números citados | Caracteres |
+|---|---|---|---|---|---|
+| V1 — zero-shot | **0,0%** | **100%** | 0 | 10,5 | 1.804 |
+| V2 — few-shot | **0,0%** | **100%** | 0 | **15,9** | 1.432 |
+| V3 — few-shot estruturado | **0,0%** | **100%** | 0 | 13,0 | **1.333** |
+
+**0% de alucinação com um modelo de 3B é resultado da arquitetura, não do modelo:** os números
+são pré-escritos no prompt e o modelo só os organiza em prosa.
+
+**O few-shot troca ancoragem por calibração.** V2 cita 51% mais números em 20% menos texto — mas
+nenhum template passa de **67%** na regra de sinalizar baixa confiança só entre 40% e 60%, e o
+few-shot *piora* esse número (60%): o modelo copiou a expressão do exemplar sem a condição que a
+justifica, chamando uma probabilidade de 3% de "caso de baixa confiança". Detalhes no
+[relatório §5.5](docs/relatorio-tecnico.md).
 
 ---
 
@@ -255,7 +277,10 @@ quanto o laço evolutivo completo.
    fator de confusão, mas permite que o AG se ajuste àquela partição específica — o que explica
    parte do ganho de CV não transferido ao holdout.
 
-5. **Quatro achados da auditoria final permanecem abertos** — nenhum invalida um resultado
+5. **Nenhum template calibra a incerteza corretamente** (≤67%), e o few-shot piora isso — ver
+   [relatório §5.5](docs/relatorio-tecnico.md). A correção certa é pré-computar a faixa de
+   confiança em código, como já se faz com os números.
+6. **Quatro achados da auditoria final permanecem abertos** — nenhum invalida um resultado
    reportado, e os quatro estão descritos com impacto e correção proposta no
    [relatório técnico §7](docs/relatorio-tecnico.md):
    a penalidade de custo do plano nunca foi implementada; o terceiro critério de parada
@@ -273,7 +298,9 @@ pede, com todas as tabelas geradas a partir de `runs/` por `src/experimentos/ana
 ## Pendências
 
 - Vídeo de demonstração (≤ 15 min) — entregável 3 do enunciado.
-- Avaliação da LLM com provedor generativo real (`ollama`), para fechar 3d e 3e.
+- Rubrica manual da LLM: os 3 critérios qualitativos (fidelidade às features, acionabilidade,
+  clareza para médico) nas 45 saídas de `avaliacao_llm/`. Os outros 3 já têm medição objetiva
+  no [relatório §5.5](docs/relatorio-tecnico.md).
 - Extensões opcionais não implementadas: seleção de features no cromossomo (a que mais
   mudaria a conclusão do empate com busca aleatória), frente de Pareto (recall × precisão) e
   família `MLP`.

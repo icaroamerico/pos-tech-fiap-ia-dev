@@ -8,7 +8,7 @@ próprio `requirements.txt`, seu próprio ambiente virtual e roda sem depender d
 | Fase | Tema | Entrega |
 |---|---|---|
 | [**`fase1/`**](fase1/) | Diagnóstico de SOP (PCOS) com modelos clássicos + CNN de raio-X de tórax | Pipeline de ETL, 5 classificadores, 2 CNNs, documentação em PDF |
-| [**`fase2/`**](fase2/) | **Otimização** desses modelos por algoritmo genético + camada de LLM | AG do zero, 22 execuções gravadas, 205 testes, relatório técnico |
+| [**`fase2/`**](fase2/) | **Otimização** desses modelos por algoritmo genético + camada de LLM | AG do zero, 22 execuções gravadas, 215 testes, relatório técnico |
 
 **A ligação entre as duas é de dados e de baseline, não de código.** A Fase 2 copiou
 `treinamento.py` e `run_ml.py` da Fase 1 **byte a byte** e nunca os editou — é o que permite
@@ -42,7 +42,7 @@ baseline.
 | **Entrada — imagens** | `fase1/case_imagens_raiox/imagens_exemplos/` (amostra de 16; o dataset de ~1,2 GB **não** é versionado) | — (CNN fora do escopo) |
 | **Código** | `fase1/src/` | `fase2/src/` (17 módulos) |
 | **Notebooks** | `fase1/src/tratamento_dados/`, `fase1/src/modelagem/`, `fase1/case_imagens_raiox/` | `fase2/notebooks/` (3, já executados) |
-| **Testes** | — (a Fase 1 não tinha) | `fase2/tests/` (**205 testes**) |
+| **Testes** | — (a Fase 1 não tinha) | `fase2/tests/` (**215 testes**) |
 | **Prompts de LLM** | — | `fase2/prompts/` (3 templates versionados) |
 | **Documentação** | `fase1/documentacao/` (PDF entregue) | `fase2/docs/` (relatório técnico, arquitetura, **9 ADRs**) |
 | **Saída — métricas** | `fase1/reports/metricas_modelos.{csv,json,txt}` | `fase2/reports/metricas_modelos.{json,txt}` |
@@ -79,7 +79,7 @@ python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 
 python -m src.run_ml                                     # reproduz o baseline da Fase 1 (~10 s)
-python -m pytest tests/ -q                               # 205 testes (~105 s)
+python -m pytest tests/ -q                               # 215 testes (~113 s)
 python -m src.experimentos.rodar_ag --experimento todos  # E1,E2,E3,D × 3 sementes (~3 min)
 python -m src.experimentos.rodar_ag --etapa-a            # AG por família (~2 min)
 python -m src.experimentos.rodar_ag --etapa-c            # busca aleatória (~1,5 min)
