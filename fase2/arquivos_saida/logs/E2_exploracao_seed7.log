@@ -1,0 +1,15 @@
+22:35:58 | INFO    | AG E2_exploracao | pop=60 ger=15 mut=0.35(int=0.25) cx=0.90 k=2 elite=2 sel=torneio familia=livre
+22:36:04 | INFO    | ger  0 | melhor=0.8604 medio=0.6853 sd=0.2394 | H=2.240 unicos=58 | random_forest | cache= 2/60 | 5.8s
+22:36:13 | INFO    | ger  1 | melhor=0.8706 medio=0.7607 sd=0.1929 | H=1.776 unicos=60 | logistic_regression | cache= 2/60 | 8.8s
+22:36:24 | INFO    | ger  2 | melhor=0.8706 medio=0.8143 sd=0.1279 | H=1.304 unicos=60 | logistic_regression | cache= 2/60 | 10.9s
+22:36:33 | INFO    | ger  3 | melhor=0.8730 medio=0.7980 sd=0.1655 | H=1.299 unicos=60 | random_forest | cache= 2/60 | 8.9s
+22:36:42 | INFO    | ger  4 | melhor=0.8739 medio=0.7894 sd=0.1744 | H=1.071 unicos=60 | logistic_regression | cache= 2/60 | 9.4s
+22:36:53 | INFO    | ger  5 | melhor=0.8739 medio=0.8289 sd=0.0482 | H=1.205 unicos=60 | logistic_regression | cache= 2/60 | 10.5s
+22:37:01 | INFO    | ger  6 | melhor=0.8739 medio=0.8312 sd=0.0697 | H=0.948 unicos=60 | logistic_regression | cache= 2/60 | 8.0s
+22:37:08 | INFO    | ger  7 | melhor=0.8791 medio=0.8016 sd=0.1457 | H=1.210 unicos=60 | logistic_regression | cache= 2/60 | 7.3s
+22:37:16 | INFO    | ger  8 | melhor=0.8791 medio=0.7872 sd=0.1878 | H=1.105 unicos=59 | logistic_regression | cache= 5/60 | 7.9s
+22:37:25 | INFO    | ger  9 | melhor=0.8791 medio=0.8425 sd=0.0219 | H=1.181 unicos=60 | logistic_regression | cache= 2/60 | 9.2s
+22:37:33 | INFO    | ger 10 | melhor=0.8791 medio=0.8269 sd=0.0999 | H=1.208 unicos=60 | logistic_regression | cache= 3/60 | 8.1s
+22:37:41 | INFO    | ger 11 | melhor=0.8791 medio=0.8155 sd=0.1291 | H=1.219 unicos=60 | logistic_regression | cache= 4/60 | 7.5s
+22:37:47 | INFO    | ger 12 | melhor=0.8791 medio=0.8261 sd=0.0838 | H=1.407 unicos=60 | logistic_regression | cache= 2/60 | 6.0s
+22:37:47 | INFO    | FIM E2_exploracao | melhor=0.8791 (logistic_regression) | 13 gerações | parada=estagnacao_5_geracoes | 108.2s | cache 4%

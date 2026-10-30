@@ -8,13 +8,13 @@ próprio `requirements.txt`, seu próprio ambiente virtual e roda sem depender d
 | Fase | Tema | Entrega |
 |---|---|---|
 | [**`fase1/`**](fase1/) | Diagnóstico de SOP (PCOS) com modelos clássicos + CNN de raio-X de tórax | Pipeline de ETL, 5 classificadores, 2 CNNs, documentação em PDF |
-| [**`fase2/`**](fase2/) | **Otimização** desses modelos por algoritmo genético + camada de LLM | AG do zero, 22 execuções gravadas, 215 testes, relatório técnico |
+| [**`fase2/`**](fase2/) | **Otimização** desses modelos por algoritmo genético + camada de LLM | AG do zero, 22 execuções gravadas, 221 testes, relatório técnico |
 
 **A ligação entre as duas é de dados e de baseline, não de código.** A Fase 2 copiou
 `treinamento.py` e `run_ml.py` da Fase 1 **byte a byte** e nunca os editou — é o que permite
 afirmar que a diferença entre "antes" e "depois" vem do algoritmo genético, e não de uma
 refatoração pelo caminho. A justificativa está no
-[ADR 009](fase2/docs/decisoes/009-scripts-da-fase-1-intocados.md).
+[ADR 009](fase2/documentacao/decisoes/009-scripts-da-fase-1-intocados.md).
 
 ---
 
@@ -42,15 +42,16 @@ baseline.
 | **Entrada — imagens** | `fase1/case_imagens_raiox/imagens_exemplos/` (amostra de 16; o dataset de ~1,2 GB **não** é versionado) | — (CNN fora do escopo) |
 | **Código** | `fase1/src/` | `fase2/src/` (17 módulos) |
 | **Notebooks** | `fase1/src/tratamento_dados/`, `fase1/src/modelagem/`, `fase1/case_imagens_raiox/` | `fase2/notebooks/` (3, já executados) |
-| **Testes** | — (a Fase 1 não tinha) | `fase2/tests/` (**215 testes**) |
+| **Testes** | — (a Fase 1 não tinha) | `fase2/tests/` (**221 testes**) |
 | **Prompts de LLM** | — | `fase2/prompts/` (3 templates versionados) |
-| **Documentação** | `fase1/documentacao/` (PDF entregue) | `fase2/docs/` (relatório técnico, arquitetura, **9 ADRs**) |
-| **Saída — métricas** | `fase1/reports/metricas_modelos.{csv,json,txt}` | `fase2/reports/metricas_modelos.{json,txt}` |
-| **Saída — execuções do AG** | — | `fase2/runs/` (22 execuções: `config`, `history.jsonl`, `best_individual`, `population_final`, `resumo`, `metrics_holdout`) |
+| **Documentação** | `fase1/documentacao/` (PDF entregue) | `fase2/documentacao/` (relatório técnico, arquitetura, **9 ADRs**) |
+| **Saída — métricas** | `fase1/reports/metricas_modelos.{csv,json,txt}` | `fase2/arquivos_saida/arquivos_analiticos/metricas_modelos_baseline/metricas_modelos.{json,txt}` |
+| **Saída — execuções do AG** | — | `fase2/arquivos_saida/arquivos_analiticos/historico_execucoes_ag/` (22 execuções: `config`, `history.jsonl`, `best_individual`, `population_final`, `resumo`, `metrics_holdout`) |
 | **Saída — logs** | — | `fase2/logs/` |
 | **Saída — avaliação da LLM** | — | `fase2/avaliacao_llm/` (45 saídas em JSON, Markdown e CSV) |
 
-> `reports/`, `runs/`, `logs/` e `avaliacao_llm/` **estão versionados de propósito.** São os
+> Tudo sob `fase2/arquivos_saida/` — métricas baseline, histórico das execuções do AG, logs e
+> `avaliacao_llm/` — **está versionado de propósito.** São os
 > artefatos que sustentam cada número do relatório técnico, e são o que faz os notebooks abrirem
 > legíveis no GitHub sem reexecutar nada.
 
@@ -73,17 +74,38 @@ jupyter lab                             # notebooks de ETL, modelagem e CNN
 
 ### Fase 2
 
+#### ⭐ Rápido: Notebook Orquestrador (recomendado)
+
 ```bash
 cd fase2
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 
-python -m src.run_ml                                     # reproduz o baseline da Fase 1 (~10 s)
-python -m pytest tests/ -q                               # 215 testes (~113 s)
+jupyter lab notebooks/00_execucao_completa.ipynb
+# Execute: Cell → Run All (tudo acontece em um lugar)
+```
+
+**Tempo:** ~15 min (simulado) ou ~3h (Ollama real)  
+**O que faz:** baseline + AG + análise + LLM com barra de progresso
+
+#### Manual: Comandos individuais
+
+```bash
+# Reproduz o baseline da Fase 1
+python -m src.run_ml                                     # ~10 s
+
+# Testes (opcional)
+python -m pytest tests/ -q                               # ~2 min
+
+# Algoritmo Genético
 python -m src.experimentos.rodar_ag --experimento todos  # E1,E2,E3,D × 3 sementes (~3 min)
-python -m src.experimentos.rodar_ag --etapa-a            # AG por família (~2 min)
-python -m src.experimentos.rodar_ag --etapa-c            # busca aleatória (~1,5 min)
-jupyter lab                                              # os 3 notebooks leem runs/
+
+# Notebooks para exploração
+jupyter lab notebooks/
+  # 00_execucao_completa.ipynb    ← Orquestrador (executa tudo)
+  # 01_ag_hiperparametros_pcos.ipynb
+  # 02_experimentos_ag_comparativo.ipynb  ← 5 gráficos comparativos
+  # 03_llm_interpretacao.ipynb
 ```
 
 > ⚠️ **Ative o ambiente — não basta chamar `.venv/bin/python` pelo caminho.** O kernel do Jupyter
@@ -115,7 +137,7 @@ diagnóstico, falso negativo e falso positivo não custam a mesma coisa.
 > acima é real, mas **não é atribuível ao algoritmo genético em particular** — qualquer busca
 > com esse orçamento teria chegado perto. O AG se distingue por **custo**: empatou gastando ~28%
 > menos treinos de modelo. Essa comparação está no
-> [relatório técnico §4.2](fase2/docs/relatorio-tecnico.md), e omiti-la faria o trabalho parecer
+> [relatório técnico §4.2](fase2/documentacao/relatorio-tecnico.md), e omiti-la faria o trabalho parecer
 > melhor e valer menos.
 
 ---
@@ -127,9 +149,9 @@ diagnóstico, falso negativo e falso positivo não custam a mesma coisa.
 | [`fase1/README.md`](fase1/README.md) | Como rodar a Fase 1, decisões de ETL e modelagem |
 | [`fase1/documentacao/`](fase1/documentacao/) | PDF entregue da Fase 1 |
 | [`fase2/README.md`](fase2/README.md) | Rastreabilidade requisito → código, como rodar, resultados |
-| [**`fase2/docs/relatorio-tecnico.md`**](fase2/docs/relatorio-tecnico.md) | **Relatório técnico da Fase 2** — 9 seções, todas as tabelas geradas a partir de `runs/` |
-| [`fase2/docs/arquitetura.md`](fase2/docs/arquitetura.md) | Diagramas Mermaid de componentes e de sequência |
-| [`fase2/docs/decisoes/`](fase2/docs/decisoes/) | 9 ADRs, no formato contexto → decisão → consequências |
+| [**`fase2/documentacao/relatorio-tecnico.md`**](fase2/documentacao/relatorio-tecnico.md) | **Relatório técnico da Fase 2** — 9 seções, todas as tabelas geradas a partir de `arquivos_saida/arquivos_analiticos/historico_execucoes_ag/` |
+| [`fase2/documentacao/arquitetura.md`](fase2/documentacao/arquitetura.md) | Diagramas Mermaid de componentes e de sequência |
+| [`fase2/documentacao/decisoes/`](fase2/documentacao/decisoes/) | 9 ADRs, no formato contexto → decisão → consequências |
 
 ---
 

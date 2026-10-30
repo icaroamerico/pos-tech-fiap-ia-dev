@@ -1,11 +1,11 @@
-"""Codificação híbrida dos indivíduos do AG (plano §4.1).
+"""Codificação híbrida dos indivíduos do AG.
 
 Um indivíduo é um dicionário com:
     {"familia": <uma das FAMILIAS>, "random_forest": {...}, "svm_rbf": {...}, ...}
 
 Todas as famílias carregam genes simultaneamente (latentes se não ativas) para manter o
 indivíduo de tamanho fixo — crossover e mutação não precisam saber qual família está ativa.
-Isso é o que o plano chama de "material genético recessivo": se o gene `familia` mutar, os
+Funciona como "material genético recessivo": se o gene `familia` mutar, os
 hiperparâmetros da nova família já estão lá, prontos para serem expressos.
 
 Cada gene tem um `tipo` que determina como ele é amostrado, mutado e cruzado
@@ -17,7 +17,7 @@ Cada gene tem um `tipo` que determina como ele é amostrado, mutado e cruzado
     real       — real uniforme em [low, high]
     real_log   — real cujo valor INTERNO é log10(valor real); decodificado via 10**valor.
                  Crossover aritmético em log-space equivale a média geométrica no espaço real,
-                 que é a escala certa para C e gamma (plano §4.1).
+                 que é a escala certa para C e gamma.
     categorical— um dos valores em `choices` (pode ser string, número, None, ou tupla)
 """
 
@@ -38,8 +38,8 @@ FAMILIAS = [
 ]
 
 # Pares (penalty, solver) válidos para a Regressão Logística — herdados como unidade atômica
-# no crossover, nunca recombinados entre si (plano §4.1: "evita indivíduo inválido por
-# construção").
+# no crossover, nunca recombinados entre si (evita indivíduo inválido por
+# construção).
 PENALTY_SOLVER_CHOICES = [("l2", "lbfgs"), ("l1", "liblinear"), ("elasticnet", "saga")]
 
 SCHEMA: dict[str, dict[str, dict[str, Any]]] = {
@@ -80,7 +80,7 @@ SCHEMA: dict[str, dict[str, dict[str, Any]]] = {
 }
 
 # Hiperparâmetros REAIS usados pela Fase 1 em cada família (extraídos de
-# src/modelagem/treinamento.py, SEED=42) — a base dos indivíduos de hotstart (plano §4.2).
+# src/modelagem/treinamento.py, SEED=42) — a base dos indivíduos de hotstart.
 #
 # ⚠️ IMPORTANTE: os valores aqui estão em UNIDADES DO MUNDO REAL (C=1.0 significa C=1.0),
 # propositalmente, para que esta tabela possa ser conferida linha a linha contra o código da
@@ -234,7 +234,7 @@ def _clamp_gene(valor: Any, spec: dict[str, Any]) -> Any:
 def clamp_individuo(individuo: dict[str, Any]) -> dict[str, Any]:
     """Retorna uma cópia do indivíduo com todos os genes de todas as famílias dentro dos
     limites válidos. Chamado sempre após crossover e mutação — é o que garante que o AG
-    nunca produza um indivíduo inválido (plano §4.1: "validade por construção").
+    nunca produza um indivíduo inválido (validade por construção).
     """
     novo: dict[str, Any] = {"familia": individuo["familia"]}
     for familia, genes in SCHEMA.items():
@@ -247,7 +247,7 @@ def clamp_individuo(individuo: dict[str, Any]) -> dict[str, Any]:
 def decodificar(individuo: dict[str, Any]) -> tuple[str, dict[str, Any]]:
     """Traduz um indivíduo nos kwargs prontos para o construtor do sklearn da família ativa.
 
-    Aplica as regras condicionais do plano §4.1:
+    Aplica as regras condicionais:
       - `l1_ratio` só é incluído quando `penalty == "elasticnet"`;
       - `p` (Minkowski) só é incluído quando `metric == "minkowski"`;
       - `penalty_solver` é desempacotado em `penalty` e `solver` separados.
@@ -328,10 +328,10 @@ def chave_fenotipo(individuo: dict[str, Any]) -> tuple:
     """Chave hashável do FENÓTIPO — só a família ativa e os genes que ela expressa.
 
     É esta a chave correta para:
-      - **cache de fitness** (plano §5.2): o fitness depende exclusivamente do fenótipo, então
+      - **cache de fitness**: o fitness depende exclusivamente do fenótipo, então
         usar o genótipo completo como chave faz o cache perder quase todos os acertos, porque
         os genes latentes derivam livremente a cada mutação;
-      - **contagem de soluções únicas** (plano §4.7): a métrica deve medir diversidade
+      - **contagem de soluções únicas**: a métrica deve medir diversidade
         *efetiva*. Com a chave de genótipo, uma população já convergida no fenótipo continua
         parecendo diversa, e o sinal de convergência prematura se perde.
 

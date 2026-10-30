@@ -1,0 +1,8 @@
+22:40:41 | INFO    | AG D_roleta | pop=30 ger=15 mut=0.15(int=0.10) cx=0.80 k=2 elite=2 sel=roleta familia=livre
+22:40:44 | INFO    | ger  0 | melhor=0.8701 medio=0.7371 sd=0.1963 | H=2.201 unicos=30 | logistic_regression | cache= 0/30 | 3.1s
+22:40:46 | INFO    | ger  1 | melhor=0.8701 medio=0.7422 sd=0.1834 | H=2.166 unicos=29 | logistic_regression | cache= 8/30 | 2.3s
+22:40:49 | INFO    | ger  2 | melhor=0.8701 medio=0.8100 sd=0.0561 | H=2.073 unicos=28 | logistic_regression | cache= 7/30 | 2.9s
+22:40:52 | INFO    | ger  3 | melhor=0.8701 medio=0.8067 sd=0.0634 | H=2.106 unicos=28 | logistic_regression | cache= 3/30 | 2.9s
+22:40:55 | INFO    | ger  4 | melhor=0.8701 medio=0.7724 sd=0.1424 | H=2.126 unicos=29 | logistic_regression | cache= 5/30 | 2.9s
+22:40:57 | INFO    | ger  5 | melhor=0.8701 medio=0.7656 sd=0.1164 | H=2.201 unicos=27 | logistic_regression | cache= 8/30 | 2.2s
+22:40:57 | INFO    | FIM D_roleta | melhor=0.8701 (logistic_regression) | 6 gerações | parada=estagnacao_5_geracoes | 16.3s | cache 17%

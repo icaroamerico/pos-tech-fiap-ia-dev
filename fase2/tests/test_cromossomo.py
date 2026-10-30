@@ -1,6 +1,6 @@
 """Testes da codificação do cromossomo (src/ag/cromossomo.py).
 
-O objetivo central destes testes é a garantia do plano §4.1: "o AG nunca gera um indivíduo
+O objetivo central destes testes é a garantia: "o AG nunca gera um indivíduo
 que o scikit-learn rejeite". Isso é verificado de duas formas — validação estrutural
 (`validar_individuo`) e validação funcional (instanciar e treinar o estimador real).
 """
@@ -56,7 +56,7 @@ def test_hotstart_fixa_a_familia_pedida(familia):
 
 @pytest.mark.parametrize("familia", FAMILIAS)
 def test_hotstart_decodifica_de_volta_para_os_valores_reais_da_fase_1(familia):
-    """REGRESSÃO (bug real encontrado em auditoria): `HOTSTART_FASE1` guarda valores em
+    """REGRESSÃO (bug real encontrado em revisão): `HOTSTART_FASE1` guarda valores em
     unidades do mundo real, mas genes `real_log` têm representação interna em log10. Sem a
     codificação em `gerar_individuo_hotstart`, C=1.0 era decodificado como 10**1.0 = 10 e
     gamma=0.021748 como 10**0.021748 = 1.05 — erro de uma ordem de magnitude que deixava o
@@ -118,7 +118,7 @@ def test_gamma_hotstart_equivale_ao_scale_do_sklearn():
 
 @pytest.mark.parametrize("familia", FAMILIAS)
 def test_hotstart_reproduz_metricas_da_fase_1_quando_treinado(familia):
-    """O ponto central do hotstart (plano §4.2): o indivíduo de hotstart decodificado deve
+    """O ponto central do hotstart: o indivíduo de hotstart decodificado deve
     treinar um estimador cujos hiperparâmetros são EXATAMENTE os que a Fase 1 usou.
     """
     rng = np.random.default_rng(0)
@@ -229,7 +229,7 @@ def test_clamp_traz_valores_fora_da_faixa_para_dentro():
 
 
 def test_real_log_mantem_coerencia_na_decodificacao():
-    """O gene de C e gamma guarda log10(valor) internamente (plano §4.1); a decodificação
+    """O gene de C e gamma guarda log10(valor) internamente; a decodificação
     precisa exponenciar de volta para o valor real dentro da faixa [low, high] original.
     """
     rng = np.random.default_rng(6)
@@ -244,7 +244,7 @@ def test_real_log_mantem_coerencia_na_decodificacao():
 
 
 def test_individuo_carrega_genes_latentes_de_todas_as_familias():
-    """Mesmo com uma família ativa, as demais precisam estar presentes (plano §4.1: genes
+    """Mesmo com uma família ativa, as demais precisam estar presentes (genes
     latentes como reservatório de diversidade).
     """
     rng = np.random.default_rng(7)

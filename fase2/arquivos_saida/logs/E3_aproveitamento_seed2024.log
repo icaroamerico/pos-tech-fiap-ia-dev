@@ -1,0 +1,8 @@
+22:39:47 | INFO    | AG E3_aproveitamento | pop=15 ger=15 mut=0.05(int=0.05) cx=0.60 k=4 elite=2 sel=torneio familia=livre
+22:39:49 | INFO    | ger  0 | melhor=0.8701 medio=0.7096 sd=0.2211 | H=2.042 unicos=15 | logistic_regression | cache= 0/15 | 2.6s
+22:39:51 | INFO    | ger  1 | melhor=0.8701 medio=0.8461 sd=0.0097 | H=1.457 unicos=12 | logistic_regression | cache= 7/15 | 1.4s
+22:39:51 | INFO    | ger  2 | melhor=0.8701 medio=0.8530 sd=0.0183 | H=0.971 unicos= 8 | logistic_regression | cache=12/15 | 0.8s
+22:39:53 | INFO    | ger  3 | melhor=0.8701 medio=0.8134 sd=0.1674 | H=0.906 unicos=10 | logistic_regression | cache= 8/15 | 1.4s
+22:39:53 | INFO    | ger  4 | melhor=0.8701 medio=0.7307 sd=0.2578 | H=0.700 unicos= 8 | logistic_regression | cache=11/15 | 0.1s
+22:39:53 | INFO    | ger  5 | melhor=0.8701 medio=0.8343 sd=0.1156 | H=-0.000 unicos= 4 | logistic_regression | cache=13/15 | 0.1s
+22:39:53 | INFO    | FIM E3_aproveitamento | melhor=0.8701 (logistic_regression) | 6 gerações | parada=estagnacao_5_geracoes | 6.3s | cache 57%

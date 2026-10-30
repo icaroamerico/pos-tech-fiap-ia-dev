@@ -1,4 +1,4 @@
-"""Verificação programática da saída da LLM (plano §6.3).
+"""Verificação programática da saída da LLM.
 
 Esta é a única defesa contra alucinação que **não depende da boa vontade do modelo**. A
 estratégia tem duas metades:
@@ -8,10 +8,9 @@ estratégia tem duas metades:
   2. **Detecção** — todo número que aparece na saída é conferido contra o conjunto de valores
      que o modelo tinha autorização de citar (`verificar_numeros`).
 
-A Aula 2 de LLMs lista alucinação entre os três desafios centrais do campo. Em saúde, um
-número errado num laudo é o pior modo de falha possível — e a Aula 4 (teoria CASA) explica
-por que não basta avisar o leitor: a fluência do texto produz confiança que o conteúdo não
-necessariamente merece.
+Alucinação é um dos desafios centrais de modelos de linguagem. Em saúde, um número errado
+num laudo é o pior modo de falha possível, e avisar o leitor não basta: pela teoria CASA,
+a fluência do texto produz confiança que o conteúdo não necessariamente merece.
 """
 
 from __future__ import annotations
@@ -42,7 +41,7 @@ class ResultadoVerificacao:
     def taxa_alucinacao_numerica(self) -> float:
         """Fração dos números citados que não encontram respaldo no contexto.
 
-        É a métrica mais importante da avaliação do plano §6.4 — a única totalmente objetiva,
+        É a métrica mais importante da avaliação — a única totalmente objetiva,
         e a que mede o risco mais grave.
         """
         if not self.numeros_encontrados:
@@ -92,9 +91,13 @@ def coletar_valores_autorizados(contexto: dict[str, Any]) -> set[float]:
             autorizados.add(round(numero, 2))
             autorizados.add(round(numero, 1))
             autorizados.add(round(numero))
-            # versões percentuais
-            autorizados.add(round(numero * 100, 1))
-            autorizados.add(round(numero * 100))
+            # Versões percentuais, só para quem pode ser uma probabilidade. Aplicar
+            # ×100 a todo número autoriza 100× qualquer idade, IMC ou contagem de
+            # folículos do contexto: o conjunto inflava de 62 para 101 entradas e
+            # um número inventado passava por coincidir com o cêntuplo de outro.
+            if 0.0 <= numero <= 1.0:
+                autorizados.add(round(numero * 100, 1))
+                autorizados.add(round(numero * 100))
         elif isinstance(valor, str):
             for extraido in extrair_numeros(valor):
                 autorizados.add(extraido)
@@ -141,7 +144,7 @@ def verificar_numeros(
 
 
 #: Termos que a LLM não deve usar porque constituem ato diagnóstico, não interpretação
-#: (plano §6.2: "a LLM não diagnostica, ela traduz a saída do modelo").
+#: ("a LLM não diagnostica, ela traduz a saída do modelo").
 TERMOS_PROIBIDOS = (
     "diagnostico definitivo",
     "diagnóstico definitivo",
@@ -173,6 +176,13 @@ MARCADORES_DE_NEGACAO = (
 #: "não constitui um", "não deve ser interpretado como", "isto não é um" — e para antes
 #: de alcançar a frase anterior, onde uma negação não governaria mais o termo.
 JANELA_DE_NEGACAO = 60
+#: Os marcadores casam como palavra inteira. Sem a fronteira, `"sem" in "sempre"` e
+#: `"sem" in "semana"` dão positivo, e uma violação real numa frase que contenha
+#: qualquer uma das duas fica suprimida em silêncio — o inverso exato do bug que o
+#: achado nº 12 corrigiu.
+PADRAO_NEGACAO = re.compile(
+    r"(?<!\w)(?:" + "|".join(re.escape(m) for m in MARCADORES_DE_NEGACAO) + r")(?!\w)"
+)
 
 
 def _posicoes(texto: str, termo: str) -> list[int]:
@@ -201,7 +211,7 @@ def _esta_negado(texto: str, posicao: int) -> bool:
         corte = trecho.rfind(fronteira)
         if corte != -1:
             trecho = trecho[corte + 1 :]
-    return any(marcador in trecho for marcador in MARCADORES_DE_NEGACAO)
+    return PADRAO_NEGACAO.search(trecho) is not None
 
 
 def verificar_saida(

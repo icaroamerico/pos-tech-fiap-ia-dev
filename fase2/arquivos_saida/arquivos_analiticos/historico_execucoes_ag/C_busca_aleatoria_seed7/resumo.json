@@ -1,0 +1,28 @@
+{
+  "metodo": "busca_aleatoria",
+  "semente": 7,
+  "n_avaliacoes": 450,
+  "n_avaliacoes_efetivas": 428,
+  "melhor_fitness": 0.875064306633349,
+  "familia_vencedora": "logistic_regression",
+  "tempo_total_s": 26.75631779199466,
+  "holdout": {
+    "familia": "logistic_regression",
+    "acuracia": 0.9174311926605505,
+    "precisao": 0.8461538461538461,
+    "recall": 0.9166666666666666,
+    "f1_score": 0.88,
+    "auc_roc": 0.9493911719939117,
+    "matriz_confusao": [
+      [
+        67,
+        6
+      ],
+      [
+        3,
+        33
+      ]
+    ],
+    "n_teste": 109
+  }
+}

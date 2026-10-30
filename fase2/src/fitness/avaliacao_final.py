@@ -1,4 +1,4 @@
-"""Avaliação final no conjunto de teste (plano §3) e baseline de busca aleatória (§4.8 C).
+"""Avaliação final no conjunto de teste e baseline de busca aleatória (§4.8 C).
 
 ⚠️ Este é o ÚNICO módulo do projeto autorizado a tocar o conjunto de teste, e só depois que o
 AG terminou. Está deliberadamente separado de `fitness_pcos.py` para que a fronteira seja
@@ -32,7 +32,7 @@ from src.modelagem.treinamento import (
 def avaliar_no_holdout(individuo: dict[str, Any]) -> dict[str, Any]:
     """Treina o indivíduo no conjunto de treino COMPLETO e avalia nas 109 linhas de teste.
 
-    Chamado uma única vez por modelo, no fim de tudo — é a "abertura do envelope" do plano §3.
+    Chamado uma única vez por modelo, no fim de tudo — é a "abertura do envelope".
     Reproduz exatamente o mesmo split da Fase 1 (SEED=42), então os números são diretamente
     comparáveis com a tabela do baseline.
     """
@@ -76,7 +76,7 @@ def busca_aleatoria(
     familia_fixa: str | None = None,
     n_jobs: int = -1,
 ) -> dict[str, Any]:
-    """Baseline da Etapa C (plano §4.8): sorteia `n_avaliacoes` indivíduos aleatórios e
+    """Baseline da Etapa C: sorteia `n_avaliacoes` indivíduos aleatórios e
     devolve o melhor, usando o MESMO fitness, o MESMO espaço de busca e o MESMO orçamento de
     avaliações que o AG.
 
@@ -97,7 +97,7 @@ def busca_aleatoria(
             individuo["familia"] = familia_fixa
         candidatos.append(individuo)
 
-    # deduplicação por fenótipo, pelo mesmo motivo do cache do AG (plano §5.2)
+    # deduplicação por fenótipo, pelo mesmo motivo do cache do AG
     unicos: dict[tuple, dict[str, Any]] = {}
     for individuo in candidatos:
         unicos.setdefault(chave_fenotipo(individuo), individuo)

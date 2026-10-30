@@ -1,4 +1,4 @@
-"""Monitoramento, logging e persistência de artefatos (plano §5.1).
+"""Monitoramento, logging e persistência de artefatos.
 
 Duas saídas, com propósitos distintos:
 
@@ -8,7 +8,7 @@ Duas saídas, com propósitos distintos:
 A separação é deliberada: os notebooks leem `history.jsonl` em DataFrame e plotam a partir
 dele, sem reexecutar o AG. Isso é o que torna a análise reprodutível sem pagar o custo da
 busca de novo, e o que permite gravar o vídeo de demonstração sem esperar 20 minutos ao vivo
-(plano §7.4).
+.
 """
 
 from __future__ import annotations
@@ -23,8 +23,10 @@ from pathlib import Path
 from typing import Any
 
 RAIZ_PROJETO = Path(__file__).resolve().parent.parent.parent
-DIR_RUNS = RAIZ_PROJETO / "runs"
-DIR_LOGS = RAIZ_PROJETO / "logs"
+DIR_SAIDA = RAIZ_PROJETO / "arquivos_saida"
+DIR_ANALITICOS = DIR_SAIDA / "arquivos_analiticos"
+DIR_RUNS = DIR_ANALITICOS / "historico_execucoes_ag"
+DIR_LOGS = DIR_SAIDA / "logs"
 
 
 def _serializavel(valor: Any) -> Any:
@@ -53,7 +55,7 @@ def _serializavel(valor: Any) -> Any:
 
 @dataclass
 class RegistroGeracao:
-    """Uma linha do histórico — todas as métricas de uma geração (plano §5.1)."""
+    """Uma linha do histórico — todas as métricas de uma geração."""
 
     experimento: str
     semente: int
@@ -94,7 +96,8 @@ class ResultadoExecucao:
 
 
 def configurar_logger(nome_execucao: str, nivel_console: int = logging.INFO) -> logging.Logger:
-    """Logger com duas saídas: console no nível pedido e arquivo em `logs/` sempre em DEBUG.
+    """Logger com duas saídas: console no nível pedido e arquivo em
+    `arquivos_saida/logs/` sempre em DEBUG.
 
     Idempotente — chamar duas vezes para a mesma execução não duplica handlers (evita linhas
     repetidas quando o AG é invocado várias vezes no mesmo processo, como nos notebooks).
@@ -125,7 +128,7 @@ def configurar_logger(nome_execucao: str, nivel_console: int = logging.INFO) -> 
 
 
 def coletar_ambiente() -> dict[str, Any]:
-    """Versões e plataforma — sem isso, um número do relatório não é rastreável (plano §5.1).
+    """Versões e plataforma — sem isso, um número do relatório não é rastreável.
 
     A Fase 1 registra que resultados em `mps` não são determinísticos entre máquinas; aqui
     tudo roda em CPU e é determinístico, mas as versões de biblioteca ainda importam para
@@ -146,7 +149,7 @@ def coletar_ambiente() -> dict[str, Any]:
 
 
 class EscritorExecucao:
-    """Gerencia o diretório `runs/<nome>/` e escreve os artefatos da execução."""
+    """Gerencia o diretório `arquivos_saida/arquivos_analiticos/historico_execucoes_ag/<nome>/` e escreve os artefatos da execução."""
 
     def __init__(self, nome_execucao: str, dir_base: Path | None = None) -> None:
         self.nome = nome_execucao
@@ -163,7 +166,17 @@ class EscritorExecucao:
         """Anexa uma linha ao JSONL — escrita incremental, para que uma execução interrompida
         preserve o que já foi medido.
         """
-        linha = json.dumps(_serializavel(asdict(registro)), ensure_ascii=False)
+        self.anexar_linha_historico(_serializavel(asdict(registro)))
+
+    def anexar_linha_historico(self, registro: dict[str, Any]) -> None:
+        """Anexa um registro arbitrário ao JSONL.
+
+        Existe para a busca aleatória da etapa C, que não tem gerações e portanto não
+        preenche um `RegistroGeracao`. Sem isto, `__init__` criava o `history.jsonl`, nada
+        era anexado, e os três `C_busca_aleatoria_seed*/history.jsonl` ficavam com 0 bytes —
+        indistinguíveis de uma execução perdida.
+        """
+        linha = json.dumps(_serializavel(registro), ensure_ascii=False)
         with self.caminho_historico.open("a", encoding="utf-8") as arquivo:
             arquivo.write(linha + "\n")
 
@@ -194,8 +207,16 @@ class EscritorExecucao:
             },
         )
 
+    def escrever_artefato_json(self, nome_arquivo: str, conteudo: Any) -> None:
+        """Grava um artefato JSON avulso na pasta da execução.
+
+        É a porta pública para `_escrever_json`: a etapa C chamava o privado de fora da
+        classe, o que acoplava o CLI ao detalhe interno do escritor.
+        """
+        self._escrever_json(nome_arquivo, conteudo)
+
     def escrever_metricas_holdout(self, metricas: dict[str, Any]) -> None:
-        """Métricas no conjunto de teste — escritas SÓ no fim, uma vez (plano §3)."""
+        """Métricas no conjunto de teste — escritas SÓ no fim, uma vez."""
         self._escrever_json("metrics_holdout.json", metricas)
 
     def _escrever_json(self, nome_arquivo: str, conteudo: Any) -> None:
@@ -209,7 +230,7 @@ class EscritorExecucao:
 def carregar_historico(nome_execucao: str, dir_base: Path | None = None):
     """Lê o `history.jsonl` de uma execução em DataFrame — o ponto de entrada dos notebooks.
 
-    É esta função que torna a análise independente da execução: os gráficos do plano §4.9
+    É esta função que torna a análise independente da execução: os gráficos
     saem daqui, não de variáveis em memória.
     """
     import pandas as pd
@@ -223,7 +244,7 @@ def carregar_historico(nome_execucao: str, dir_base: Path | None = None):
 
 
 class Cronometro:
-    """Cronômetro de contexto para medir etapas separadamente (plano §4.7: tempo por operador).
+    """Cronômetro de contexto para medir etapas separadamente (tempo por operador).
 
         with Cronometro() as c:
             ...

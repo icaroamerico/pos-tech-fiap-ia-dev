@@ -1,0 +1,17 @@
+22:34:21 | INFO    | AG E1_baseline | pop=30 ger=15 mut=0.15(int=0.10) cx=0.80 k=2 elite=2 sel=torneio familia=livre
+22:34:24 | INFO    | ger  0 | melhor=0.8701 medio=0.7371 sd=0.1963 | H=2.201 unicos=30 | logistic_regression | cache= 0/30 | 2.8s
+22:34:27 | INFO    | ger  1 | melhor=0.8701 medio=0.8006 sd=0.0911 | H=1.845 unicos=29 | logistic_regression | cache= 8/30 | 2.8s
+22:34:29 | INFO    | ger  2 | melhor=0.8701 medio=0.8108 sd=0.0862 | H=1.648 unicos=30 | logistic_regression | cache= 8/30 | 2.4s
+22:34:33 | INFO    | ger  3 | melhor=0.8739 medio=0.8467 sd=0.0234 | H=1.170 unicos=30 | logistic_regression | cache= 3/30 | 3.9s
+22:34:37 | INFO    | ger  4 | melhor=0.8739 medio=0.8475 sd=0.0305 | H=1.109 unicos=29 | logistic_regression | cache= 5/30 | 4.1s
+22:34:39 | INFO    | ger  5 | melhor=0.8739 medio=0.7781 sd=0.2114 | H=1.052 unicos=28 | logistic_regression | cache= 7/30 | 1.6s
+22:34:40 | INFO    | ger  6 | melhor=0.8806 medio=0.8303 sd=0.1227 | H=0.879 unicos=30 | logistic_regression | cache= 3/30 | 1.5s
+22:34:41 | INFO    | ger  7 | melhor=0.8806 medio=0.8627 sd=0.0130 | H=-0.000 unicos=30 | logistic_regression | cache= 4/30 | 0.4s
+22:34:41 | INFO    | ger  8 | melhor=0.8806 medio=0.8397 sd=0.1050 | H=0.469 unicos=30 | logistic_regression | cache= 4/30 | 0.5s
+22:34:42 | INFO    | ger  9 | melhor=0.8806 medio=0.8565 sd=0.0306 | H=0.420 unicos=30 | logistic_regression | cache= 3/30 | 0.4s
+22:34:43 | INFO    | ger 10 | melhor=0.8806 medio=0.8587 sd=0.0133 | H=0.211 unicos=30 | logistic_regression | cache= 5/30 | 1.4s
+22:34:43 | INFO    | ger 11 | melhor=0.8819 medio=0.8537 sd=0.0420 | H=0.420 unicos=30 | logistic_regression | cache= 3/30 | 0.4s
+22:34:45 | INFO    | ger 12 | melhor=0.8819 medio=0.8315 sd=0.1358 | H=0.767 unicos=30 | logistic_regression | cache= 3/30 | 1.4s
+22:34:46 | INFO    | ger 13 | melhor=0.8819 medio=0.8576 sd=0.0270 | H=0.211 unicos=30 | logistic_regression | cache= 3/30 | 0.9s
+22:34:46 | INFO    | ger 14 | melhor=0.8819 medio=0.8625 sd=0.0133 | H=-0.000 unicos=28 | logistic_regression | cache= 7/30 | 0.3s
+22:34:46 | INFO    | FIM E1_baseline | melhor=0.8819 (logistic_regression) | 15 gerações | parada=maximo_de_geracoes | 24.7s | cache 15%

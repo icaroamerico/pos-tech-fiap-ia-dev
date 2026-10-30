@@ -1,13 +1,13 @@
-"""Operadores genéticos — seleção, cruzamento e mutação (plano §4.4).
+"""Operadores genéticos — seleção, cruzamento e mutação.
 
 Cruzamento e mutação são despachados POR TIPO DE GENE, não por família: cada gene sabe como
 se cruzar e mutar consigo mesmo, independentemente de pertencer ao Random Forest ou ao SVM.
-Isso é o que o plano chama de "a codificação híbrida também tem crossover híbrido".
+Ou seja: a codificação híbrida também tem crossover híbrido.
 
-Dois operadores de seleção estão implementados, não só um: o plano usa **torneio** como
+Dois operadores de seleção estão implementados, não só um: o AG usa **torneio** como
 operador principal (justificativa: o fitness vive numa faixa estreita, ~0.75–0.92, e a
 roleta proporcional dá pressão seletiva quase nula nessa faixa), mas mantém **roleta** para a
-Etapa D do plano — uma ablação que mede essa alegação em vez de só afirmá-la.
+Etapa D — uma ablação que mede essa alegação em vez de só afirmá-la.
 """
 
 from __future__ import annotations
@@ -34,7 +34,7 @@ def selecao_torneio(
     """Sorteia k indivíduos e retorna o de maior fitness (maximização).
 
     Invariante a escalas do fitness — só compara, nunca pondera por magnitude. É por isso
-    que funciona bem mesmo com o fitness confinado a uma faixa estreita (plano §4.4).
+    que funciona bem mesmo com o fitness confinado a uma faixa estreita.
 
     Os k participantes são sorteados SEM reposição (o padrão em seleção por torneio): com
     reposição, um torneio k=2 sobre uma população pequena poderia sortear o mesmo indivíduo
@@ -49,11 +49,11 @@ def selecao_torneio(
 def selecao_roleta(
     populacao: list[Individuo], fitnesses: list[float], rng: np.random.Generator
 ) -> Individuo:
-    """Seleção proporcional ao fitness (maximização) — como na Aula 4 de AG, adaptada para
-    um problema de maximização (lá era `1/distância`, aqui o fitness já é "quanto maior,
-    melhor", então os pesos são o próprio vetor de fitness).
+    """Seleção proporcional ao fitness — roleta clássica, adaptada para maximização.
+    Na formulação usual de minimização o peso é `1/custo`; aqui o fitness já é "quanto
+    maior, melhor", então os pesos são o próprio vetor de fitness.
 
-    Mantida apenas para a ablação da Etapa D (plano §4.8) — não é o operador padrão do AG.
+    Mantida apenas para a ablação da Etapa D — não é o operador padrão do AG.
     """
     pesos = np.asarray(fitnesses, dtype=float)
     pesos = np.clip(pesos, a_min=1e-12, a_max=None)  # evita soma zero
@@ -68,7 +68,7 @@ def selecao_roleta(
 
 
 def _cruzar_valor_numerico(v1: Any, v2: Any, rng: np.random.Generator) -> tuple[Any, Any]:
-    """Arithmetic crossover (plano §4.1, Aula 3 de AG): filho = alpha*pai1 + (1-alpha)*pai2,
+    """Arithmetic crossover: filho = alpha*pai1 + (1-alpha)*pai2,
     com alpha sorteado por gene. Cobre int, int_odd, real e real_log — para estes últimos,
     o valor já está em log-space, então a média aritmética em log corresponde à média
     geométrica no espaço real, que é a escala correta para C e gamma.
@@ -89,7 +89,7 @@ def _cruzar_gene(v1: Any, v2: Any, spec: dict[str, Any], rng: np.random.Generato
             return (v1, v2) if rng.random() < 0.5 else (v2, v1)
         return _cruzar_valor_numerico(v1, v2, rng)
     if tipo == "categorical":
-        # Uniform crossover: cada filho herda, por gene, de um dos dois pais (plano §4.1)
+        # Uniform crossover: cada filho herda, por gene, de um dos dois pais
         return (v1, v2) if rng.random() < 0.5 else (v2, v1)
     raise ValueError(f"Tipo de gene desconhecido: {tipo!r}")
 
@@ -99,9 +99,9 @@ def cruzar(
 ) -> tuple[Individuo, Individuo]:
     """Cruza dois indivíduos, gene a gene, despachando o operador certo por tipo.
 
-    Com probabilidade `1 - taxa_crossover`, os filhos são cópias exatas dos pais (a
-    interpretação da Aula 3 de AG para a taxa de crossover: "probabilidade de ocorrer o
-    cruzamento").
+    Com probabilidade `1 - taxa_crossover`, os filhos são cópias exatas dos pais — a
+    taxa de crossover é lida como "probabilidade de o cruzamento ocorrer", não como
+    fração do cromossomo trocada.
     """
     if rng.random() >= taxa_crossover:
         return copy.deepcopy(pai1), copy.deepcopy(pai2)
@@ -154,7 +154,7 @@ def _mutar_gene(valor: Any, spec: dict[str, Any], intensidade: float, rng: np.ra
         amplitude = spec["high"] - spec["low"]
         return valor + rng.normal(0, intensidade * amplitude)
     if tipo == "categorical":
-        # Resorteio uniforme entre os valores válidos DIFERENTES do atual (plano §4.1).
+        # Resorteio uniforme entre os valores válidos DIFERENTES do atual.
         outros = [c for c in spec["choices"] if c != valor]
         if not outros:
             return valor
@@ -176,13 +176,12 @@ def mutar(
     prob_troca_familia: float | None = None,
     normalizar_por_familia: bool = True,
 ) -> Individuo:
-    """Aplica mutação ao indivíduo (plano §4.1/§4.4).
+    """Aplica mutação ao indivíduo.
 
-    `probabilidade` e `intensidade` são os dois parâmetros que a Aula 3 de AG trata como
-    independentes: o primeiro é a chance de um gene mutar, o segundo é a força da mutação
-    gaussiana.
+    `probabilidade` e `intensidade` são independentes: o primeiro é a chance de um gene
+    mutar, o segundo é a força da mutação gaussiana aplicada quando ele muta.
 
-    Duas decisões de design, tomadas após a auditoria de 09/10/2026 (ver HANDOFF):
+    Duas decisões de design, tomadas após revisão dos primeiros experimentos:
 
     **1. `prob_troca_familia` é separada de `probabilidade`.**
     Trocar a família ativa é uma mudança de natureza completamente diferente de ajustar um
@@ -195,7 +194,7 @@ def mutar(
 
     **2. `normalizar_por_familia` iguala a pressão de mutação entre famílias.**
     A mutação é aplicada a todos os genes, inclusive os latentes das famílias inativas (o
-    "reservatório recessivo" do plano §4.1). Mas só os genes da família ATIVA afetam o
+    "reservatório recessivo"). Mas só os genes da família ATIVA afetam o
     fitness, e as famílias têm números diferentes de genes (3 no SVM, 7 no Random Forest).
     Sem normalização, um indivíduo Random Forest sofria 2,3x mais mutação efetiva que um SVM
     à mesma `probabilidade` — uma assimetria de pressão evolutiva que não foi escolhida por

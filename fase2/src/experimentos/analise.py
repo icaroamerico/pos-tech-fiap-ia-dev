@@ -1,8 +1,8 @@
-"""Funções de análise e gráficos (plano §4.9).
+"""Funções de análise e gráficos.
 
-Consomem exclusivamente os artefatos de `runs/` — nunca reexecutam o AG. É o que torna a
+Consomem exclusivamente os artefatos de `arquivos_saida/arquivos_analiticos/historico_execucoes_ag/` — nunca reexecutam o AG. É o que torna a
 análise reprodutível sem pagar o custo da busca de novo, e o que permite reabrir os notebooks
-para o relatório e para o vídeo sem esperar 20 minutos (plano §7.4).
+para o relatório e para o vídeo sem esperar 20 minutos.
 """
 
 from __future__ import annotations
@@ -16,7 +16,7 @@ import pandas as pd
 
 from src.monitoramento.registro import DIR_RUNS, carregar_historico
 
-#: Métricas da Fase 1 no conjunto de teste — o baseline congelado (plano §1.1).
+#: Métricas da Fase 1 no conjunto de teste — o baseline congelado.
 BASELINE_FASE1: dict[str, dict[str, float]] = {
     "random_forest": {
         "acuracia": 0.9174, "precisao": 0.9355, "recall": 0.8056,
@@ -127,7 +127,7 @@ def tabela_experimentos(
     ),
     sementes: tuple[int, ...] = (42, 7, 2024),
 ) -> pd.DataFrame:
-    """Comparação dos experimentos, com média ± desvio sobre as sementes (plano §4.6).
+    """Comparação dos experimentos, com média ± desvio sobre as sementes.
 
     Reportar média ± desvio não é formalidade: AG é estocástico, e comparar configurações por
     uma execução cada é comparar ruído.
@@ -173,7 +173,7 @@ def tabela_experimentos(
 
 
 def tabela_ag_vs_busca_aleatoria(sementes: tuple[int, ...] = (42, 7, 2024)) -> pd.DataFrame:
-    """Etapa C (plano §4.8): o AG contra busca aleatória com o MESMO orçamento.
+    """Etapa C: o AG contra busca aleatória com o MESMO orçamento.
 
     Sem esta linha, "o AG melhorou o modelo" é ambíguo — melhorou por ser algoritmo
     genético, ou porque qualquer busca com 450 avaliações bateria o baseline?
@@ -208,7 +208,7 @@ def tabela_ag_vs_busca_aleatoria(sementes: tuple[int, ...] = (42, 7, 2024)) -> p
 
 
 # ---------------------------------------------------------------------------
-# Gráficos (plano §4.9)
+# Gráficos
 # ---------------------------------------------------------------------------
 
 
@@ -232,7 +232,7 @@ def grafico_convergencia(
     sementes: tuple[int, ...] = (42, 7, 2024),
     fitness_hotstart: float | None = None,
 ):
-    """Gráfico 1 do plano §4.9 — a imagem-resumo do trabalho.
+    """Gráfico 1 — a imagem-resumo do trabalho.
 
     Mostra melhor e média ± desvio das sementes, com linha horizontal no baseline. Num só
     lugar: se o AG superou o ponto de partida, quanto, e quão rápido.
@@ -298,7 +298,7 @@ def grafico_diversidade(
     experimentos: tuple[str, ...] = ("E1_baseline", "E2_exploracao", "E3_aproveitamento"),
     sementes: tuple[int, ...] = (42, 7, 2024),
 ):
-    """Gráfico 2 do plano §4.9 — onde a convergência prematura do E3 deve aparecer."""
+    """Gráfico 2 — onde a convergência prematura do E3 deve aparecer."""
     import matplotlib.pyplot as plt
 
     _estilo()
@@ -331,7 +331,7 @@ def grafico_diversidade(
 
 
 def grafico_ablacao_selecao(sementes: tuple[int, ...] = (42, 7, 2024)):
-    """Gráfico 8 do plano §4.9 (Etapa D) — torneio vs. roleta.
+    """Gráfico 8 (Etapa D) — torneio vs. roleta.
 
     O painel-chave é o da DISTÂNCIA entre melhor e média: ele mede pressão seletiva
     diretamente. Gap grande = população não converge para o melhor = pressão fraca.
@@ -377,13 +377,13 @@ def grafico_ablacao_selecao(sementes: tuple[int, ...] = (42, 7, 2024)):
 
 
 def grafico_comparativo_modelos(semente: int = 42):
-    """Gráfico 3 do plano §4.9 — barras agrupadas original vs. otimizado."""
+    """Gráfico 3 — barras agrupadas original vs. otimizado."""
     import matplotlib.pyplot as plt
 
     _estilo()
     tabela = tabela_original_vs_otimizado(semente)
     if tabela.empty:
-        raise RuntimeError("Nenhum resultado da Etapa A encontrado em runs/")
+        raise RuntimeError("Nenhum resultado da Etapa A encontrado em arquivos_saida/arquivos_analiticos/historico_execucoes_ag/")
 
     metricas = [("F1", "F1 orig", "F1 otim"), ("Recall", "Recall orig", "Recall otim"),
                 ("AUC", "AUC orig", "AUC otim")]
@@ -413,10 +413,10 @@ def grafico_alelo_e_familias(
     experimentos: tuple[str, ...] = ("E1_baseline", "E2_exploracao"),
     sementes: tuple[int, ...] = (42, 7, 2024),
 ):
-    """Gráficos 6 e 9 do plano §4.9 — frequência do alelo `class_weight='balanced'` e
+    """Gráficos 6 e 9 — frequência do alelo `class_weight='balanced'` e
     distribuição das famílias por geração.
 
-    O primeiro painel testa a predição do plano §4.3: como o fitness pesa recall, esse alelo
+    O primeiro painel testa a predição: como o fitness pesa recall, esse alelo
     *deveria* se fixar na população.
     """
     import matplotlib.pyplot as plt
@@ -462,3 +462,44 @@ def grafico_alelo_e_familias(
 
     figura.tight_layout()
     return figura
+
+
+def imprimir_tabelas(sementes: tuple[int, ...] = (42, 7, 2024)) -> None:
+    """Imprime no console as três tabelas que o relatório usa.
+
+    Existe para que `python -m src.experimentos.analise` produza saída. Sem isto o
+    módulo só define funções, e chamá-lo pela linha de comando termina com sucesso
+    sem imprimir nada — um passo silencioso que parece ter funcionado.
+    """
+    pd.set_option("display.width", 200)
+    pd.set_option("display.max_columns", 50)
+
+    secoes = (
+        (
+            "Experimentos principais (média ± desvio sobre as sementes)",
+            lambda: tabela_experimentos(sementes=sementes),
+        ),
+        (
+            "Original vs. otimizado por família (Etapa A)",
+            lambda: tabela_original_vs_otimizado(semente=sementes[0]),
+        ),
+        (
+            "AG vs. busca aleatória com o mesmo orçamento (Etapa C)",
+            lambda: tabela_ag_vs_busca_aleatoria(sementes=sementes),
+        ),
+    )
+    for titulo, construir in secoes:
+        print(f"\n{'=' * 78}\n{titulo}\n{'=' * 78}")
+        try:
+            tabela = construir()
+        except (FileNotFoundError, KeyError, IndexError) as erro:
+            print(f"  indisponível: {type(erro).__name__}: {erro}")
+            continue
+        print(tabela.to_string(index=False))
+
+    disponiveis = execucoes_disponiveis()
+    print(f"\n{len(disponiveis)} execuções em {DIR_RUNS}")
+
+
+if __name__ == "__main__":
+    imprimir_tabelas()

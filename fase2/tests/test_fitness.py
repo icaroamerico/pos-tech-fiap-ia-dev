@@ -1,7 +1,7 @@
-"""Testes do fitness do PCOS (plano §7.2).
+"""Testes do fitness do PCOS.
 
 O teste `test_fitness_nunca_acessa_o_conjunto_de_teste` é o mais importante de todo o
-projeto (plano §3): um AG que otimiza contra o teste produz um número bonito sem valor.
+projeto: um AG que otimiza contra o teste produz um número bonito sem valor.
 Este teste prova estruturalmente que isso não pode acontecer aqui.
 """
 
@@ -31,7 +31,7 @@ def test_dados_treino_tem_432_linhas_como_a_fase_1(dados):
 
 
 def test_dataclass_dados_treino_nao_tem_nenhum_campo_de_teste():
-    """Garantia ESTRUTURAL (plano §3): não existe atributo `X_teste`/`y_teste` nesta classe
+    """Garantia ESTRUTURAL: não existe atributo `X_teste`/`y_teste` nesta classe
     — não há nada para um bug futuro acessar por engano, mesmo que alguém tente.
     """
     nomes_dos_campos = {f.name for f in dataclasses.fields(DadosTreino)}
@@ -60,7 +60,7 @@ def test_split_de_treino_e_disjunto_do_split_de_teste_real(dados):
 
 
 def test_fitness_nunca_acessa_o_conjunto_de_teste(monkeypatch, dados):
-    """O teste mais importante do projeto (plano §3 e §7.2).
+    """O teste mais importante do projeto.
 
     Substitui `dividir_dados` por uma versão que devolve, no lugar de X_teste/y_teste, um
     objeto "espião" que LEVANTA EXCEÇÃO em qualquer tentativa de acesso (atributo, item,
@@ -121,7 +121,7 @@ def test_fitness_esta_sempre_entre_zero_e_um(dados, familia):
 
 
 def test_fitness_e_deterministico_para_o_mesmo_individuo(dados):
-    """Pré-requisito do cache (plano §5.2): o mesmo indivíduo precisa produzir exatamente o
+    """Pré-requisito do cache: o mesmo indivíduo precisa produzir exatamente o
     mesmo fitness em duas chamadas independentes.
     """
     rng = np.random.default_rng(0)
@@ -137,11 +137,11 @@ def test_fitness_e_deterministico_para_o_mesmo_individuo(dados):
 
 
 def test_cache_acerta_quando_so_genes_latentes_diferem(dados):
-    """REGRESSÃO (bug real encontrado em auditoria): o cache usava a chave do GENÓTIPO
+    """REGRESSÃO (bug real encontrado em revisão): o cache usava a chave do GENÓTIPO
     completo, incluindo genes latentes das famílias inativas. Como esses genes derivam a
     cada mutação sem afetar o modelo treinado, dois indivíduos com fitness comprovadamente
     idêntico tinham chaves diferentes — o cache perdia quase todos os acertos e a otimização
-    do plano §5.2 ficava inoperante na prática.
+    ficava inoperante na prática.
 
     Este teste prova as duas metades: o fitness é mesmo idêntico, e o cache reconhece isso.
     """
@@ -219,13 +219,13 @@ TOLERANCIA_F1 = 0.12  # folga para a diferença CV-no-treino vs. holdout
 
 @pytest.mark.parametrize("familia", list(F1_FASE1))
 def test_hotstart_de_toda_familia_reproduz_a_vizinhanca_do_f1_da_fase_1(dados, familia):
-    """REGRESSÃO (bug real encontrado em auditoria): este teste antes existia só para o
+    """REGRESSÃO (bug real encontrado em revisão): este teste antes existia só para o
     Random Forest, e foi exatamente nessa lacuna que o bug de codificação `real_log` se
     esconde — o hotstart do SVM produzia **F1 = 0,0000** (modelo prevendo tudo negativo,
     por gamma decodificado 58x maior que o pretendido) e nenhum teste reclamava, porque
     `test_fitness_esta_sempre_entre_zero_e_um` aceita 0,069 como "válido".
 
-    A garantia do plano §4.2 — "o melhor fitness da geração 0 é, por construção, ≥ o
+    A garantia — "o melhor fitness da geração 0 é, por construção, ≥ o
     desempenho da Fase 1" — depende de TODO hotstart estar correto, não só de um.
     """
     rng = np.random.default_rng(0)

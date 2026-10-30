@@ -1,0 +1,95 @@
+==============================================================================
+Avaliação de LLM — provedor ollama | modelo llama3.2:3b
+==============================================================================
+Base carregada: 541 linhas x 49 colunas
+Treino: 432 registros | Teste: 109 registros | Positivos no teste: 36/109
+modelo das interpretações: random_forest (fitness CV 0.8716)
+predições geradas para 109 pacientes do conjunto de teste
+  positivo_alta_confianca    5 pacientes (prob 0.67–0.89)
+  negativo_alta_confianca    5 pacientes (prob 0.11–0.37)
+  limiar                     5 pacientes (prob 0.44–0.48)
+
+15 contextos montados (todos pela allow-list)
+gerando 45 saídas (15 pacientes × 3 templates)
+
+  [ 1/45] v1_zero_shot             positivo_alta_confianca_77    30.7s
+  [ 2/45] v1_zero_shot             positivo_alta_confianca_48    23.3s
+  [ 3/45] v1_zero_shot             positivo_alta_confianca_70    25.8s
+  [ 4/45] v1_zero_shot             positivo_alta_confianca_8     26.0s
+  [ 5/45] v1_zero_shot             positivo_alta_confianca_105   31.4s
+  [ 6/45] v1_zero_shot             negativo_alta_confianca_103   27.7s
+  [ 7/45] v1_zero_shot             negativo_alta_confianca_9     29.5s
+  [ 8/45] v1_zero_shot             negativo_alta_confianca_55    33.4s
+  [ 9/45] v1_zero_shot             negativo_alta_confianca_82    35.2s
+  [10/45] v1_zero_shot             negativo_alta_confianca_79    29.6s
+  [11/45] v1_zero_shot             limiar_51                     36.4s
+  [12/45] v1_zero_shot             limiar_65                     36.0s
+  [13/45] v1_zero_shot             limiar_31                     31.0s
+  [14/45] v1_zero_shot             limiar_90                     27.4s
+  [15/45] v1_zero_shot             limiar_23                     33.1s
+  [16/45] v2_few_shot              positivo_alta_confianca_77    34.7s
+  [17/45] v2_few_shot              positivo_alta_confianca_48    31.5s
+  [18/45] v2_few_shot              positivo_alta_confianca_70    28.0s
+  [19/45] v2_few_shot              positivo_alta_confianca_8     24.0s
+  [20/45] v2_few_shot              positivo_alta_confianca_105   29.0s
+  [21/45] v2_few_shot              negativo_alta_confianca_103   29.9s
+  [22/45] v2_few_shot              negativo_alta_confianca_9     27.2s
+  [23/45] v2_few_shot              negativo_alta_confianca_55    27.6s
+  [24/45] v2_few_shot              negativo_alta_confianca_82    28.5s
+  [25/45] v2_few_shot              negativo_alta_confianca_79    27.9s
+  [26/45] v2_few_shot              limiar_51                     29.8s
+  [27/45] v2_few_shot              limiar_65                     27.6s
+  [28/45] v2_few_shot              limiar_31                     30.1s
+  [29/45] v2_few_shot              limiar_90                     29.5s
+  [30/45] v2_few_shot              limiar_23                     19.6s
+  [31/45] v3_few_shot_estruturado  positivo_alta_confianca_77    30.6s
+  [32/45] v3_few_shot_estruturado  positivo_alta_confianca_48    23.1s
+  [33/45] v3_few_shot_estruturado  positivo_alta_confianca_70    32.3s
+  [34/45] v3_few_shot_estruturado  positivo_alta_confianca_8     24.4s
+  [35/45] v3_few_shot_estruturado  positivo_alta_confianca_105   21.4s
+  [36/45] v3_few_shot_estruturado  negativo_alta_confianca_103   21.0s
+  [37/45] v3_few_shot_estruturado  negativo_alta_confianca_9     22.8s
+  [38/45] v3_few_shot_estruturado  negativo_alta_confianca_55    35.7s
+  [39/45] v3_few_shot_estruturado  negativo_alta_confianca_82    25.2s
+  [40/45] v3_few_shot_estruturado  negativo_alta_confianca_79    42.4s
+  [41/45] v3_few_shot_estruturado  limiar_51                     23.4s
+  [42/45] v3_few_shot_estruturado  limiar_65                     23.5s
+  [43/45] v3_few_shot_estruturado  limiar_31                     31.3s
+  [44/45] v3_few_shot_estruturado  limiar_90                     40.9s
+  [45/45] v3_few_shot_estruturado  limiar_23                     33.7s
+
+==============================================================================
+45 saídas em 1313s
+==============================================================================
+{
+  "v1_zero_shot": {
+    "n_amostras": 15,
+    "taxa_alucinacao_numerica_media": 0.007407407407407407,
+    "n_saidas_com_alucinacao": 1,
+    "aderencia_estrutural_media": 1.0,
+    "n_saidas_com_termo_proibido": 1,
+    "comprimento_medio_caracteres": 1768.5333333333333,
+    "latencia_media_s": 30.430416288925336
+  },
+  "v2_few_shot": {
+    "n_amostras": 15,
+    "taxa_alucinacao_numerica_media": 0.0,
+    "n_saidas_com_alucinacao": 0,
+    "aderencia_estrutural_media": 1.0,
+    "n_saidas_com_termo_proibido": 0,
+    "comprimento_medio_caracteres": 1431.8,
+    "latencia_media_s": 28.323821927870934
+  },
+  "v3_few_shot_estruturado": {
+    "n_amostras": 15,
+    "taxa_alucinacao_numerica_media": 0.0,
+    "n_saidas_com_alucinacao": 0,
+    "aderencia_estrutural_media": 1.0,
+    "n_saidas_com_termo_proibido": 0,
+    "comprimento_medio_caracteres": 1333.0666666666666,
+    "latencia_media_s": 28.770021991524846
+  }
+}
+
+artefatos: /Users/icaroamerico/Documents/pos-tech-fiap-ia-dev/fase2/arquivos_saida/arquivos_analiticos/avaliacao_llm/avaliacao_ollama_saidas.json e avaliacao_ollama_saidas.md
+avaliacao_ollama_rubrica.csv não foi tocado (notas preenchidas à mão).

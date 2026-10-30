@@ -1,0 +1,50 @@
+{
+  "individuo": {
+    "familia": "logistic_regression",
+    "random_forest": {
+      "n_estimators": 97,
+      "max_depth": 6,
+      "min_samples_split": 7,
+      "min_samples_leaf": 2,
+      "max_features": 0.5,
+      "criterion": "entropy",
+      "class_weight": null
+    },
+    "svm_rbf": {
+      "C": -0.6024112563986904,
+      "gamma": -2.9073969430975,
+      "class_weight": null
+    },
+    "logistic_regression": {
+      "C": -2.34186679656545,
+      "penalty_solver": [
+        "elasticnet",
+        "saga"
+      ],
+      "l1_ratio": 0.19695715642104128,
+      "class_weight": "balanced"
+    },
+    "decision_tree": {
+      "max_depth": 19,
+      "min_samples_split": 7,
+      "min_samples_leaf": 1,
+      "criterion": "entropy",
+      "ccp_alpha": 0.02825563596435082,
+      "class_weight": "balanced"
+    },
+    "knn": {
+      "n_neighbors": 3,
+      "weights": "distance",
+      "metric": "manhattan",
+      "p": 2
+    }
+  },
+  "fitness": 0.8700559742874179,
+  "metricas_cv": {
+    "fitness": 0.8700559742874179,
+    "f1_medio": 0.84511320097527,
+    "recall_medio": 0.8583743842364532,
+    "auc_medio": 0.9499352926442348,
+    "tempo_s": 0.06768524996004999
+  }
+}

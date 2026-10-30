@@ -6,8 +6,9 @@ Algoritmo genético para otimizar os hiperparâmetros dos modelos de diagnóstic
 desenvolvidos na Fase 1, mais uma camada de LLM para traduzir as saídas numéricas em
 interpretações para profissionais de saúde.
 
-**Base:** [`pos-tech-fiap-ia-dev-fase-1`](../pos-tech-fiap-ia-dev-fase-1) — os scripts do PCOS
-foram copiados **sem alteração** (ver [ADR 009](docs/decisoes/009-scripts-da-fase-1-intocados.md)).
+**Base:** [`fase1`](../fase1) — os scripts do PCOS foram copiados **sem alteração de lógica**:
+`run_ml.py` é byte a byte idêntico e `modelagem/treinamento.py` difere em uma única linha, o
+`REPORTS_DIR` (ver [ADR 009](documentacao/decisoes/009-scripts-da-fase-1-intocados.md)).
 
 ---
 
@@ -16,23 +17,23 @@ foram copiados **sem alteração** (ver [ADR 009](docs/decisoes/009-scripts-da-f
 | # | Requisito | Onde |
 |---|---|---|
 | **1** | AG para otimização de hiperparâmetros dos modelos do Módulo 1 | `src/ag/`, [NB 01](notebooks/01_ag_hiperparametros_pcos.ipynb) |
-| 1a | Codificação adequada (representação de genes) | `src/ag/cromossomo.py` · NB 01 §3 · [ADR 002](docs/decisoes/002-codificacao-hibrida.md) |
-| 1b | Operadores de seleção, cruzamento e mutação | `src/ag/operadores.py` · NB 01 §6 · [ADR 005](docs/decisoes/005-torneio-em-vez-de-roleta.md) |
-| 1c | Função fitness baseada em métricas (accuracy, recall, F1…) | `src/fitness/fitness_pcos.py` · NB 01 §4 · [ADR 003](docs/decisoes/003-fitness-composto-cv-no-treino.md) |
+| 1a | Codificação adequada (representação de genes) | `src/ag/cromossomo.py` · NB 01 §3 · [ADR 002](documentacao/decisoes/002-codificacao-hibrida.md) |
+| 1b | Operadores de seleção, cruzamento e mutação | `src/ag/operadores.py` · NB 01 §6 · [ADR 005](documentacao/decisoes/005-torneio-em-vez-de-roleta.md) |
+| 1c | Função fitness baseada em métricas (accuracy, recall, F1…) | `src/fitness/fitness_pcos.py` · NB 01 §4 · [ADR 003](documentacao/decisoes/003-fitness-composto-cv-no-treino.md) |
 | 1d | **Comparar otimizado vs. original** | [NB 02 §6](notebooks/02_experimentos_ag_comparativo.ipynb) |
 | 1e | **≥3 experimentos com configurações diferentes** | NB 02 §2–3 (E1/E2/E3 × 3 sementes) |
-| **2** | Escalabilidade para variação de demanda | [`docs/arquitetura.md` §5](docs/arquitetura.md) |
-| 2a | Monitoramento e logging de desempenho | `src/monitoramento/registro.py` · `runs/` · `logs/` |
-| 2b | Documentar arquitetura e decisões | [`docs/arquitetura.md`](docs/arquitetura.md) · [9 ADRs](docs/decisoes/) |
+| **2** | Escalabilidade para variação de demanda | [`documentacao/arquitetura.md` §5](documentacao/arquitetura.md) |
+| 2a | Monitoramento e logging de desempenho | `src/monitoramento/registro.py` · `arquivos_saida/arquivos_analiticos/historico_execucoes_ag/` · `arquivos_saida/logs/` |
+| 2b | Documentar arquitetura e decisões | [`documentacao/arquitetura.md`](documentacao/arquitetura.md) · [9 ADRs](documentacao/decisoes/) |
 | **3** | Integrar LLM pré-treinada (GPT/Falcon/LLaMA) | `src/llm/` · [NB 03](notebooks/03_llm_interpretacao.ipynb) |
 | 3a | Explicações em linguagem natural dos diagnósticos | NB 03 §6 |
 | 3b | Dados numéricos → insights acionáveis | NB 03 §8 |
 | 3c | Base para dados textuais no Módulo 3 | NB 03 §10 (interface fina + `prompts/`) |
-| 3d | Técnicas de prompt engineering | `prompts/*.md` · NB 03 §4 — ✅ 3 templates **comparados com LLM real** ([relatório §5.5](docs/relatorio-tecnico.md)) |
-| 3e | **Avaliar a qualidade das interpretações** | NB 03 §7 · `avaliacao_llm/` — ⚠️ métricas automáticas medidas; 3 critérios qualitativos da rubrica pendentes ([relatório §5.5](docs/relatorio-tecnico.md)) |
+| 3d | Técnicas de prompt engineering | `prompts/*.md` · NB 03 §4 — ✅ 3 templates **comparados com LLM real** ([relatório §5.5](documentacao/relatorio-tecnico.md)) |
+| 3e | **Avaliar a qualidade das interpretações** | NB 03 §7 · `arquivos_saida/arquivos_analiticos/avaliacao_llm/` — ⚠️ métricas automáticas medidas sobre as 45 saídas; rubrica qualitativa por template, n = 3, não por saída ([relatório §5.6](documentacao/relatorio-tecnico.md)) |
 | 4a | Projeto Python estruturado com ambiente virtual | `venv` + `requirements.txt` |
-| 4b | Documentação detalhada com diagramas de arquitetura | [`docs/arquitetura.md`](docs/arquitetura.md) (Mermaid) |
-| 4c | **Testes automatizados** | `tests/` — **215 testes** |
+| 4b | Documentação detalhada com diagramas de arquitetura | [`documentacao/arquitetura.md`](documentacao/arquitetura.md) (Mermaid) |
+| 4c | **Testes automatizados** | `tests/` — **221 testes** |
 | 4d | IaC (só se nuvem) | **fora de escopo** — nuvem é opcional no enunciado |
 
 ---
@@ -58,23 +59,48 @@ python -c "import pandas, sklearn, joblib; print(pandas.__version__, sklearn.__v
 ```
 
 Não há `torch` nem `opencv-python` — a CNN de raio-X está **fora do escopo** desta fase
-([ADR 001](docs/decisoes/001-escopo-restrito-ao-pcos.md)).
+([ADR 001](documentacao/decisoes/001-escopo-restrito-ao-pcos.md)).
 
 ---
 
 ## Como executar
 
-### Passo 1 — reproduzir o baseline da Fase 1
+### ⭐ OPÇÃO RÁPIDA: Notebook Orquestrador (recomendado)
+
+```bash
+jupyter lab notebooks/00_execucao_completa.ipynb
+```
+
+Execute `Cell → Run All`. Tudo acontece em um lugar:
+- ✅ Reproduz baseline (Fase 1)
+- ✅ Roda AG (12 execuções)
+- ✅ Gera análise (tabelas comparativas)
+- ✅ Executa LLM com **barra de progresso**
+- ✅ Verifica saídas
+- ✅ Mostra resumo final
+
+**Tempo:** ~15 min (simulado) ou ~3h (Ollama real)
+
+**Mude na célula 4 para rodar com LLM real:**
+```python
+PROVEDOR = "ollama"  # ou "simulado" (padrão)
+```
+
+---
+
+### Manual: Passo a passo
+
+#### Passo 1 — reproduzir o baseline da Fase 1
 
 ```bash
 python -m src.run_ml
 ```
 
-~10 s. Executa o script **copiado intacto** da Fase 1 e grava `reports/`. Os cinco modelos devem
+~10 s. Executa o script **copiado intacto** da Fase 1 e grava `arquivos_saida/arquivos_analiticos/metricas_modelos_baseline/`. Os cinco modelos devem
 reproduzir exatamente a tabela abaixo. **Faça isso antes de qualquer outra coisa:** sem baseline
 verificado, todo ganho reportado depois é ficção.
 
-### Passo 2 — rodar os experimentos
+#### Passo 2 — rodar os experimentos
 
 ```bash
 python -m src.experimentos.rodar_ag --experimento todos   # E1, E2, E3, D × 3 sementes (~3 min)
@@ -82,11 +108,11 @@ python -m src.experimentos.rodar_ag --etapa-a             # AG por família, 5 e
 python -m src.experimentos.rodar_ag --etapa-c             # baseline de busca aleatória (~1,5 min)
 ```
 
-Cada execução grava em `runs/<experimento>_seed<n>/`: `config.json` (parâmetros + versões de
+Cada execução grava em `arquivos_saida/arquivos_analiticos/historico_execucoes_ag/<experimento>_seed<n>/`: `config.json` (parâmetros + versões de
 biblioteca), `history.jsonl` (18 métricas por geração), `best_individual.json`,
 `population_final.json`, `resumo.json` e `metrics_holdout.json`.
 
-### Passo 3 — a análise
+#### Passo 3 — exploração com notebooks
 
 ```bash
 jupyter lab
@@ -94,25 +120,26 @@ jupyter lab
 
 | Notebook | O que contém |
 |---|---|
+| **[`00_execucao_completa.ipynb`](notebooks/00_execucao_completa.ipynb)** | **⭐ Orquestrador: baseline + AG + análise + LLM tudo em um** |
 | [`01_ag_hiperparametros_pcos.ipynb`](notebooks/01_ag_hiperparametros_pcos.ipynb) | O AG: codificação, fitness, hotstart, operadores, uma execução narrada |
-| [`02_experimentos_ag_comparativo.ipynb`](notebooks/02_experimentos_ag_comparativo.ipynb) | Os 3 experimentos, ablação torneio × roleta, original vs. otimizado, AG vs. busca aleatória |
+| [`02_experimentos_ag_comparativo.ipynb`](notebooks/02_experimentos_ag_comparativo.ipynb) | Os 3 experimentos, ablação torneio × roleta, original vs. otimizado, AG vs. busca aleatória (5 gráficos) |
 | [`03_llm_interpretacao.ipynb`](notebooks/03_llm_interpretacao.ipynb) | Camada de LLM: 3 templates, guardrails, rubrica de avaliação, ética |
 
-Os notebooks **leem os artefatos de `runs/`** em vez de reexecutar o AG — a análise reproduz em
+Os notebooks **leem os artefatos de `arquivos_saida/arquivos_analiticos/historico_execucoes_ag/`** em vez de reexecutar o AG — a análise reproduz em
 segundos. Já estão executados, com saídas e gráficos salvos, então abrem e são legíveis no GitHub
 sem rodar nada.
 
-### Passo 4 — testes
+#### Passo 4 — testes (opcional)
 
 ```bash
-python -m pytest tests/ -q        # 215 testes, ~3 min
+python -m pytest tests/ -q        # 221 testes, ~2 min
 python -m pytest tests/ -q -k "not motor"   # ~15 s, sem as execuções de AG reais
 ```
 
 ### LLM com modelo real
 
 **O Notebook 03 já está executado com LLM real** — `PROVEDOR = "ollama"`, modelo
-`llama3.2:3b`, 45 saídas em `avaliacao_llm/`. Para reproduzir:
+`llama3.2:3b`, 45 saídas em `arquivos_saida/arquivos_analiticos/avaliacao_llm/`. Para reproduzir:
 
 ```bash
 brew install ollama && brew services start ollama
@@ -124,24 +151,25 @@ e reexecutar o Notebook 03 (~2 h: 50 chamadas a ~29 s cada).
 Para abrir o notebook em qualquer máquina sem Ollama, troque `PROVEDOR` por `"simulado"` na
 célula 6 — determinístico, sem rede. **Mas atenção:** o `simulado` ignora o template e produz
 saídas idênticas nos três, então ele serve de *controle* do verificador, não de comparação de
-prompts. A execução de controle está preservada em `avaliacao_llm_simulado/`.
+prompts. A execução de controle está preservada em `arquivos_saida/arquivos_analiticos/avaliacao_llm_simulado/`.
 
 #### O que a execução real mediu
 
 | Template | Alucinação | Aderência | Termos proibidos | Números citados | Caracteres |
 |---|---|---|---|---|---|
-| V1 — zero-shot | **0,0%** | **100%** | 0 | 10,5 | 1.804 |
-| V2 — few-shot | **0,0%** | **100%** | 0 | **15,9** | 1.432 |
-| V3 — few-shot estruturado | **0,0%** | **100%** | 0 | 13,0 | **1.333** |
+| V1 — zero-shot | 0,7% | **100%** | 1 | 10,7 | 1.769 |
+| V2 — few-shot | **0,0%** | **100%** | **0** | **15,9** | 1.432 |
+| V3 — few-shot estruturado | **0,0%** | **100%** | **0** | 13,0 | **1.333** |
 
-**0% de alucinação com um modelo de 3B é resultado da arquitetura, não do modelo:** os números
-são pré-escritos no prompt e o modelo só os organiza em prosa.
+**Alucinação quase nula com um modelo de 3B é resultado da arquitetura, não do modelo:** os
+números são pré-escritos no prompt e o modelo só os organiza em prosa. O único resíduo está no
+V1 — 0,7%, um número em 45 saídas — e desaparece nos dois templates com exemplar.
 
-**O few-shot troca ancoragem por calibração.** V2 cita 51% mais números em 20% menos texto — mas
+**O few-shot troca ancoragem por calibração.** V2 cita 49% mais números em 19% menos texto — mas
 nenhum template passa de **67%** na regra de sinalizar baixa confiança só entre 40% e 60%, e o
 few-shot *piora* esse número (60%): o modelo copiou a expressão do exemplar sem a condição que a
 justifica, chamando uma probabilidade de 3% de "caso de baixa confiança". Detalhes no
-[relatório §5.5](docs/relatorio-tecnico.md).
+[relatório §5.5](documentacao/relatorio-tecnico.md).
 
 ---
 
@@ -227,25 +255,25 @@ execução. Ajustá-las depois transformaria os experimentos em confirmação de
 
 O alelo `class_weight` acabou virando um **medidor independente de pressão seletiva**, e com
 isso uma segunda observável para a ablação torneio × roleta — ver
-[relatório técnico §3.5](docs/relatorio-tecnico.md).
+[relatório técnico §3.5](documentacao/relatorio-tecnico.md).
 
 ---
 
 ## Decisões de projeto
 
-Nove ADRs em [`docs/decisoes/`](docs/decisoes/), no formato contexto → decisão → consequências:
+Nove ADRs em [`documentacao/decisoes/`](documentacao/decisoes/), no formato contexto → decisão → consequências:
 
 | ADR | Decisão |
 |---|---|
-| [001](docs/decisoes/001-escopo-restrito-ao-pcos.md) | Escopo restrito ao PCOS; CNN fora da Fase 2 |
-| [002](docs/decisoes/002-codificacao-hibrida.md) | Codificação híbrida com gene de família e genes latentes |
-| [003](docs/decisoes/003-fitness-composto-cv-no-treino.md) | Fitness composto por CV no treino; holdout intocado |
-| [004](docs/decisoes/004-ag-do-zero.md) | AG do zero, sem DEAP/PyGAD |
-| [005](docs/decisoes/005-torneio-em-vez-de-roleta.md) | Torneio em vez de roleta — desvio do material, justificado |
-| [006](docs/decisoes/006-mutacao-normalizada-e-familia-separada.md) | Mutação normalizada; troca de família desacoplada |
-| [007](docs/decisoes/007-cache-por-fenotipo.md) | Cache e diversidade por fenótipo, não genótipo |
-| [008](docs/decisoes/008-llm-local-e-allow-list.md) | LLM local por padrão; anonimização por allow-list |
-| [009](docs/decisoes/009-scripts-da-fase-1-intocados.md) | Scripts da Fase 1 copiados sem alteração |
+| [001](documentacao/decisoes/001-escopo-restrito-ao-pcos.md) | Escopo restrito ao PCOS; CNN fora da Fase 2 |
+| [002](documentacao/decisoes/002-codificacao-hibrida.md) | Codificação híbrida com gene de família e genes latentes |
+| [003](documentacao/decisoes/003-fitness-composto-cv-no-treino.md) | Fitness composto por CV no treino; holdout intocado |
+| [004](documentacao/decisoes/004-ag-do-zero.md) | AG do zero, sem DEAP/PyGAD |
+| [005](documentacao/decisoes/005-torneio-em-vez-de-roleta.md) | Torneio em vez de roleta — desvio do material, justificado |
+| [006](documentacao/decisoes/006-mutacao-normalizada-e-familia-separada.md) | Mutação normalizada; troca de família desacoplada |
+| [007](documentacao/decisoes/007-cache-por-fenotipo.md) | Cache e diversidade por fenótipo, não genótipo |
+| [008](documentacao/decisoes/008-llm-local-e-allow-list.md) | LLM local por padrão; anonimização por allow-list |
+| [009](documentacao/decisoes/009-scripts-da-fase-1-intocados.md) | Scripts da Fase 1 copiados sem alteração de lógica |
 
 ---
 
@@ -278,11 +306,11 @@ quanto o laço evolutivo completo.
    parte do ganho de CV não transferido ao holdout.
 
 5. **Nenhum template calibra a incerteza corretamente** (≤67%), e o few-shot piora isso — ver
-   [relatório §5.5](docs/relatorio-tecnico.md). A correção certa é pré-computar a faixa de
+   [relatório §5.5](documentacao/relatorio-tecnico.md). A correção certa é pré-computar a faixa de
    confiança em código, como já se faz com os números.
 6. **Quatro achados da auditoria final permanecem abertos** — nenhum invalida um resultado
    reportado, e os quatro estão descritos com impacto e correção proposta no
-   [relatório técnico §7](docs/relatorio-tecnico.md):
+   [relatório técnico §7](documentacao/relatorio-tecnico.md):
    a penalidade de custo do plano nunca foi implementada; o terceiro critério de parada
    (`piso_entropia=0.0`) nunca dispara; o hotstart não cobre as cinco famílias; e o termo de
    AUC do fitness deixa de medir ordenação quando o KNN tem `n_neighbors=1` — foi o que
@@ -292,15 +320,15 @@ quanto o laço evolutivo completo.
 
 ## Relatório técnico
 
-[`docs/relatorio-tecnico.md`](docs/relatorio-tecnico.md) — as nove seções que o enunciado
-pede, com todas as tabelas geradas a partir de `runs/` por `src/experimentos/analise.py`.
+[`documentacao/relatorio-tecnico.md`](documentacao/relatorio-tecnico.md) — as nove seções que o enunciado
+pede, com todas as tabelas geradas a partir de `arquivos_saida/arquivos_analiticos/historico_execucoes_ag/` por `src/experimentos/analise.py`.
 
 ## Pendências
 
 - Vídeo de demonstração (≤ 15 min) — entregável 3 do enunciado.
 - Rubrica manual da LLM: os 3 critérios qualitativos (fidelidade às features, acionabilidade,
-  clareza para médico) nas 45 saídas de `avaliacao_llm/`. Os outros 3 já têm medição objetiva
-  no [relatório §5.5](docs/relatorio-tecnico.md).
+  clareza para médico) nas 45 saídas de `arquivos_saida/arquivos_analiticos/avaliacao_llm/`. Os outros 3 já têm medição objetiva
+  no [relatório §5.5](documentacao/relatorio-tecnico.md).
 - Extensões opcionais não implementadas: seleção de features no cromossomo (a que mais
   mudaria a conclusão do empate com busca aleatória), frente de Pareto (recall × precisão) e
   família `MLP`.

@@ -1,12 +1,11 @@
-"""Cliente de LLM — interface fina sobre os provedores (plano §6.1 e §6.5).
+"""Cliente de LLM — interface fina sobre os provedores.
 
 **Interface fina de propósito.** Todo o resto do projeto conversa apenas com
 `gerar_explicacao(contexto) -> str`. Trocar o modelo, ou acrescentar RAG no Módulo 3, não
-exige tocar o pipeline de ML. É o que a Aula 4 de LLMs chama de desacoplamento e o que a
-Aula 5 demonstra no assistente acadêmico da FIAP.
+exige tocar o pipeline de ML.
 
-**Três vias, com a local como padrão** (Aula 5 de LLMs — "execução local para máxima
-privacidade / nuvem para escalabilidade / API para custo"):
+**Três vias, com a local como padrão** — execução local para máxima privacidade, nuvem
+para escalabilidade, API para custo:
 
   - `ollama`  — local, nenhum dado sai da máquina. **Padrão**, porque os dados são clínicos.
   - `openai`  — só com dados agregados ou anonimizados; exige `OPENAI_API_KEY`.
@@ -37,11 +36,15 @@ class ConfigLLM:
 
     `temperatura` baixa por default: esta é tarefa de **fidelidade**, não de criatividade.
     Temperatura alta produz texto mais agradável e menos fiel aos números — exatamente o
-    trade-off errado num laudo médico (plano §6.3).
+    trade-off errado num laudo médico.
     """
 
     provedor: Provedor = "ollama"
-    modelo: str = "llama3.1:8b"
+    #: `llama3.2:3b` e não o 8B: é o modelo que a §5.5 declara, o que está instalado e o
+    #: único que caberia na máquina de 8 GB da execução. O default antigo (`llama3.1:8b`)
+    #: divergia do default da CLI e levava quem construísse `ConfigLLM()` direto a rodar
+    #: um modelo diferente do documentado — e a entrar em swap.
+    modelo: str = "llama3.2:3b"
     temperatura: float = 0.2
     semente: int = 42
     max_tokens: int = 900
@@ -198,7 +201,7 @@ def carregar_template(nome: str) -> tuple[str, str]:
 
     Templates ficam em ARQUIVOS versionados, não em strings no código, porque prompt é
     artefato experimental: o enunciado pede "prompts utilizados" no relatório, e o diff do
-    Git é o que mostra a evolução entre as versões (plano §6.5).
+    Git é o que mostra a evolução entre as versões.
     """
     caminho = DIR_PROMPTS / f"{nome}.md"
     if not caminho.exists():
@@ -230,12 +233,12 @@ def gerar_explicacao(
 ) -> str:
     """Gera a explicação em linguagem natural para um contexto.
 
-    **É esta a interface fina do plano §6.5** — a única função que o pipeline de ML conhece.
+    **É esta a interface fina** — a única função que o pipeline de ML conhece.
     Acrescentar RAG no Módulo 3 significa enriquecer `contexto` antes desta chamada, sem
     tocar em nada do AG.
 
     O disclaimer é concatenado **em código**, não gerado pelo modelo: um aviso que a LLM
-    pudesse omitir não é um aviso (plano §6.3).
+    pudesse omitir não é um aviso.
     """
     from src.llm.verificador import formatar_numeros_do_contexto
 

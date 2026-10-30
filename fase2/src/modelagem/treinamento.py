@@ -38,7 +38,9 @@ from sklearn.metrics import (
 # Raiz do repositório: src/modelagem/treinamento.py -> src -> raiz
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 INPUT_PATH = BASE_DIR / "base_dados_tratada" / "PCOS_unificado.csv"
-REPORTS_DIR = BASE_DIR / "reports"
+REPORTS_DIR = (
+    BASE_DIR / "arquivos_saida" / "arquivos_analiticos" / "metricas_modelos_baseline"
+)
 
 # Variável que queremos prever: presença (1) ou ausência (0) de SOP
 TARGET = "PCOS (Y/N)"

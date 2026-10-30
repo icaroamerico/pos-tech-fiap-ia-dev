@@ -1,8 +1,8 @@
-"""Testes das métricas de AG (plano §7.2).
+"""Testes das métricas de AG.
 
 O teste mais importante deste arquivo valida a implementação de entropia genética contra
-o exemplo numérico da própria Aula 3 de AG — testar contra o número da fonte, não contra a
-minha própria expectativa.
+um valor fechado analiticamente — testar contra o número que a definição exige, não contra
+a minha própria expectativa.
 """
 
 import math
@@ -28,10 +28,8 @@ def test_entropia_de_populacao_clonal_e_zero():
     assert entropia_alelo(["A", "A", "A", "A"]) == 0.0
 
 
-def test_entropia_do_exemplo_da_aula_3_de_ag():
-    """3 rotas distintas e equiprováveis no TSP de 4 cidades → H ≈ 1,585 (log2(3)), exatamente
-    como no exemplo numérico da Aula 3 de AG.
-    """
+def test_entropia_de_tres_alelos_equiprovaveis():
+    """3 alelos distintos e equiprováveis → H = log2(3) ≈ 1,585, pela definição de Shannon."""
     valores = ["rota_A", "rota_B", "rota_C"]  # 3 alelos distintos, cada um com 1 ocorrência
     h = entropia_alelo(valores)
     assert math.isclose(h, math.log2(3), abs_tol=1e-9)
@@ -104,13 +102,13 @@ def test_numero_solucoes_unicas_conta_corretamente():
 
 
 def test_solucoes_unicas_ignora_diferencas_apenas_latentes():
-    """REGRESSÃO (bug real encontrado em auditoria): a métrica usava a chave do genótipo
+    """REGRESSÃO (bug real encontrado em revisão): a métrica usava a chave do genótipo
     completo, então dois indivíduos que treinam EXATAMENTE o mesmo modelo (mesma família
     ativa, mesmos genes expressos) contavam como duas soluções distintas só por diferirem em
     genes latentes.
 
-    O efeito era esconder convergência prematura — justamente o que esta métrica do plano
-    §4.7 existe para detectar: a população poderia estar clonal no fenótipo e a métrica
+    O efeito era esconder convergência prematura — justamente o que esta métrica
+    existe para detectar: a população poderia estar clonal no fenótipo e a métrica
     continuaria reportando diversidade alta.
     """
     import copy

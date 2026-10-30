@@ -1,8 +1,8 @@
-"""As configurações de experimento do plano §4.6 e §4.8.
+"""As configurações de experimento.
 
-Os três experimentos obrigatórios são três pontos do eixo **exploração ↔ aproveitamento** da
-Aula 3 de AG. As hipóteses estão declaradas aqui, ANTES de rodar — é o que diferencia "rodei
-três configurações e reportei" de "usei o AG para testar o que a aula afirma".
+Os três experimentos obrigatórios são três pontos do eixo **exploração ↔ aproveitamento**.
+As hipóteses estão declaradas aqui, ANTES de rodar — é o que diferencia "rodei três
+configurações e reportei" de "usei o AG para testar uma previsão".
 """
 
 from __future__ import annotations
@@ -10,7 +10,7 @@ from __future__ import annotations
 from src.ag.motor import ConfigAG
 
 #: Sementes para repetição. AG é estocástico — comparar configurações por uma execução cada
-#: é comparar ruído (plano §4.6).
+#: é comparar ruído.
 SEMENTES = (42, 7, 2024)
 
 HIPOTESES: dict[str, str] = {
@@ -18,15 +18,15 @@ HIPOTESES: dict[str, str] = {
         "Ponto de referência. Sem ele, E2 e E3 não têm contra o quê comparar."
     ),
     "E2_exploracao": (
-        "População 2x + mutação forte. A Aula 3 prevê 'maior diversidade genética; exploração "
-        "eficiente de diferentes regiões', com a desvantagem de 'convergência mais lenta, pois "
-        "a cada geração há mais indivíduos para avaliar'. PREVISÃO: fitness final igual ou "
+        "População 2x + mutação forte. Mais diversidade genética e exploração de regiões "
+        "distintas do espaço de busca, ao custo de convergência mais lenta: há mais "
+        "indivíduos para avaliar por geração. PREVISÃO: fitness final igual ou "
         "levemente superior ao E1, atingido em geração mais tardia, com ~2x o tempo de parede."
     ),
     "E3_aproveitamento": (
-        "População pequena + mutação fraca + torneio k=4. A Aula 3 prevê 'convergência "
-        "potencialmente mais rápida' contra 'pode ficar presa em ótimos locais; possibilidade "
-        "de convergência prematura'. PREVISÃO: convergência rápida nas primeiras gerações, "
+        "População pequena + mutação fraca + torneio k=4. Pressão seletiva alta: "
+        "convergência potencialmente mais rápida, com risco de ótimo local e de "
+        "convergência prematura. PREVISÃO: convergência rápida nas primeiras gerações, "
         "platô mais baixo que E1, e entropia genética caindo visivelmente mais rápido."
     ),
     "D_roleta": (
@@ -95,7 +95,7 @@ def d_roleta(semente: int) -> ConfigAG:
 
 
 def a_familia_fixa(familia: str, semente: int) -> ConfigAG:
-    """Etapa A do plano §4.8: AG restrito a uma família, para produzir a tabela
+    """Etapa A: AG restrito a uma família, para produzir a tabela
     "original vs. otimizado" linha a linha, com os 5 modelos da Fase 1.
 
     Orçamento menor que o E1 (pop 20 x 10 ger = 200 avaliações) porque o espaço de busca de

@@ -1,4 +1,4 @@
-"""Inicialização da população e elitismo (plano §4.2 e §4.4)."""
+"""Inicialização da população e elitismo."""
 
 from __future__ import annotations
 
@@ -16,7 +16,7 @@ def inicializar_populacao(
     tamanho: int, rng: np.random.Generator, fracao_hotstart: float = 0.1
 ) -> list[Individuo]:
     """Gera a população inicial: ~90% aleatória + ~10% hotstart com os hiperparâmetros da
-    Fase 1 (plano §4.2).
+    Fase 1.
 
     Os indivíduos de hotstart são distribuídos entre as 5 famílias (um por família, até o
     número de vagas de hotstart permitir) — o melhor fitness da geração 0 fica, por
@@ -51,9 +51,9 @@ def aplicar_elitismo(
     """Retorna cópias dos `n_elite` melhores indivíduos de uma população já ordenada por
     fitness decrescente (maior primeiro).
 
-    Chamar sempre com a população ORDENADA — esta função não ordena, só recorta. É a mesma
-    lógica de `new_population = [population[0]]` da Aula 4 de AG, generalizada para n_elite
-    indivíduos: garante que o melhor fitness nunca piora entre gerações (plano §4.4).
+    Chamar sempre com a população ORDENADA — esta função não ordena, só recorta. É o
+    elitismo clássico `[melhor]` generalizado para n_elite indivíduos: garante que o
+    melhor fitness nunca piora entre gerações.
     """
     if n_elite <= 0:
         return []

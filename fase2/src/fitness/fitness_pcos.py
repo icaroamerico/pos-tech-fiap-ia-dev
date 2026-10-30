@@ -1,6 +1,6 @@
-"""Fitness do AG para o PCOS (plano §4.3).
+"""Fitness do AG para o PCOS.
 
-GARANTIA ANTI-VAZAMENTO (plano §3 — a regra mais importante do projeto): este módulo NUNCA
+GARANTIA ANTI-VAZAMENTO (a regra mais importante do projeto): este módulo NUNCA
 recebe nem acessa o conjunto de TESTE. `DadosTreino` não tem nenhum campo que carregue
 X_teste/y_teste — essa ausência é estrutural, não uma convenção de código que alguém possa
 violar por engano. A validação é feita inteiramente por StratifiedKFold (k=5) sobre as 432
@@ -42,7 +42,7 @@ CONSTRUTORES = {
     "knn": KNeighborsClassifier,
 }
 
-# Pesos do fitness composto (plano §4.3): F1 como objetivo balanceado principal, recall com
+# Pesos do fitness composto: F1 como objetivo balanceado principal, recall com
 # peso extra para empurrar na direção da fraqueza conhecida do baseline da Fase 1 (o Random
 # Forest vencedor teve recall 0,8056 — sua métrica mais fraca), e AUC para desempatar
 # indivíduos com F1 parecido.
@@ -94,7 +94,7 @@ def construir_pipeline(
     `n_jobs_modelo=1` por padrão: a paralelização do AG acontece no NÍVEL DO INDIVÍDUO —
     vários indivíduos avaliados em paralelo via joblib (em motor.py), não dentro de cada
     Random Forest. Combinar os dois níveis de paralelismo causa *oversubscription* de
-    threads e fica MAIS LENTO (plano §5.2); é por isso que o default aqui é 1, não -1.
+    threads e fica MAIS LENTO; é por isso que o default aqui é 1, não -1.
     """
     familia, kwargs = decodificar(individuo)
     construtor = CONSTRUTORES[familia]
@@ -175,9 +175,9 @@ def calcular_fitness_com_cache(
     cache: dict[tuple, dict[str, float]],
     n_jobs_modelo: int = 1,
 ) -> tuple[dict[str, float], bool]:
-    """Memoiza o fitness por `chave_fenotipo` (plano §5.2) — o análogo, para hiperparâmetros,
-    da matriz de distâncias pré-calculada da Aula 4 de AG: evita retreinar um indivíduo que
-    o elitismo ou a mutação fraca já fizeram repetir.
+    """Memoiza o fitness por `chave_fenotipo` — o análogo, para hiperparâmetros,
+    de uma matriz de distâncias pré-calculada: evita retreinar um indivíduo que o elitismo
+    ou a mutação fraca já fizeram repetir.
 
     A chave é o FENÓTIPO (família ativa + genes expressos), não o genótipo completo. Usar o
     genótipo faria o cache perder quase todo acerto: os genes latentes das famílias inativas
@@ -188,7 +188,7 @@ def calcular_fitness_com_cache(
     sobre uma função não-determinística devolveria valores enganosos.
 
     Retorna `(resultado, veio_do_cache)` — o segundo valor alimenta a métrica de eficiência
-    `n_cache_hits` do logging (plano §5.1).
+    `n_cache_hits` do logging.
     """
     from src.ag.cromossomo import chave_fenotipo  # import local evita ciclo de módulos
 

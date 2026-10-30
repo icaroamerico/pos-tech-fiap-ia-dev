@@ -1,9 +1,0 @@
-{
-  "motivo_parada": "estagnacao_5_geracoes",
-  "geracoes_executadas": 13,
-  "melhor_fitness": 0.8791106189600673,
-  "tempo_total_s": 105.64166641701013,
-  "total_avaliacoes": 780,
-  "total_cache_hits": 32,
-  "taxa_cache_hit": 0.041025641025641026
-}

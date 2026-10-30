@@ -1,4 +1,4 @@
-"""Montagem do contexto enviado à LLM, com anonimização por construção (plano §6.1).
+"""Montagem do contexto enviado à LLM, com anonimização por construção.
 
 A decisão central deste módulo: **allow-list, não deny-list**.
 
@@ -7,8 +7,8 @@ aparecer na base para ela ir ao prompt sem ninguém decidir isso. Uma allow-list
 forma segura: o campo que não foi explicitamente autorizado simplesmente não existe no
 contexto. Com dados clínicos de pacientes, essa é a diferença entre um bug e um incidente.
 
-Contexto da decisão (IA Generativa, Aula 5): Amazon, Apple, Samsung e JP Morgan proibiram o
-ChatGPT internamente porque o que é digitado no prompt vai para os servidores do provedor.
+Contexto da decisão: Amazon, Apple, Samsung e JP Morgan proibiram o ChatGPT internamente
+porque o que é digitado no prompt vai para os servidores do provedor.
 Aqui o modelo roda local por padrão, mas a allow-list vale de todo modo — defesa em
 profundidade.
 """
@@ -119,7 +119,7 @@ def montar_contexto_paciente(
 
     Recebe features e métricas, nunca identificadores — e passa tudo pela allow-list antes de
     devolver. A `probabilidade` e a `predicao` vêm do modelo já treinado: a LLM traduz essa
-    saída, não a produz (plano §6.2).
+    saída, não a produz.
     """
     registro_bruto = X_paciente.to_dict()
     campos = filtrar_campos_autorizados(registro_bruto)
@@ -147,7 +147,7 @@ def montar_contexto_paciente(
 def montar_contexto_experimento(
     resumo_ag: dict[str, Any], comparativo: list[dict[str, Any]]
 ) -> dict[str, Any]:
-    """Contexto para o relatório do experimento de otimização (plano §6.2, artefato 2) —
+    """Contexto para o relatório do experimento de otimização —
     "transformar dados numéricos e estatísticos em insights acionáveis", aplicado ao próprio AG.
     """
     return {
@@ -162,7 +162,7 @@ def montar_contexto_experimento(
 
 
 def montar_contexto_coorte(predicoes: list[dict[str, Any]]) -> dict[str, Any]:
-    """Contexto do resumo de coorte (plano §6.2, artefato 3): agregados sobre as predições do
+    """Contexto do resumo de coorte: agregados sobre as predições do
     conjunto de teste, sem nenhum dado individual.
     """
     import numpy as np

@@ -1,4 +1,4 @@
-"""Métricas de desempenho do AG (plano §4.7, AG Aula 3).
+"""Métricas de desempenho do AG.
 
 Estas métricas medem o ALGORITMO, não a solução — são o que permite explicar *por que* o AG
 convergiu (ou não), em vez de só reportar o fitness final.
@@ -47,8 +47,8 @@ def entropia_alelo(valores: list[Any]) -> float:
     H=0 quando todos os valores são iguais (população clonal nesse gene); H=log2(n) quando
     há n valores distintos igualmente frequentes (diversidade máxima).
 
-    Validado no teste contra o exemplo numérico da Aula 3 de AG: população de 3 rotas
-    distintas e equiprováveis no TSP de 4 cidades → H ≈ 1,585 (= log2(3)).
+    Validado no teste contra um caso fechado: 3 valores distintos e equiprováveis
+    → H = log2(3) ≈ 1,585.
     """
     if not valores:
         return 0.0
@@ -68,8 +68,8 @@ def entropia_genetica_familia(populacao: list[Individuo]) -> float:
 def entropia_genetica_media_categorica(populacao: list[Individuo]) -> float:
     """Média da entropia genética sobre TODOS os genes categóricos do esquema (incluindo o
     gene `familia`), calculada apenas entre os indivíduos cuja família ativa é a dona
-    daquele gene — cobre a diversidade latente além do gene 0 (plano §4.7: "entropia e
-    distância euclidiana olham partes diferentes do cromossomo híbrido").
+    daquele gene — cobre a diversidade latente além do gene 0 (entropia e
+    distância euclidiana olham partes diferentes do cromossomo híbrido).
     """
     entropias = [entropia_genetica_familia(populacao)]
     for familia, genes in SCHEMA.items():
@@ -112,7 +112,7 @@ def _genes_numericos_normalizados(individuo: Individuo, familia: str) -> np.ndar
 
 def distancia_euclidiana_media(populacao: list[Individuo]) -> float:
     """Distância euclidiana média entre pares de indivíduos DA MESMA família ativa, nos
-    genes numéricos normalizados (plano §4.7).
+    genes numéricos normalizados.
 
     Por quê restringir a pares da mesma família: não há escala comum entre, por exemplo,
     `n_estimators` do Random Forest e `C` do SVM — comparar indivíduos de famílias
@@ -142,7 +142,7 @@ def distancia_euclidiana_media(populacao: list[Individuo]) -> float:
 def numero_solucoes_unicas(populacao: list[Individuo]) -> int:
     """Conta quantos FENÓTIPOS distintos existem na população — ou seja, quantos modelos
     efetivamente diferentes ela representa. Um declínio ao longo das gerações indica
-    convergência para um grupo restrito de soluções (plano §4.7, AG Aula 3).
+    convergência para um grupo restrito de soluções.
 
     Usa `chave_fenotipo`, não o genótipo completo: dois indivíduos que diferem apenas em
     genes latentes treinam exatamente o mesmo modelo e têm o mesmo fitness, então contá-los
@@ -157,7 +157,7 @@ def numero_genotipos_unicos(populacao: list[Individuo]) -> int:
 
     Comparar este número com `numero_solucoes_unicas` mostra quanta diversidade da população
     é apenas latente — informativo para discutir o papel do reservatório de genes recessivos
-    (plano §4.1), mas não é a métrica de convergência.
+   , mas não é a métrica de convergência.
     """
     return len({chave_genotipo(ind) for ind in populacao})
 
@@ -171,9 +171,9 @@ def frequencia_class_weight_balanced(populacao: list[Individuo]) -> float:
     """Fração da população — entre os indivíduos cuja família ativa TEM o gene
     `class_weight` (todas exceto KNN) — cujo valor é `"balanced"`.
 
-    Esta é a predição verificável do plano §4.3: como o fitness pesa recall, este alelo
+    Esta é a predição verificável: como o fitness pesa recall, este alelo
     deveria se fixar na população ao longo das gerações. Rastrear isso é o que permite
-    mostrar que o AG faz o que o plano disse que faria, em vez de apenas afirmar.
+    mostrar que o AG faz o que se previu que faria, em vez de apenas afirmar.
     """
     elegiveis = [ind for ind in populacao if "class_weight" in SCHEMA[ind["familia"]]]
     if not elegiveis:
@@ -187,7 +187,7 @@ def frequencia_class_weight_balanced(populacao: list[Individuo]) -> float:
 def distribuicao_familias(populacao: list[Individuo]) -> dict[str, float]:
     """Proporção da população em cada família de modelo — para visualizar se o AG converge
     para Random Forest (como a Fase 1 sugeriria) ou se outra família ultrapassa quando
-    todas são bem ajustadas (plano §4.1).
+    todas são bem ajustadas.
     """
     contagem = Counter(ind["familia"] for ind in populacao)
     n = len(populacao)

@@ -18,10 +18,6 @@ __pycache__/
 .vscode/
 .idea/
 
-# Ferramentas locais de IA
-.claude/
-.serena/
-
 # Dataset de raio-X da Fase 1 (~1,2 GB) — NÃO entra no repositório.
 # Veja fase1/case_imagens_raiox/README.md para onde baixar e onde colocar.
 fase1/case_imagens_raiox/train/
@@ -39,6 +35,9 @@ fase1/case_imagens_raiox/dados/
 .env
 .envrc
 
-# NOTA: `reports/`, `runs/`, `logs/` e `avaliacao_llm/` são SAÍDAS e estão
+# NOTA: tudo sob `fase2/arquivos_saida/` (logs e arquivos analíticos) são SAÍDAS e estão
 # versionados de propósito — são os artefatos que sustentam os números do
 # relatório técnico e o que faz os notebooks abrirem sem reexecução.
+
+# Arquivos de trabalho que não são entregáveis
+fase2/_ignore/

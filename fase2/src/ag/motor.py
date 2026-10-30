@@ -1,6 +1,6 @@
-"""Motor do algoritmo genético — o laço evolutivo (plano §4.5, §5.1, §5.2).
+"""Motor do algoritmo genético — o laço evolutivo.
 
-Segue o fluxograma genérico da Aula 3 de AG:
+Segue o laço evolutivo canônico:
 
     inicialização -> avaliação -> critério de parada? -> seleção -> cruzamento -> mutação -+
                           ^                                                                |
@@ -54,7 +54,7 @@ TipoSelecao = Literal["torneio", "roleta"]
 class ConfigAG:
     """Parâmetros de uma execução do AG.
 
-    Os valores default correspondem ao experimento **E1 (baseline)** do plano §4.6.
+    Os valores default correspondem ao experimento **E1 (baseline)**.
     """
 
     nome: str = "E1_baseline"
@@ -71,17 +71,17 @@ class ConfigAG:
     fracao_hotstart: float = 0.1
     semente: int = 42
 
-    # Família fixa: quando definida, o AG otimiza SÓ aquela família (Etapa A do plano §4.8).
+    # Família fixa: quando definida, o AG otimiza SÓ aquela família (Etapa A).
     # Com `None`, o gene `familia` é livre e o AG faz seleção de modelo junto com o ajuste
     # de hiperparâmetros (Etapa B).
     familia_fixa: str | None = None
 
-    # Critérios de parada (plano §4.5) — o primeiro que disparar encerra a execução.
+    # Critérios de parada — o primeiro que disparar encerra a execução.
     paciencia_estagnacao: int = 5
     tolerancia_melhoria: float = 1e-4
     piso_entropia: float = 0.0
 
-    n_jobs: int = -1
+    n_jobs: int = 1  # Evita overhead de multiprocessing. CV=5 já paraleliza dentro de cada modelo.
 
     def __post_init__(self) -> None:
         if self.familia_fixa is not None and self.familia_fixa not in FAMILIAS:
@@ -98,12 +98,12 @@ def _avaliar_populacao(
 ) -> tuple[list[dict[str, float]], int]:
     """Avalia a população, usando o cache para o que já foi visto e paralelizando o resto.
 
-    Estratégia (plano §5.2): primeiro resolve os acertos de cache em série (custo zero),
+    Estratégia: primeiro resolve os acertos de cache em série (custo zero),
     depois manda só os indivíduos inéditos para o `joblib`. Isso evita o custo de serializar
     para os workers indivíduos cuja resposta já se conhece.
 
     O paralelismo é no nível do INDIVÍDUO, com `n_jobs=1` dentro de cada modelo — combinar
-    os dois níveis causa *oversubscription* de threads e fica mais lento (plano §5.2).
+    os dois níveis causa *oversubscription* de threads e fica mais lento.
     """
     from src.ag.cromossomo import chave_fenotipo
 
@@ -147,7 +147,7 @@ def _checar_parada(
     historico_melhor: list[float],
     entropia_atual: float,
 ) -> str | None:
-    """Avalia os três critérios de parada do plano §4.5. Retorna o motivo ou `None`."""
+    """Avalia os três critérios de parada. Retorna o motivo ou `None`."""
     if geracao >= config.n_geracoes - 1:
         return "maximo_de_geracoes"
 
@@ -173,7 +173,7 @@ def executar_ag(
     """Executa o algoritmo genético completo e devolve o resultado + histórico.
 
     Não toca o conjunto de teste em nenhum momento — `dados` é um `DadosTreino`, que
-    estruturalmente não carrega o holdout (plano §3).
+    estruturalmente não carrega o holdout.
     """
     nome_execucao = f"{config.nome}_seed{config.semente}"
     if logger is None:

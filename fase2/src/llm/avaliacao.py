@@ -1,4 +1,4 @@
-"""Avaliação da qualidade das interpretações geradas (plano §6.4).
+"""Avaliação da qualidade das interpretações geradas.
 
 O enunciado pede "avaliar a qualidade das interpretações geradas" — e esse é o sub-requisito
 mais fácil de deixar virar "as respostas ficaram boas". Ele pede **avaliação**, então precisa
@@ -27,7 +27,9 @@ from src.llm.cliente import ConfigLLM, gerar_explicacao
 from src.llm.verificador import verificar_saida
 
 RAIZ_PROJETO = Path(__file__).resolve().parent.parent.parent
-DIR_AVALIACAO = RAIZ_PROJETO / "avaliacao_llm"
+DIR_AVALIACAO = (
+    RAIZ_PROJETO / "arquivos_saida" / "arquivos_analiticos" / "avaliacao_llm"
+)
 
 SECOES_OBRIGATORIAS = (
     "Resumo da indicação do modelo",
@@ -36,7 +38,7 @@ SECOES_OBRIGATORIAS = (
     "Próximo passo sugerido",
 )
 
-#: A rubrica do plano §6.4 — 6 critérios, 0 a 2 pontos cada.
+#: A rubrica — 6 critérios, 0 a 2 pontos cada.
 RUBRICA: dict[str, dict[int, str]] = {
     "fidelidade_numerica": {
         0: "Cita número errado",
@@ -98,7 +100,7 @@ class SaidaAvaliada:
 
 
 def _estratificar(probabilidade: float, predicao: int) -> str:
-    """Classifica a amostra em um dos três estratos do plano §6.4.
+    """Classifica a amostra em um dos três estratos.
 
     A estratificação importa porque os modos de falha são diferentes por faixa: num caso de
     alta confiança o risco é excesso de assertividade; num caso de limiar, o risco é a LLM
@@ -148,7 +150,7 @@ def medir_estabilidade(
     """Gera a mesma entrada N vezes e mede a divergência entre as saídas.
 
     Divergência numérica entre repetições da MESMA entrada é sinal de temperatura alta demais
-    (plano §6.4) — e é um diagnóstico que não depende de julgamento humano.
+    — e é um diagnóstico que não depende de julgamento humano.
     """
     from src.llm.verificador import extrair_numeros
 
@@ -176,7 +178,7 @@ def medir_estabilidade(
 
 
 def resumir_metricas_automaticas(saidas: list[SaidaAvaliada]) -> dict[str, Any]:
-    """Agrega as métricas automáticas por template — a tabela do plano §6.4."""
+    """Agrega as métricas automáticas por template — a tabela."""
     import numpy as np
 
     por_template: dict[str, list[SaidaAvaliada]] = {}
@@ -203,11 +205,18 @@ def resumir_metricas_automaticas(saidas: list[SaidaAvaliada]) -> dict[str, Any]:
     return resumo
 
 
-def persistir_avaliacao(saidas: list[SaidaAvaliada], nome: str = "avaliacao") -> Path:
-    """Grava as saídas brutas e a planilha da rubrica em `avaliacao_llm/`.
+def persistir_avaliacao(
+    saidas: list[SaidaAvaliada], nome: str = "avaliacao", escrever_csv: bool = True
+) -> Path:
+    """Grava as saídas brutas e a planilha da rubrica em
+    `arquivos_saida/arquivos_analiticos/avaliacao_llm/`.
 
-    As saídas brutas são versionadas de propósito (plano §6.4): o avaliador precisa poder
+    As saídas brutas são versionadas de propósito: o avaliador precisa poder
     conferir a nota que eu dei, e para isso precisa ver o texto que gerou a nota.
+
+    O CSV da rubrica sai em branco, para ser preenchido à mão. Com `escrever_csv=False`
+    ele não é tocado: uma reexecução regenera o JSON e o Markdown, que derivam da
+    execução, sem apagar as notas que já foram digitadas na planilha.
     """
     DIR_AVALIACAO.mkdir(parents=True, exist_ok=True)
 
@@ -221,20 +230,21 @@ def persistir_avaliacao(saidas: list[SaidaAvaliada], nome: str = "avaliacao") ->
     import csv
 
     caminho_csv = DIR_AVALIACAO / f"{nome}_rubrica.csv"
-    with caminho_csv.open("w", newline="", encoding="utf-8") as arquivo:
-        colunas = ["id_amostra", "template", "estrato", *RUBRICA, "justificativa"]
-        escritor = csv.DictWriter(arquivo, fieldnames=colunas)
-        escritor.writeheader()
-        for saida in saidas:
-            escritor.writerow(
-                {
-                    "id_amostra": saida.id_amostra,
-                    "template": saida.template,
-                    "estrato": saida.estrato,
-                    **{criterio: "" for criterio in RUBRICA},
-                    "justificativa": "",
-                }
-            )
+    if escrever_csv:
+        with caminho_csv.open("w", newline="", encoding="utf-8") as arquivo:
+            colunas = ["id_amostra", "template", "estrato", *RUBRICA, "justificativa"]
+            escritor = csv.DictWriter(arquivo, fieldnames=colunas)
+            escritor.writeheader()
+            for saida in saidas:
+                escritor.writerow(
+                    {
+                        "id_amostra": saida.id_amostra,
+                        "template": saida.template,
+                        "estrato": saida.estrato,
+                        **{criterio: "" for criterio in RUBRICA},
+                        "justificativa": "",
+                    }
+                )
 
     # as saídas em markdown, legíveis, para a leitura humana que a rubrica exige
     caminho_md = DIR_AVALIACAO / f"{nome}_saidas.md"

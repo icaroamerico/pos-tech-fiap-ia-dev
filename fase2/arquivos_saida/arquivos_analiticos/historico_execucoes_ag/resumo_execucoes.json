@@ -1,0 +1,576 @@
+[
+  {
+    "experimento": "A_random_forest",
+    "semente": 42,
+    "melhor_fitness": 0.8715904231088938,
+    "familia_vencedora": "random_forest",
+    "geracoes": 10,
+    "motivo_parada": "maximo_de_geracoes",
+    "tempo_s": 34.56885266606696,
+    "taxa_cache": 0.165,
+    "holdout": {
+      "familia": "random_forest",
+      "acuracia": 0.908256880733945,
+      "precisao": 0.8611111111111112,
+      "recall": 0.8611111111111112,
+      "f1_score": 0.8611111111111112,
+      "auc_roc": 0.9467275494672754,
+      "matriz_confusao": [
+        [
+          68,
+          5
+        ],
+        [
+          5,
+          31
+        ]
+      ],
+      "n_teste": 109
+    }
+  },
+  {
+    "experimento": "A_svm_rbf",
+    "semente": 42,
+    "melhor_fitness": 0.8616690234392901,
+    "familia_vencedora": "svm_rbf",
+    "geracoes": 10,
+    "motivo_parada": "maximo_de_geracoes",
+    "tempo_s": 4.447950707981363,
+    "taxa_cache": 0.14,
+    "holdout": {
+      "familia": "svm_rbf",
+      "acuracia": 0.8807339449541285,
+      "precisao": 0.8484848484848485,
+      "recall": 0.7777777777777778,
+      "f1_score": 0.8115942028985508,
+      "auc_roc": 0.9299847792998478,
+      "matriz_confusao": [
+        [
+          68,
+          5
+        ],
+        [
+          8,
+          28
+        ]
+      ],
+      "n_teste": 109
+    }
+  },
+  {
+    "experimento": "A_logistic_regression",
+    "semente": 42,
+    "melhor_fitness": 0.8818485125850658,
+    "familia_vencedora": "logistic_regression",
+    "geracoes": 10,
+    "motivo_parada": "maximo_de_geracoes",
+    "tempo_s": 3.7007978330366313,
+    "taxa_cache": 0.18,
+    "holdout": {
+      "familia": "logistic_regression",
+      "acuracia": 0.908256880733945,
+      "precisao": 0.825,
+      "recall": 0.9166666666666666,
+      "f1_score": 0.868421052631579,
+      "auc_roc": 0.952435312024353,
+      "matriz_confusao": [
+        [
+          66,
+          7
+        ],
+        [
+          3,
+          33
+        ]
+      ],
+      "n_teste": 109
+    }
+  },
+  {
+    "experimento": "A_decision_tree",
+    "semente": 42,
+    "melhor_fitness": 0.7841577098540805,
+    "familia_vencedora": "decision_tree",
+    "geracoes": 9,
+    "motivo_parada": "estagnacao_5_geracoes",
+    "tempo_s": 1.722619165899232,
+    "taxa_cache": 0.16666666666666666,
+    "holdout": {
+      "familia": "decision_tree",
+      "acuracia": 0.7889908256880734,
+      "precisao": 0.6226415094339622,
+      "recall": 0.9166666666666666,
+      "f1_score": 0.7415730337078652,
+      "auc_roc": 0.9138127853881278,
+      "matriz_confusao": [
+        [
+          53,
+          20
+        ],
+        [
+          3,
+          33
+        ]
+      ],
+      "n_teste": 109
+    }
+  },
+  {
+    "experimento": "A_knn",
+    "semente": 42,
+    "melhor_fitness": 0.7684214787995278,
+    "familia_vencedora": "knn",
+    "geracoes": 10,
+    "motivo_parada": "maximo_de_geracoes",
+    "tempo_s": 1.7252780830021948,
+    "taxa_cache": 0.665,
+    "holdout": {
+      "familia": "knn",
+      "acuracia": 0.8256880733944955,
+      "precisao": 0.7575757575757576,
+      "recall": 0.6944444444444444,
+      "f1_score": 0.7246376811594203,
+      "auc_roc": 0.7924277016742771,
+      "matriz_confusao": [
+        [
+          65,
+          8
+        ],
+        [
+          11,
+          25
+        ]
+      ],
+      "n_teste": 109
+    }
+  },
+  {
+    "experimento": "E1_baseline",
+    "semente": 42,
+    "melhor_fitness": 0.8745252576991042,
+    "familia_vencedora": "logistic_regression",
+    "geracoes": 6,
+    "motivo_parada": "estagnacao_5_geracoes",
+    "tempo_s": 23.42137858318165,
+    "taxa_cache": 0.12222222222222222,
+    "holdout": {
+      "familia": "logistic_regression",
+      "acuracia": 0.8990825688073395,
+      "precisao": 0.8378378378378378,
+      "recall": 0.8611111111111112,
+      "f1_score": 0.8493150684931506,
+      "auc_roc": 0.9505327245053272,
+      "matriz_confusao": [
+        [
+          67,
+          6
+        ],
+        [
+          5,
+          31
+        ]
+      ],
+      "n_teste": 109
+    }
+  },
+  {
+    "experimento": "E1_baseline",
+    "semente": 7,
+    "melhor_fitness": 0.8729621959854434,
+    "familia_vencedora": "random_forest",
+    "geracoes": 15,
+    "motivo_parada": "maximo_de_geracoes",
+    "tempo_s": 57.56899062497541,
+    "taxa_cache": 0.14444444444444443,
+    "holdout": {
+      "familia": "random_forest",
+      "acuracia": 0.926605504587156,
+      "precisao": 0.9117647058823529,
+      "recall": 0.8611111111111112,
+      "f1_score": 0.8857142857142857,
+      "auc_roc": 0.9463470319634704,
+      "matriz_confusao": [
+        [
+          70,
+          3
+        ],
+        [
+          5,
+          31
+        ]
+      ],
+      "n_teste": 109
+    }
+  },
+  {
+    "experimento": "E1_baseline",
+    "semente": 2024,
+    "melhor_fitness": 0.8819461998189307,
+    "familia_vencedora": "logistic_regression",
+    "geracoes": 15,
+    "motivo_parada": "maximo_de_geracoes",
+    "tempo_s": 24.72881683288142,
+    "taxa_cache": 0.14666666666666667,
+    "holdout": {
+      "familia": "logistic_regression",
+      "acuracia": 0.9174311926605505,
+      "precisao": 0.8461538461538461,
+      "recall": 0.9166666666666666,
+      "f1_score": 0.88,
+      "auc_roc": 0.9528158295281582,
+      "matriz_confusao": [
+        [
+          67,
+          6
+        ],
+        [
+          3,
+          33
+        ]
+      ],
+      "n_teste": 109
+    }
+  },
+  {
+    "experimento": "E2_exploracao",
+    "semente": 42,
+    "melhor_fitness": 0.8802598251781023,
+    "familia_vencedora": "logistic_regression",
+    "geracoes": 12,
+    "motivo_parada": "estagnacao_5_geracoes",
+    "tempo_s": 72.37259783316404,
+    "taxa_cache": 0.059722222222222225,
+    "holdout": {
+      "familia": "logistic_regression",
+      "acuracia": 0.9174311926605505,
+      "precisao": 0.8461538461538461,
+      "recall": 0.9166666666666666,
+      "f1_score": 0.88,
+      "auc_roc": 0.9531963470319634,
+      "matriz_confusao": [
+        [
+          67,
+          6
+        ],
+        [
+          3,
+          33
+        ]
+      ],
+      "n_teste": 109
+    }
+  },
+  {
+    "experimento": "E2_exploracao",
+    "semente": 7,
+    "melhor_fitness": 0.8791106189600673,
+    "familia_vencedora": "logistic_regression",
+    "geracoes": 13,
+    "motivo_parada": "estagnacao_5_geracoes",
+    "tempo_s": 108.18626775010489,
+    "taxa_cache": 0.041025641025641026,
+    "holdout": {
+      "familia": "logistic_regression",
+      "acuracia": 0.9174311926605505,
+      "precisao": 0.8461538461538461,
+      "recall": 0.9166666666666666,
+      "f1_score": 0.88,
+      "auc_roc": 0.9528158295281582,
+      "matriz_confusao": [
+        [
+          67,
+          6
+        ],
+        [
+          3,
+          33
+        ]
+      ],
+      "n_teste": 109
+    }
+  },
+  {
+    "experimento": "E2_exploracao",
+    "semente": 2024,
+    "melhor_fitness": 0.8819224186060889,
+    "familia_vencedora": "logistic_regression",
+    "geracoes": 9,
+    "motivo_parada": "estagnacao_5_geracoes",
+    "tempo_s": 67.73238020809367,
+    "taxa_cache": 0.046296296296296294,
+    "holdout": {
+      "familia": "logistic_regression",
+      "acuracia": 0.9174311926605505,
+      "precisao": 0.8461538461538461,
+      "recall": 0.9166666666666666,
+      "f1_score": 0.88,
+      "auc_roc": 0.9528158295281582,
+      "matriz_confusao": [
+        [
+          67,
+          6
+        ],
+        [
+          3,
+          33
+        ]
+      ],
+      "n_teste": 109
+    }
+  },
+  {
+    "experimento": "E3_aproveitamento",
+    "semente": 42,
+    "melhor_fitness": 0.8685006111188749,
+    "familia_vencedora": "random_forest",
+    "geracoes": 15,
+    "motivo_parada": "maximo_de_geracoes",
+    "tempo_s": 19.690793209010735,
+    "taxa_cache": 0.6533333333333333,
+    "holdout": {
+      "familia": "random_forest",
+      "acuracia": 0.908256880733945,
+      "precisao": 0.8611111111111112,
+      "recall": 0.8611111111111112,
+      "f1_score": 0.8611111111111112,
+      "auc_roc": 0.9505327245053273,
+      "matriz_confusao": [
+        [
+          68,
+          5
+        ],
+        [
+          5,
+          31
+        ]
+      ],
+      "n_teste": 109
+    }
+  },
+  {
+    "experimento": "E3_aproveitamento",
+    "semente": 7,
+    "melhor_fitness": 0.8758656727127474,
+    "familia_vencedora": "random_forest",
+    "geracoes": 15,
+    "motivo_parada": "maximo_de_geracoes",
+    "tempo_s": 32.21174512500875,
+    "taxa_cache": 0.6,
+    "holdout": {
+      "familia": "random_forest",
+      "acuracia": 0.8990825688073395,
+      "precisao": 0.8571428571428571,
+      "recall": 0.8333333333333334,
+      "f1_score": 0.8450704225352113,
+      "auc_roc": 0.952435312024353,
+      "matriz_confusao": [
+        [
+          68,
+          5
+        ],
+        [
+          6,
+          30
+        ]
+      ],
+      "n_teste": 109
+    }
+  },
+  {
+    "experimento": "E3_aproveitamento",
+    "semente": 2024,
+    "melhor_fitness": 0.8700559742874179,
+    "familia_vencedora": "logistic_regression",
+    "geracoes": 6,
+    "motivo_parada": "estagnacao_5_geracoes",
+    "tempo_s": 6.322475291090086,
+    "taxa_cache": 0.5666666666666667,
+    "holdout": {
+      "familia": "logistic_regression",
+      "acuracia": 0.8899082568807339,
+      "precisao": 0.8333333333333334,
+      "recall": 0.8333333333333334,
+      "f1_score": 0.8333333333333334,
+      "auc_roc": 0.9482496194824962,
+      "matriz_confusao": [
+        [
+          67,
+          6
+        ],
+        [
+          6,
+          30
+        ]
+      ],
+      "n_teste": 109
+    }
+  },
+  {
+    "experimento": "D_roleta",
+    "semente": 42,
+    "melhor_fitness": 0.8745252576991042,
+    "familia_vencedora": "logistic_regression",
+    "geracoes": 6,
+    "motivo_parada": "estagnacao_5_geracoes",
+    "tempo_s": 16.137570000020787,
+    "taxa_cache": 0.13333333333333333,
+    "holdout": {
+      "familia": "logistic_regression",
+      "acuracia": 0.8990825688073395,
+      "precisao": 0.8378378378378378,
+      "recall": 0.8611111111111112,
+      "f1_score": 0.8493150684931506,
+      "auc_roc": 0.9505327245053272,
+      "matriz_confusao": [
+        [
+          67,
+          6
+        ],
+        [
+          5,
+          31
+        ]
+      ],
+      "n_teste": 109
+    }
+  },
+  {
+    "experimento": "D_roleta",
+    "semente": 7,
+    "melhor_fitness": 0.8790859884181953,
+    "familia_vencedora": "logistic_regression",
+    "geracoes": 8,
+    "motivo_parada": "estagnacao_5_geracoes",
+    "tempo_s": 31.614795125089586,
+    "taxa_cache": 0.15833333333333333,
+    "holdout": {
+      "familia": "logistic_regression",
+      "acuracia": 0.9174311926605505,
+      "precisao": 0.8461538461538461,
+      "recall": 0.9166666666666666,
+      "f1_score": 0.88,
+      "auc_roc": 0.9528158295281582,
+      "matriz_confusao": [
+        [
+          67,
+          6
+        ],
+        [
+          3,
+          33
+        ]
+      ],
+      "n_teste": 109
+    }
+  },
+  {
+    "experimento": "D_roleta",
+    "semente": 2024,
+    "melhor_fitness": 0.8700559742874179,
+    "familia_vencedora": "logistic_regression",
+    "geracoes": 6,
+    "motivo_parada": "estagnacao_5_geracoes",
+    "tempo_s": 16.309538250090554,
+    "taxa_cache": 0.17222222222222222,
+    "holdout": {
+      "familia": "logistic_regression",
+      "acuracia": 0.8899082568807339,
+      "precisao": 0.8333333333333334,
+      "recall": 0.8333333333333334,
+      "f1_score": 0.8333333333333334,
+      "auc_roc": 0.9482496194824962,
+      "matriz_confusao": [
+        [
+          67,
+          6
+        ],
+        [
+          6,
+          30
+        ]
+      ],
+      "n_teste": 109
+    }
+  },
+  {
+    "metodo": "busca_aleatoria",
+    "semente": 42,
+    "melhor_fitness": 0.8745252576991042,
+    "familia_vencedora": "logistic_regression",
+    "n_avaliacoes_efetivas": 430,
+    "tempo_s": 25.81435962487012,
+    "holdout": {
+      "familia": "logistic_regression",
+      "acuracia": 0.8990825688073395,
+      "precisao": 0.8378378378378378,
+      "recall": 0.8611111111111112,
+      "f1_score": 0.8493150684931506,
+      "auc_roc": 0.9505327245053272,
+      "matriz_confusao": [
+        [
+          67,
+          6
+        ],
+        [
+          5,
+          31
+        ]
+      ],
+      "n_teste": 109
+    }
+  },
+  {
+    "metodo": "busca_aleatoria",
+    "semente": 7,
+    "melhor_fitness": 0.875064306633349,
+    "familia_vencedora": "logistic_regression",
+    "n_avaliacoes_efetivas": 428,
+    "tempo_s": 26.75631779199466,
+    "holdout": {
+      "familia": "logistic_regression",
+      "acuracia": 0.9174311926605505,
+      "precisao": 0.8461538461538461,
+      "recall": 0.9166666666666666,
+      "f1_score": 0.88,
+      "auc_roc": 0.9493911719939117,
+      "matriz_confusao": [
+        [
+          67,
+          6
+        ],
+        [
+          3,
+          33
+        ]
+      ],
+      "n_teste": 109
+    }
+  },
+  {
+    "metodo": "busca_aleatoria",
+    "semente": 2024,
+    "melhor_fitness": 0.8779775152124909,
+    "familia_vencedora": "logistic_regression",
+    "n_avaliacoes_efetivas": 426,
+    "tempo_s": 27.390036625089124,
+    "holdout": {
+      "familia": "logistic_regression",
+      "acuracia": 0.9174311926605505,
+      "precisao": 0.8461538461538461,
+      "recall": 0.9166666666666666,
+      "f1_score": 0.88,
+      "auc_roc": 0.9531963470319634,
+      "matriz_confusao": [
+        [
+          67,
+          6
+        ],
+        [
+          3,
+          33
+        ]
+      ],
+      "n_teste": 109
+    }
+  }
+]

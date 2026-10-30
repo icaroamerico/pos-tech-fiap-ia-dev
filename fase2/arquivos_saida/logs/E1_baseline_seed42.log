@@ -1,0 +1,8 @@
+23:03:29 | INFO    | AG E1_baseline | pop=30 ger=15 mut=0.15(int=0.10) cx=0.80 k=2 elite=2 sel=torneio familia=livre
+23:03:35 | INFO    | ger  0 | melhor=0.8745 medio=0.7566 sd=0.1580 | H=2.314 unicos=30 | logistic_regression | cache= 0/30 | 6.2s
+23:03:37 | INFO    | ger  1 | melhor=0.8745 medio=0.7928 sd=0.1554 | H=1.927 unicos=29 | logistic_regression | cache= 5/30 | 1.9s
+23:03:41 | INFO    | ger  2 | melhor=0.8745 medio=0.8036 sd=0.1792 | H=0.837 unicos=28 | logistic_regression | cache= 6/30 | 4.6s
+23:03:46 | INFO    | ger  3 | melhor=0.8745 medio=0.8390 sd=0.0441 | H=0.982 unicos=28 | logistic_regression | cache= 5/30 | 4.5s
+23:03:51 | INFO    | ger  4 | melhor=0.8745 medio=0.8136 sd=0.1005 | H=1.226 unicos=29 | logistic_regression | cache= 4/30 | 4.7s
+23:03:56 | INFO    | ger  5 | melhor=0.8745 medio=0.7926 sd=0.1640 | H=1.075 unicos=29 | logistic_regression | cache= 2/30 | 5.0s
+23:03:56 | INFO    | FIM E1_baseline | melhor=0.8745 (logistic_regression) | 6 gerações | parada=estagnacao_5_geracoes | 26.9s | cache 12%

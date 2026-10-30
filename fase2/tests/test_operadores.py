@@ -1,6 +1,6 @@
-"""Testes dos operadores genéticos e da população (plano §7.2).
+"""Testes dos operadores genéticos e da população.
 
-Cobrem os invariantes que o plano lista como críticos:
+Cobrem os invariantes críticos:
   - crossover de pais válidos produz filhos válidos e dentro das faixas;
   - crossover de pais idênticos produz filho idêntico;
   - mutação respeita o espaço de busca;
@@ -77,7 +77,7 @@ def test_mutacao_com_probabilidade_zero_nao_altera_nada():
 
 
 def test_prob_troca_familia_zero_preserva_a_familia():
-    """A troca de família é desacoplada da mutação dos genes (decisão pós-auditoria): com
+    """A troca de família é desacoplada da mutação dos genes (decisão de projeto): com
     `prob_troca_familia=0`, a família nunca muda, mesmo com mutação de genes em 100%.
     """
     rng = np.random.default_rng(50)
@@ -101,8 +101,8 @@ def test_prob_troca_familia_um_sempre_troca_a_familia():
 
 def test_normalizacao_iguala_mutacoes_esperadas_entre_familias():
     """Com `normalizar_por_familia=True`, o número esperado de mutações nos genes EXPRESSOS
-    deve ser estatisticamente o mesmo em qualquer família — corrige a assimetria medida na
-    auditoria (RF sofria 2,3x mais mutação efetiva que SVM à mesma probabilidade).
+    deve ser estatisticamente o mesmo em qualquer família — corrige a assimetria medida nos
+    primeiros experimentos (RF sofria 2,3x mais mutação efetiva que SVM à mesma probabilidade).
     """
     from src.ag.cromossomo import SCHEMA
 
@@ -190,7 +190,7 @@ def test_mutacao_com_probabilidade_um_altera_o_individuo():
 
 
 def test_torneio_prefere_fitness_maior_na_maioria_dos_sorteios():
-    """Teste explícito do plano §7.2: torneio prefere fitness maior em >50% dos sorteios."""
+    """Teste explícito: torneio prefere fitness maior em >50% dos sorteios."""
     rng = np.random.default_rng(10)
     populacao = [gerar_individuo_aleatorio(rng) for _ in range(30)]
     # fitnesses bem distintos para que o resultado do torneio seja decidido pelo valor,
@@ -231,7 +231,7 @@ def test_torneio_com_populacao_inteira_favorece_fitness_alto_estatisticamente():
 
 def test_roleta_e_executavel_e_retorna_individuo_da_populacao():
     """A roleta é mantida só para a ablação da Etapa D — este teste confere que ela
-    funciona, não que tem a mesma pressão seletiva do torneio (o plano prevê que NÃO tem).
+    funciona, não que tem a mesma pressão seletiva do torneio (a previsão é que NÃO tem).
     """
     rng = np.random.default_rng(12)
     populacao = [gerar_individuo_aleatorio(rng) for _ in range(10)]
@@ -271,7 +271,7 @@ def test_elitismo_preserva_os_melhores():
 
 
 def test_populacao_mantem_tamanho_constante_ao_longo_de_geracoes():
-    """Teste explícito do plano §7.2: simula algumas gerações completas (seleção + crossover
+    """Teste explícito: simula algumas gerações completas (seleção + crossover
     + mutação + elitismo) e confere que o tamanho da população nunca muda — pega o bug
     clássico de off-by-one no laço geracional.
     """

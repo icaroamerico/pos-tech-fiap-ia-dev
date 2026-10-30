@@ -1,4 +1,4 @@
-"""Testes do motor evolutivo (plano §4.5, §5.1, §5.2).
+"""Testes do motor evolutivo.
 
 Usam configurações minúsculas (população 6, 3 gerações) — o objetivo é verificar a LÓGICA do
 laço, não a qualidade da otimização. Os experimentos reais ficam em src/experimentos/.
@@ -47,7 +47,7 @@ def test_executa_e_devolve_resultado_coerente(dados, escritor):
 
 def test_melhor_fitness_nunca_piora_entre_geracoes(dados, escritor):
     """Com elitismo (n_elite >= 1), a curva de melhor fitness tem de ser monotonicamente não
-    decrescente — é o que torna o gráfico de convergência interpretável (plano §4.4).
+    decrescente — é o que torna o gráfico de convergência interpretável.
     """
     resultado = executar_ag(
         _config_minima(n_geracoes=5, n_elite=1), dados, escritor=escritor, verboso=False
@@ -67,7 +67,7 @@ def test_populacao_mantem_tamanho_em_todas_as_geracoes(dados, escritor):
 
 def test_execucao_e_reprodutivel_com_a_mesma_semente(dados, tmp_path):
     """Mesma semente -> mesmo resultado. Pré-requisito para os experimentos com repetição
-    serem comparáveis entre si (plano §4.6).
+    serem comparáveis entre si.
     """
     r1 = executar_ag(
         _config_minima(semente=123),
@@ -105,7 +105,7 @@ def test_sementes_diferentes_produzem_execucoes_diferentes(dados, tmp_path):
 
 @pytest.mark.parametrize("familia", FAMILIAS)
 def test_familia_fixa_mantem_todos_os_individuos_na_familia(dados, familia, tmp_path):
-    """Etapa A do plano §4.8: com `familia_fixa`, o AG otimiza SÓ aquela família — nenhum
+    """Etapa A: com `familia_fixa`, o AG otimiza SÓ aquela família — nenhum
     indivíduo pode escapar para outra, nem por mutação nem por crossover.
     """
     resultado = executar_ag(
@@ -125,7 +125,7 @@ def test_familia_fixa_mantem_todos_os_individuos_na_familia(dados, familia, tmp_
 
 def test_parada_por_estagnacao_dispara(dados, escritor):
     """Com mutação e crossover desligados e elitismo ativo, a população congela e o critério
-    de estagnação do plano §4.5 tem de encerrar antes do máximo de gerações.
+    de estagnação tem de encerrar antes do máximo de gerações.
     """
     config = _config_minima(
         n_geracoes=30,
@@ -141,7 +141,7 @@ def test_parada_por_estagnacao_dispara(dados, escritor):
 
 
 def test_selecao_roleta_tambem_executa(dados, escritor):
-    """A roleta é o operador da Etapa D (ablação, plano §4.8) — precisa rodar de ponta a
+    """A roleta é o operador da Etapa D (ablação) — precisa rodar de ponta a
     ponta, não só existir.
     """
     resultado = executar_ag(
@@ -152,7 +152,7 @@ def test_selecao_roleta_tambem_executa(dados, escritor):
 
 
 def test_cache_registra_acertos_ao_longo_das_geracoes(dados, escritor):
-    """O cache do plano §5.2 tem de produzir acertos de verdade num laço real — com elitismo,
+    """O cache tem de produzir acertos de verdade num laço real — com elitismo,
     pelo menos os indivíduos da elite repetem entre gerações.
 
     Note que a geração 0 já pode ter acertos, e isso é correto: são duplicatas DENTRO da
@@ -192,7 +192,7 @@ def test_artefatos_sao_escritos_no_disco(dados, tmp_path):
 
 
 def test_historico_jsonl_carrega_em_dataframe(dados, tmp_path):
-    """O contrato com os notebooks (plano §7.4): a análise lê o JSONL, não reexecuta o AG."""
+    """O contrato com os notebooks: a análise lê o JSONL, não reexecuta o AG."""
     escritor = EscritorExecucao("hist", dir_base=tmp_path)
     executar_ag(_config_minima(n_geracoes=3), dados, escritor=escritor, verboso=False)
 
@@ -204,7 +204,7 @@ def test_historico_jsonl_carrega_em_dataframe(dados, tmp_path):
 
 
 def test_motor_nunca_acessa_o_conjunto_de_teste(monkeypatch, tmp_path):
-    """Extensão do teste anti-vazamento do plano §3 para o LAÇO COMPLETO — não só para uma
+    """Extensão do teste anti-vazamento para o LAÇO COMPLETO — não só para uma
     chamada isolada de fitness. Se qualquer parte do motor tocar no holdout ao longo de
     várias gerações, o espião levanta exceção.
     """

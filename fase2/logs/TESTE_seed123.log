@@ -1,5 +1,0 @@
-21:25:20 | INFO    | AG TESTE | pop=6 ger=3 mut=0.15(int=0.10) cx=0.80 k=2 elite=1 sel=torneio familia=livre
-21:25:22 | INFO    | ger  0 | melhor=0.8254 medio=0.6636 sd=0.2566 | H=1.585 unicos= 6 | random_forest | cache= 0/ 6 | 1.7s
-21:25:25 | INFO    | ger  1 | melhor=0.8564 medio=0.8125 sd=0.0398 | H=0.650 unicos= 6 | random_forest | cache= 2/ 6 | 3.0s
-21:25:27 | INFO    | ger  2 | melhor=0.8564 medio=0.8211 sd=0.0619 | H=0.650 unicos= 5 | random_forest | cache= 2/ 6 | 2.5s
-21:25:27 | INFO    | FIM TESTE | melhor=0.8564 (random_forest) | 3 gerações | parada=maximo_de_geracoes | 7.1s | cache 22%

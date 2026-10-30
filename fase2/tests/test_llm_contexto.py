@@ -1,11 +1,11 @@
-"""Testes da camada de LLM (plano §7.2).
+"""Testes da camada de LLM.
 
 O foco é nas partes DETERMINÍSTICAS — montagem de contexto, allow-list de anonimização,
 verificação de alucinação numérica e carregamento de templates. A saída da LLM em si não é
 testada por asserção de conteúdo (é não determinística; a avaliação dela é a rubrica do §6.4).
 
 O teste mais importante aqui é `test_contexto_nunca_inclui_campo_fora_da_allow_list`: é o que
-transforma a garantia de privacidade do plano §6.1 em algo verificável.
+transforma a garantia de privacidade em algo verificável.
 """
 
 import numpy as np
@@ -41,7 +41,7 @@ from src.llm.verificador import (
 
 
 def test_contexto_nunca_inclui_campo_fora_da_allow_list():
-    """O teste central de privacidade (plano §6.1): um campo novo e desconhecido na base NÃO
+    """O teste central de privacidade: um campo novo e desconhecido na base NÃO
     deve entrar no contexto só por existir. É a diferença entre allow-list e deny-list.
     """
     registro = {
@@ -176,7 +176,7 @@ def test_verificador_detecta_secao_ausente():
 
 
 def test_verificador_detecta_termo_de_diagnostico():
-    """A fronteira do plano §6.2: a LLM traduz, não diagnostica."""
+    """A fronteira: a LLM traduz, não diagnostica."""
     contexto = {"probabilidade": 0.95}
     resultado = verificar_saida("A paciente definitivamente tem SOP.", contexto)
     assert not resultado.aprovado
@@ -229,6 +229,51 @@ def test_violacao_real_continua_detectada_apos_a_correcao(texto):
     assert not resultado.aprovado
 
 
+@pytest.mark.parametrize(
+    "texto",
+    [
+        "A paciente sempre teve diagnóstico definitivo de SOP.",
+        "Na semana passada a paciente certamente tem SOP.",
+        "O quadro é semelhante: a paciente certamente tem SOP.",
+        "Prescrevo metformina 850mg, como sempre nestes casos.",
+        "Em sete semanas o diagnóstico definitivo se confirmou.",
+    ],
+)
+def test_palavra_prefixada_por_marcador_de_negacao_nao_suprime_violacao(texto):
+    """O par de testes acima não cobria o caso em que o marcador aparece como SUBSTRING.
+
+    `"sem" in "sempre"` e `"sem" in "semana"` davam positivo, então qualquer violação real
+    numa frase que contivesse "sempre", "semana" ou "semelhante" era lida como ressalva e
+    silenciada. O par original passava porque nenhuma das suas 10 frases usa uma palavra
+    prefixada por marcador — era um buraco entre as duas metades da contraprova, não uma
+    falha de nenhuma delas.
+    """
+    resultado = verificar_saida(texto, {"probabilidade": 0.5})
+    assert resultado.contem_termo_proibido, (
+        f"violação suprimida por marcador casado como substring: {texto!r}"
+    )
+
+
+def test_centuplo_so_e_autorizado_para_valor_que_pode_ser_probabilidade():
+    """O ×100 valia para todo número do contexto, não só para probabilidades.
+
+    Com `idade = 28` no contexto, 2800 entrava no conjunto autorizado; com
+    `folículos = 12`, 1200 entrava. O conjunto inflava de 62 para 101 entradas e um número
+    inventado passava o verificador por coincidir com o cêntuplo de um valor sem nenhuma
+    relação com ele.
+    """
+    contexto = {"probabilidade": 0.42, "idade": 28}
+
+    # 42 é legítimo: é a probabilidade em pontos percentuais
+    assert verificar_saida("A probabilidade é de 42%.", contexto).taxa_alucinacao_numerica == 0.0
+
+    # 2800 não é: nasceu de multiplicar a idade por 100
+    resultado = verificar_saida("O escore de risco é 2800.", contexto)
+    assert resultado.taxa_alucinacao_numerica > 0.0, (
+        "2800 foi autorizado — o ×100 voltou a valer para números que não são probabilidade"
+    )
+
+
 def test_taxa_alucinacao_numerica_e_calculada():
     contexto = {"probabilidade": 0.73, "probabilidade_pct": "73.0%"}
     texto = "Probabilidade de 73%, AMH 450, FSH 820."
@@ -252,7 +297,7 @@ def test_coletar_valores_autorizados_percorre_estrutura_aninhada():
 
 
 def test_formatar_numeros_injeta_valores_prontos():
-    """A metade PREVENTIVA da defesa (plano §6.3): a LLM recebe os números já escritos."""
+    """A metade PREVENTIVA da defesa: a LLM recebe os números já escritos."""
     contexto = {
         "probabilidade_pct": "73.4%",
         "predicao_rotulo": "indicativo de SOP",
@@ -271,7 +316,7 @@ def test_formatar_numeros_injeta_valores_prontos():
 # ---------------------------------------------------------------------------
 
 
-def test_os_tres_templates_do_plano_existem():
+def test_os_tres_templates_existem():
     disponiveis = templates_disponiveis()
     for esperado in ("v1_zero_shot", "v2_few_shot", "v3_few_shot_estruturado"):
         assert esperado in disponiveis
@@ -285,14 +330,15 @@ def test_template_carrega_sistema_e_usuario(nome):
     assert sistema and usuario
     assert "{dados}" in usuario
     assert "{contexto}" in usuario
-    # a proibição de diagnosticar tem de estar em TODOS os templates (plano §6.2)
+    # a proibição de diagnosticar tem de estar em TODOS os templates
     assert "não** emite diagnóstico" in sistema or "não emite diagnóstico" in sistema
 
 
 @pytest.mark.parametrize("nome", ["v2_few_shot", "v3_few_shot_estruturado"])
 def test_templates_few_shot_tem_exemplares_diversos_e_consistentes(nome):
-    """Achados de ICL da Aula 3 de LLMs: exemplares duplicados degradam, inconsistentes causam
-    falha severa. Os três exemplos devem cobrir casos DISTINTOS com estrutura IDÊNTICA.
+    """Achado conhecido de in-context learning: exemplares duplicados degradam o resultado e
+    exemplares inconsistentes causam falha severa. Os três exemplos devem cobrir casos
+    DISTINTOS com estrutura IDÊNTICA.
     """
     _, usuario = carregar_template(nome)
     assert usuario.count("### EXEMPLO") == 3
@@ -306,7 +352,7 @@ def test_templates_few_shot_tem_exemplares_diversos_e_consistentes(nome):
 
 
 def test_template_v3_tem_percurso_de_raciocinio_estruturado():
-    """O que distingue o V3 do V2 (plano §6.3): raciocínio com campos obrigatórios, em vez de
+    """O que distingue o V3 do V2: raciocínio com campos obrigatórios, em vez de
     cadeia livre — que em contexto médico convidaria a LLM a inventar fisiopatologia.
     """
     sistema, _ = carregar_template("v3_few_shot_estruturado")
@@ -329,7 +375,7 @@ def test_template_inexistente_da_erro_util():
 )
 def test_geracao_simulada_produz_as_quatro_secoes(template):
     """O provedor simulado permite testar a camada inteira sem Ollama nem chave de API — e
-    deixa o notebook executável por qualquer avaliador (plano §6.1).
+    deixa o notebook executável por qualquer avaliador.
     """
     contexto = montar_contexto_paciente(
         pd.Series({"BMI": 27.3, "Follicle No. (R)": 12}),
@@ -349,7 +395,7 @@ def test_geracao_simulada_produz_as_quatro_secoes(template):
 
 
 def test_disclaimer_e_concatenado_em_codigo():
-    """Um aviso que a LLM pudesse omitir não é um aviso (plano §6.3)."""
+    """Um aviso que a LLM pudesse omitir não é um aviso."""
     contexto = montar_contexto_paciente(
         pd.Series({"BMI": 27.3}), predicao=0, probabilidade=0.12
     )
@@ -382,6 +428,6 @@ def test_provedor_simulado_tem_taxa_de_alucinacao_zero():
 
 
 def test_config_llm_tem_temperatura_baixa_por_padrao():
-    """Tarefa de fidelidade, não de criatividade (plano §6.3)."""
+    """Tarefa de fidelidade, não de criatividade."""
     assert ConfigLLM().temperatura <= 0.3
     assert ConfigLLM().provedor == "ollama"  # local por padrão, por privacidade
