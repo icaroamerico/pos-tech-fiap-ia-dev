@@ -140,7 +140,7 @@ python -m src.experimentos.rodar_ag --experimento todos
 ```
 
 **Tempo:** ~3 min  
-**Saída:** 12 pastas em `runs/` com histórico, métricas e melhores indivíduos
+**Saída:** 12 pastas em `arquivos_saida/arquivos_analiticos/historico_execucoes_ag/` com histórico, métricas e melhores indivíduos
 
 #### Opção B: Apenas um experimento (e.g., E1)
 
@@ -237,8 +237,8 @@ Gera tabelas em Markdown de:
 
 ```bash
 jupyter lab
-# Abra notebooks/01_ag_execucao.ipynb (AG, fitness, evolução)
-# Abra notebooks/02_ag_analise.ipynb (diversidade, entropia)
+# Abra notebooks/01_ag_hiperparametros_pcos.ipynb (AG, fitness, evolução)
+# Abra notebooks/02_experimentos_ag_comparativo.ipynb (experimentos, diversidade, comparativo)
 # Abra notebooks/03_llm_interpretacao.ipynb (LLM, Templates)
 ```
 
@@ -246,10 +246,10 @@ jupyter lab
 
 ```bash
 # Ver em editor de texto ou markdown
-cat docs/relatorio-tecnico.md
+cat documentacao/relatorio-tecnico.md
 
 # Ou converter para PDF (requer pandoc)
-pandoc docs/relatorio-tecnico.md -o relatorio-tecnico.pdf
+pandoc documentacao/relatorio-tecnico.md -o relatorio-tecnico.pdf
 ```
 
 ---
@@ -258,9 +258,9 @@ pandoc docs/relatorio-tecnico.md -o relatorio-tecnico.pdf
 
 1. **`README.md`** — Visão geral e resultados em tabela
 2. **`fase2/README.md`** — Rastreabilidade requisito → código
-3. **`docs/relatorio-tecnico.md`** — Relatório técnico completo (§1-§9)
-4. **`docs/decisoes/`** — 9 ADRs explicando cada decisão
-5. **`docs/arquitetura.md`** — Diagramas de componentes e sequência
+3. **`fase2/documentacao/relatorio-tecnico.md`** — Relatório técnico completo (§1-§9)
+4. **`fase2/documentacao/decisoes/`** — 9 ADRs explicando cada decisão
+5. **`fase2/documentacao/arquitetura.md`** — Diagramas de componentes e sequência
 
 ---
 
@@ -324,11 +324,11 @@ python -m pytest tests/ -v
 | Operação | Tempo | Requer Ollama? |
 |---|---|---|
 | Baseline (Fase 1) | ~10 s | Não |
-| Testes (215 testes) | ~2 min | Não |
+| Testes (221 testes) | ~2 min | Não |
 | AG (E1-E3-D × 3 seeds) | ~3 min | Não |
 | LLM amostra (9 saídas, simulado) | ~5 min | Não |
 | LLM completo (45 saídas, Ollama) | ~20 min (com 16GB) / ~2h (com swap) | **Sim** |
-| Relatório gerado automaticamente | — | Não (lê artifacts de `runs/`) |
+| Relatório gerado automaticamente | — | Não (lê `arquivos_saida/`) |
 
 **Total mínimo para reprodução completa:** ~20 min (sem LLM real)  
 **Total máximo:** ~2,5h (com LLM real em swap)
@@ -340,17 +340,17 @@ python -m pytest tests/ -v
 Após executar tudo, você terá:
 
 - ✅ `fase1/reports/` — Métricas dos 5 modelos baseline
-- ✅ `fase2/runs/` — 12 execuções do AG (config, história, melhores indivíduos, métricas)
-- ✅ `fase2/avaliacao_llm/` — 45 saídas LLM reais (ou simuladas, conforme opção escolhida)
-- ✅ `fase2/docs/relatorio-tecnico.md` — Relatório técnico com todas as tabelas geradas
-- ✅ `fase2/tests/` — 215 testes cobrindo anti-leakage, guardrails, modularização
+- ✅ `fase2/arquivos_saida/arquivos_analiticos/historico_execucoes_ag/` — 12 execuções do AG (config, história, melhores indivíduos, métricas)
+- ✅ `fase2/arquivos_saida/arquivos_analiticos/avaliacao_llm/` — 45 saídas LLM reais (ou simuladas, conforme opção escolhida)
+- ✅ `fase2/documentacao/relatorio-tecnico.md` — Relatório técnico com todas as tabelas geradas
+- ✅ `fase2/tests/` — 221 testes cobrindo anti-leakage, guardrails, modularização
 
 ---
 
 ## Dúvidas?
 
 Consulte:
-- **Arquitetura:** `docs/arquitetura.md`
-- **Decisões:** `docs/decisoes/` (9 ADRs)
+- **Arquitetura:** `fase2/documentacao/arquitetura.md`
+- **Decisões:** `fase2/documentacao/decisoes/` (9 ADRs)
 - **Código:** módulos em `src/` (cada um comenta seu propósito)
 - **Testes:** exemplos em `tests/` de como cada módulo funciona

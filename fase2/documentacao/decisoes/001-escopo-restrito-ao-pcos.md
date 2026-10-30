@@ -48,10 +48,9 @@ booleano) que exercitam a codificação híbrida de forma mais completa que a CN
   projeto em vez de apenas afirmá-la.
 
 **Negativas, declaradas**
-- Perde-se a pergunta *"o AG redescobre que a CNN simples ganha?"* — fica em "próximos passos".
+- Perde-se a pergunta *"o AG redescobre que a CNN simples ganha?"*.
 - A otimização de hiperparâmetros de rede neural perde aplicação direta e passa a ser
-  fundamento conceitual. Recuperável via `MLPClassifier` como sexta família, registrado como
-  extensão opcional.
+  fundamento conceitual.
 - O argumento de custo computacional do requisito 2 fica menos dramático — ainda válido (450
   avaliações × 5 folds × 5 famílias × 3 sementes), mas menos impressionante.
 

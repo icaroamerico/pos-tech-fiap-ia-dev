@@ -300,35 +300,3 @@ avaliações com workers — mas isso é desenho, não implementação.
 | [007](decisoes/007-cache-por-fenotipo.md) | Cache e diversidade por fenótipo, não genótipo |
 | [008](decisoes/008-llm-local-e-allow-list.md) | LLM local por padrão; anonimização por allow-list |
 | [009](decisoes/009-scripts-da-fase-1-intocados.md) | Scripts da Fase 1 copiados sem alteração de lógica |
-
----
-
-## 7. Se fosse para produção (não implementado)
-
-```mermaid
-flowchart LR
-    API["API de inferência"] --> MODELO["modelo serializado<br/>(melhor indivíduo)"]
-    MODELO --> LLMSVC["serviço de LLM<br/>local/VPC"]
-    LLMSVC --> VERIF2["verificador<br/>de alucinação"]
-    VERIF2 --> RESP["resposta ao médico"]
-
-    subgraph reotim["Reotimização periódica"]
-        CRON["gatilho agendado"] --> FILA["fila de avaliações"]
-        FILA --> W1["worker"]
-        FILA --> W2["worker"]
-        FILA --> WN["worker N"]
-        W1 --> AGREG["agregador"]
-        W2 --> AGREG
-        WN --> AGREG
-    end
-
-    AGREG -.->|"novo melhor<br/>indivíduo"| MODELO
-
-    style reotim fill:#f8fafc,stroke:#94a3b8,stroke-dasharray: 5 5
-```
-
-**Marcado como não implementado de propósito.** O que torna esse desenho plausível é que o
-fitness já é uma função *stateless* e determinística — ela cabe num worker sem adaptação. O que
-falta é tudo o resto: provisionamento, observabilidade, versionamento de modelo, validação
-clínica. Documentar o desenho atende "documentar arquitetura"; fingir que está implementado não
-atenderia nada.

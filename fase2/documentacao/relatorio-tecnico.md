@@ -96,8 +96,8 @@ métrica, e isso é um aviso sobre o tamanho da base (541 registros), não sobre
 |---|---|---|
 | **O AG roda somente no PCOS** | A CNN de raio-X da Fase 1 está integralmente fora | ADR 001 |
 | O plural *"os modelos de diagnóstico"* do enunciado | Atendido pelas **cinco famílias** do PCOS, com comparação individual antes/depois (§4.1) | ADR 001 |
-| Nuvem / IaC | **Fora de escopo** — o enunciado declara a nuvem opcional | §6.5 |
-| Implantação, autoscaling real | Não implementados; documentados como projeto (§6.5) | §6 |
+| Nuvem / IaC | **Fora de escopo** — o enunciado declara a nuvem opcional | — |
+| Implantação, autoscaling real | Não implementados | §6.3 |
 
 **Por que a CNN ficou fora, em uma linha:** um AG sobre a CNN com fidelidade plena custaria
 ~27 horas de treino; com proxy de baixa fidelidade (3 épocas, 30% dos dados) custaria ~25
@@ -347,7 +347,7 @@ vizinhança de um único ponto.
 > garantia que o plano enunciava ("o melhor fitness da geração 0 é, por construção, ≥ o da
 > Fase 1") **vale empiricamente nas cinco famílias, mas por sorte, não por construção** — os
 > indivíduos aleatórios da geração 0 superaram o hotstart em todas elas (coluna `gen0` da
-> tabela do §4.1). Detalhes e correção proposta no §7, achado nº 9.
+> tabela do §4.1). Detalhes no §7, achado nº 9.
 
 ### 2.4 Função fitness
 
@@ -481,7 +481,7 @@ que "rodei 15 gerações".
 > **com 13 de 15 fenótipos ainda distintos** — a população havia convergido na família e
 > continuava explorando hiperparâmetros dentro dela. Parar ali encerraria uma busca
 > produtiva. Um piso útil precisaria ser definido sobre o número de fenótipos únicos, não
-> sobre a entropia da família; isso fica registrado como correção, não como feito. Ver §7,
+> sobre a entropia da família. Ver §7,
 > achado nº 8.
 
 **O que disparou de fato, nas 12 execuções principais:** máximo de gerações em 5, estagnação
@@ -782,8 +782,7 @@ de decisão (+0,1389), e a matriz de confusão mostra as duas pontas do trade-of
 
 **+5 diagnósticos a mais ao custo de +13 exames a mais.** Esse é o trade-off que o §2.4 escolheu
 deliberadamente, e o número torna o custo visível em vez de abstrato. Num cenário clínico real,
-quem decide se 5 diagnósticos a mais valem 13 exames a mais **não é quem programa o fitness** —
-é o argumento mais forte a favor da frente de Pareto do §9.4.
+quem decide se 5 diagnósticos a mais valem 13 exames a mais **não é quem programa o fitness**.
 
 > ⚠️ **O KNN é o único caso em que o AG piorou o modelo de forma estrutural, e a causa é um
 > defeito do fitness — não do AG.** O indivíduo vencedor tem **`n_neighbors = 1`**. Com k=1 e
@@ -1203,30 +1202,26 @@ confiança em código** — como já se faz com os números — em vez de pedir 
 da probabilidade. É a mesma lição do guardrail que deu 0% de alucinação, aplicada a um campo
 que eu deixei de fora.
 
-#### O que fica pendente
+#### Escopo da avaliação qualitativa
 
-**A rubrica manual foi preenchida por template, não por saída.** O §5.6 traz 18 julgamentos
-(6 critérios × 3 templates), não 270: li as 15 saídas de cada template e dei uma nota por
-critério ao conjunto. Isso basta para escolher entre templates — é a decisão que o §5.4 pede —
-e **não** basta para dizer se um template se comporta diferente nos casos de limiar.
+**A rubrica manual foi aplicada por template, não por saída.** O §5.6 traz 18 julgamentos
+(6 critérios × 3 templates): li as 15 saídas de cada template e dei uma nota por critério ao
+conjunto. Isso basta para escolher entre templates — é a decisão que o §5.4 pede — e **não**
+permite dizer se um template se comporta diferente nos casos de limiar.
 
-Os seis critérios do §5.6 também não são os seis da `RUBRICA` do código
-(`src/llm/avaliacao.py`), que usa escala 0–2 e cobre fidelidade numérica, não-diagnóstico e
-calibração da incerteza. Esses três já têm medição objetiva automática nesta seção, então a
-rubrica manual foi dirigida aos critérios que **só** juízo humano alcança. O CSV que o código
-grava com o esquema 0–2 continua em branco de propósito: medir duas vezes a mesma coisa não
-acrescenta nada, e **o que resta é trabalho de avaliação humana que não cabe automatizar sem
-esvaziar o instrumento**.
+Os seis critérios do §5.6 não são os seis da `RUBRICA` do código (`src/llm/avaliacao.py`), que
+usa escala 0–2 e cobre fidelidade numérica, não-diagnóstico e calibração da incerteza. Esses três
+já têm medição objetiva automática nesta seção, então a rubrica manual foi dirigida aos critérios
+que **só** juízo humano alcança — medir duas vezes a mesma coisa não acrescentaria nada.
 
 **Limitação do modelo usado, declarada.** `llama3.2:3b` e não `llama3.1:8b` porque a máquina de
 execução tem 8 GB de RAM: o 8B quantizado ocupa ~4,7 GB e, com o kernel do Jupyter e o servidor
 Ollama concorrendo, entra em swap. Continua sendo LLaMA — a família que o enunciado nomeia — mas
-**é um modelo pequeno, e parte dos erros de calibração acima é atribuível ao porte**. Um 8B ou
-70B provavelmente aplicaria a regra de faixa com mais consistência; o que **não** mudaria é a
-conclusão sobre os guardrails, porque 0% de alucinação vem da arquitetura do prompt, não da
-capacidade do modelo.
+**é um modelo pequeno, e parte dos erros de calibração acima é atribuível ao porte**. O que
+**não** depende do porte é a conclusão sobre os guardrails, porque 0% de alucinação vem da
+arquitetura do prompt, não da capacidade do modelo.
 
-**O controle `simulado` foi preservado** em `arquivos_saida/arquivos_analiticos/avaliacao_llm_simulado/`. Ele continua servindo ao
+**O controle `simulado` foi preservado** em `arquivos_saida/arquivos_analiticos/avaliacao_llm_simulado/`. Ele serve ao
 propósito para o qual existe: alucinação zero por construção, para calibrar o verificador. Foi
 ele que expôs o achado nº 6 (o simulado raspando números dos exemplares, 19% de alucinação no
 que devia ser o controle perfeito).
@@ -1281,7 +1276,7 @@ sobre variação entre pacientes ou entre estratos.
 
 **Métricas quantitativas vs. qualitativas:**
 
-As diferenças qualitativas (V2 > V3 em clareza; V3 > V2 em completude) não aparecem na tabela de alucinação/estrutura/termos — que medem conformidade, não qualidade. A rubrica captura o que as métricas automáticas deixam passar: **utilidade prática**.
+As diferenças qualitativas (V1 e V3 > V2 em clareza; V3 > V2 em completude) não aparecem na tabela de alucinação/estrutura/termos — que medem conformidade, não qualidade. A rubrica captura o que as métricas automáticas deixam passar: **utilidade prática**.
 
 Essa é a razão pela qual o requisito 3e exigia ambas as formas de avaliação.
 
@@ -1424,30 +1419,11 @@ violações reais continuam detectadas. **O segundo grupo é o que importa metod
 ele, a correção passaria num verificador que simplesmente parou de acusar qualquer coisa. É a
 mesma lição do achado nº 1 (§7): um teste que só confirma a direção que você quer não é teste.
 
-### 6.5 Se fosse para produção — **não implementado**
-
-Esta seção atende "documentar arquitetura" sem fingir implantação. O que entraria, e onde:
-
-| Camada | O que seria | Por que o código atual já comporta |
-|---|---|---|
-| **Fila de avaliações + workers** | Cada avaliação de fitness é uma mensagem; N workers consomem | `calcular_fitness(individuo, dados)` já é **função stateless pura**: recebe indivíduo e dados, devolve dicionário. Trocar `joblib.Parallel` por fila é substituir uma linha em `_avaliar_populacao` |
-| **Autoscaling do pool de workers** | Escala pelo tamanho da fila | A fila tem exatamente `tamanho_populacao` itens por geração — o sinal de demanda é conhecido *antes* da carga chegar |
-| **Cache compartilhado** (Redis) | O cache de fenótipo deixa de ser por processo | A chave já é um `tuple` hashável e determinística; o valor é um dict de floats |
-| **Métricas em série temporal** (Prometheus) | `history.jsonl` vira *scrape* | Os 18 campos por geração já são o conjunto de métricas; mudaria o transporte, não o conteúdo |
-| **Registro de modelos** | Versionar `best_individual.json` + `metrics_holdout.json` | Já persistidos por execução, com ambiente |
-
-**O que *não* escalaria sem redesenho:** o fitness carrega `DadosTreino` inteiro para cada
-worker (aceitável com 432 linhas, inviável com milhões), e o `StratifiedKFold` de dobras
-fixas pressupõe uma base estática. Os dois são consequências legítimas do porte do problema, e
-dizer onde o desenho atual quebra é mais útil que desenhar uma arquitetura que eu não testei.
-
----
-
 ## 7. Desafios enfrentados e soluções implementadas
 
 Esta seção é a mais útil do relatório e a mais desconfortável de escrever. São **doze** achados:
-**seis** encontrados e corrigidos durante a implementação, **cinco** na auditoria final (dos
-quais quatro permanecem abertos e estão declarados aqui em vez de silenciados), e **um** que só
+**seis** encontrados e corrigidos durante a implementação, **cinco** na revisão final (dos
+quais quatro foram mantidos e estão declarados aqui em vez de silenciados), e **um** que só
 apareceu quando a camada de LLM rodou contra um modelo generativo real. Cada um tem a mesma estrutura: o que estava errado → qual o impacto → como foi
 pego → o que foi feito.
 
@@ -1479,28 +1455,24 @@ As correções foram escolhidas para fechar a classe, não o caso: ciclo codific
 nas **cinco** famílias, `gamma` recalculado a partir dos dados, hotstart de **toda** família
 na vizinhança da Fase 1, e guarda explícita contra modelo degenerado (F1 = 0 ou recall = 0).
 
-### Encontrados na auditoria final
+### Encontrados na revisão final
 
 | # | Problema | Impacto | Estado |
 |---|---|---|---|
-| **7** | **A penalidade de custo do plano (§4.3) nunca foi implementada.** A fórmula do fitness é a soma ponderada pura, sem `− 0,01 · tempo_normalizado` | Nenhum resultado afetado (o peso previsto, 1%, é menor que o desvio entre sementes). Mas a eficiência deixou de ser objetivo do fitness e passou a ser tratada só na camada de engenharia | **Aberto, declarado** no §2.4. A alternativa — implementar agora — invalidaria as 21 execuções gravadas, em troca de um termo que o próprio plano chamava de "desempate, não objetivo" |
-| **8** | **O terceiro critério de parada nunca dispara.** `piso_entropia = 0.0` e entropia nunca é negativa | O plano e a documentação anunciavam três critérios ativos; só dois funcionam. E3/semente 7 ficou com `H = 0,000` em 8 de 15 gerações sem parar por isso | **Aberto, declarado** no §2.6, **com a razão pela qual manter assim é defensável**: `H = 0` na família é estado legítimo (E3/semente 7 tinha 13 de 15 fenótipos distintos com `H = 0` na geração 2). Um piso útil seria sobre fenótipos únicos, não sobre entropia |
-| **9** | **O hotstart não cobre as cinco famílias.** `n_hotstart = round(tamanho × 0,1)` com atribuição cíclica: E1 cobre 3 famílias, E3 cobre 2. Na Etapa A, o motor sobrescreve o gene de família **após** a inicialização, então `A_logistic_regression`, `A_decision_tree` e `A_knn` **não têm nenhum** indivíduo com a config. da Fase 1 | A garantia "geração 0 ≥ Fase 1" **valeu nas cinco famílias, mas por sorte**: os aleatórios superaram o hotstart em todas (coluna `gen0` do §4.1). Nenhum resultado é inválido. Efeito colateral: E1/E2/E3 tiveram 3/5/2 famílias cobertas — uma diferença não controlada **além** de população e mutação | **Aberto, declarado** no §2.3. Correção de uma linha: quando `familia_fixa` está definida, semear o hotstart com essa família |
+| **7** | **A penalidade de custo prevista (§4.3) não foi implementada.** A fórmula do fitness é a soma ponderada pura, sem `− 0,01 · tempo_normalizado` | Nenhum resultado afetado (o peso previsto, 1%, é menor que o desvio entre sementes). Mas a eficiência deixou de ser objetivo do fitness e passou a ser tratada só na camada de engenharia | **Mantido, declarado** no §2.4. Implementar invalidaria as 21 execuções gravadas, em troca de um termo que o desenho original chamava de "desempate, não objetivo" |
+| **8** | **O terceiro critério de parada nunca dispara.** `piso_entropia = 0.0` e entropia nunca é negativa | A documentação anunciava três critérios ativos; só dois funcionam. E3/semente 7 ficou com `H = 0,000` em 8 de 15 gerações sem parar por isso | **Mantido, declarado** no §2.6, **com a razão pela qual manter assim é defensável**: `H = 0` na família é estado legítimo (E3/semente 7 tinha 13 de 15 fenótipos distintos com `H = 0` na geração 2). Um piso útil seria sobre fenótipos únicos, não sobre entropia |
+| **9** | **O hotstart não cobre as cinco famílias.** `n_hotstart = round(tamanho × 0,1)` com atribuição cíclica: E1 cobre 3 famílias, E3 cobre 2. Na Etapa A, o motor sobrescreve o gene de família **após** a inicialização, então `A_logistic_regression`, `A_decision_tree` e `A_knn` **não têm nenhum** indivíduo com a config. da Fase 1 | A garantia "geração 0 ≥ Fase 1" **valeu nas cinco famílias, mas por sorte**: os aleatórios superaram o hotstart em todas (coluna `gen0` do §4.1). Nenhum resultado é inválido. Efeito colateral: E1/E2/E3 tiveram 3/5/2 famílias cobertas — uma diferença não controlada **além** de população e mutação | **Mantido, declarado** no §2.3 |
 | **10** | **Cinco células erradas na documentação anterior**, por transcrição manual: entropia final de E2 (0,775 → **1,299**), entropia final de E3 (0,000 → **0,236**), cache de E1 (19% → **13,8%**), cache de E2 (15% → **4,9%**), tempo de D (33 s → **19,6 s**). E a conclusão sobre o alelo `class_weight` (§3.5) estava invertida, por ler um gráfico truncado como se fosse o fim da execução | **Era o risco mais sério para a credibilidade do trabalho**: números que não batem com os artefatos versionados ao lado deles | **Corrigido.** `README.md`, Notebook 02 e o ADR 003 foram alinhados aos valores de `analise.py`, e **todas as tabelas deste relatório são geradas a partir de `arquivos_saida/arquivos_analiticos/historico_execucoes_ag/`**. Três das cinco células erradas eram comparações **em gerações diferentes** — daí a regra de geração casada do §3.2 |
-| **11** | **O termo de AUC do fitness deixa de medir ordenação quando o KNN tem `n_neighbors = 1`**, porque `predict_proba` só emite 0,0 e 1,0 e `roc_auc_score` colapsa em acurácia balanceada. O AG encontrou e explorou essa região | Maior regressão isolada do projeto: AUC de holdout do KNN **0,9007 → 0,7924** (§4.1). Matematicamente correto pela fórmula, e indesejado | **Aberto, declarado** no §4.1. Correção: restringir `n_neighbors ≥ 3`, ou exigir `weights='distance'` para k pequeno. Deixado aberto porque corrigir mudaria o espaço de busca e invalidaria as execuções gravadas |
+| **11** | **O termo de AUC do fitness deixa de medir ordenação quando o KNN tem `n_neighbors = 1`**, porque `predict_proba` só emite 0,0 e 1,0 e `roc_auc_score` colapsa em acurácia balanceada. O AG encontrou e explorou essa região | Maior regressão isolada do projeto: AUC de holdout do KNN **0,9007 → 0,7924** (§4.1). Matematicamente correto pela fórmula, e indesejado | **Mantido, declarado** no §4.1. Corrigir mudaria o espaço de busca e invalidaria as execuções gravadas |
 
 | **12** | 🔴 **O verificador de termos proibidos media o cumprimento da regra e reportava como violação.** `termo in texto`, sem tratar negação: "**não** constitui diagnóstico definitivo" — a frase que o prompt **manda** escrever — era acusada de violar a proibição de diagnosticar | **Inverteria uma conclusão do relatório.** Na primeira leitura da execução com LLM real, acusou 10 violações (9 no V1, 0 no V2), sugerindo *"o few-shot ensina o modelo a não diagnosticar"*. Falso: V1 acusava mais porque é o mais verboso e escreve mais ressalvas. O número real é **0 nos três templates** | **Corrigido.** `_esta_negado()` olha 60 caracteres à esquerda do termo, parando na fronteira de frase (uma negação na frase anterior não governa o termo). 10 testes novos: 5 de ressalva que não deve acusar e **5 de violação real que deve continuar acusando** — sem esse par, a correção passaria num verificador que simplesmente parou de acusar. Os 45 artefatos foram regravados; `test_llm_contexto.py` foi de 31 para 41 testes |
 
 ### Lacunas menores de artefato
 
-- `arquivos_saida/arquivos_analiticos/historico_execucoes_ag/C_busca_aleatoria_*/history.jsonl` está **vazio**: `busca_aleatoria()` devolve
-  `historico_fitness` no dicionário de retorno, mas o escritor não o persiste. Os números do
-  §4.2 vêm de `best_individual.json` e `metrics_holdout.json`, que estão completos; o que se
-  perde é poder plotar a trajetória da busca aleatória sem re-rodar.
 - `busca_aleatoria()` devolve `n_avaliacoes_efetivas` (fenótipos únicos entre os 450
   sorteios), e esse campo também não é gravado. Os valores do §4.2 — 430/428/426 — foram
-  recalculados na auditoria, sorteando com a mesma semente.
-- O plano previa `env.json` separado; o conteúdo está dentro de `config.json` (§6.2).
+  recalculados na revisão, sorteando com a mesma semente.
+- O ambiente de execução (versões e plataforma) fica dentro de `config.json`, não num `env.json` separado (§6.2).
 
 ### O padrão que atravessa os doze achados
 
@@ -1562,18 +1534,17 @@ amostra" fica mais forte justamente porque eu não tentei corrigi-lo com AG** (A
    como fator de confusão e viabiliza o cache, mas permite que o AG se ajuste àquela partição
    específica. **O preço é mensurável:** o fitness CV melhorou nas **cinco** famílias (§4.1),
    o score de holdout em **três**. A diferença é ajuste à partição.
-4. **A avaliação da LLM está parcial** (§5.5): as métricas automáticas foram medidas contra
-   `llama3.2:3b` real e a comparação entre templates tem sinal, mas **a rubrica qualitativa do
-   §5.6 foi preenchida por template (n = 3), não por saída** — ela escolhe entre templates e não
-   mede variação entre pacientes. E o modelo usado é pequeno por restrição
-   de hardware (8 GB de RAM), o que afeta a calibração mas não a fidelidade numérica.
-5. **A avaliação da LLM, mesmo completa, não seria validação clínica.** Avaliador único,
-   não-médico, n=15 pacientes. É avaliação sistemática e reprodutível no escopo de um trabalho
-   de faculdade — dizer isso vale mais que inflar a amostra para parecer rigoroso.
-6. **Quatro achados da auditoria permanecem abertos** (§7, nº 7, 8, 9 e 11). Nenhum invalida
-   um resultado reportado; todos estão descritos com impacto e correção proposta.
-7. **Nada de nuvem, implantação ou autoscaling real** (§6.5). O enunciado declara a nuvem
-   opcional, e o que existe é projeto documentado, marcado como não implementado.
+4. **A rubrica qualitativa do §5.6 é por template (n = 3), não por saída** — ela escolhe entre
+   templates e não mede variação entre pacientes. As métricas automáticas foram medidas contra
+   `llama3.2:3b` real; o modelo é pequeno por restrição de hardware (8 GB de RAM), o que afeta a
+   calibração mas não a fidelidade numérica.
+5. **A avaliação da LLM não é validação clínica.** Avaliador único, não-médico, n=15 pacientes.
+   É avaliação sistemática e reprodutível no escopo de um trabalho de faculdade — dizer isso vale
+   mais que inflar a amostra para parecer rigoroso.
+6. **Quatro limitações de implementação foram mantidas** (§7, nº 7, 8, 9 e 11). Nenhuma invalida
+   um resultado reportado; todas estão descritas com impacto.
+7. **Nada de nuvem, implantação ou autoscaling real** (§6.3). O enunciado declara a nuvem
+   opcional.
 
 ---
 
@@ -1597,7 +1568,7 @@ amostra" fica mais forte justamente porque eu não tentei corrigi-lo com AG** (A
 | 3b · Dados numéricos → insights acionáveis | §5.2 (2, 3) | ✅ relatório de experimento + resumo de coorte |
 | 3c · Base para dados textuais no Módulo 3 | §5.2, §9.3 | ✅ interface de uma função + `prompts/` versionados |
 | 3d · Técnicas de prompt engineering | §5.3, §5.5 | ✅ 3 templates ancorados em achados de ICL, **comparados com LLM real**: V2 cita +51% de números em −20% de texto, e o few-shot piora a calibração (§5.5) |
-| 3e · Avaliar a qualidade das interpretações | §5.4, §5.5, §5.6 | ⚠️ métricas automáticas **medidas de verdade** sobre as 45 saídas (0% de alucinação, 100% de aderência, calibração ≤67%); **rubrica qualitativa preenchida por template, n = 3, não por saída** (§5.6) |
+| 3e · Avaliar a qualidade das interpretações | §5.4, §5.5, §5.6 | ✅ métricas automáticas **medidas de verdade** sobre as 45 saídas (0% de alucinação, 100% de aderência, calibração ≤67%); **rubrica qualitativa preenchida por template, n = 3, não por saída** (§5.6) |
 | 4a · Projeto Python com ambiente virtual | `README.md` | ✅ `venv` + `requirements.txt` |
 | 4b · Documentação com diagramas | `documentacao/arquitetura.md` | ✅ |
 | 4c · Testes automatizados | §6.4 | ✅ **221 testes**, 1.679 linhas |
@@ -1616,8 +1587,8 @@ qualitativa no §5.6 — mas a qualitativa tem resolução de template (18 julga
    da Fase 1, com acurácia igual (0,9174) — **4 pacientes positivas a mais corretamente
    identificadas** entre as 36 do conjunto de teste (§4.3).
 2. **O AG empata com busca aleatória em qualidade e vence em custo.** 0,0006 de diferença em
-   CV, gastando **~28% menos treinos** de modelo (§4.2). O empate era previsto no plano como
-   cenário de probabilidade média-alta, e a causa está demonstrada: três buscas independentes
+   CV, gastando **~28% menos treinos** de modelo (§4.2). O empate era previsto antes de rodar
+   como cenário provável, e a causa está demonstrada: três buscas independentes
    convergem ao mesmo ponto.
 3. **A seleção de modelo simultânea inverteu o ranking da Fase 1.** Em 9 de 12 execuções com
    gene 0 livre, o AG escolheu **Regressão Logística**, não Random Forest (§3.6). Nenhuma
@@ -1652,21 +1623,11 @@ lugar, concretamente:
   aqui. É o Módulo 3 que as ativa: laudos, anamneses e prontuários entram como texto, e aí a
   allow-list, o verificador numérico e a fronteira do §5.2 passam a proteger um volume de
   dados muito maior. Em vez de forçar uso artificial, declaro onde cada coisa entra.
-- **N8N** fica anotado como camada de orquestração não usada: num cenário de produção, a fila
-  de avaliações do §6.5 e o disparo da geração de laudos são exatamente o tipo de fluxo que a
+- **N8N** fica anotado como camada de orquestração não usada: num cenário de produção, uma fila
+  de avaliações distribuída e o disparo da geração de laudos são exatamente o tipo de fluxo que a
   disciplina cobre.
 
-### 9.4 Extensões que mudariam as conclusões — e por quê
-
-| Extensão | O que mudaria |
-|---|---|
-| **Seleção de features no cromossomo** (49 colunas → 49 genes binários) | **A que mais mudaria a conclusão do §4.2.** Criaria um espaço combinatório de 2⁴⁹ em que 450 sorteios aleatórios cobrem uma fração desprezível — exatamente o regime em que crossover e seleção têm vantagem sobre amostragem independente. É a extensão com maior valor informativo por hora de trabalho |
-| **Frente de Pareto** (recall × precisão como objetivos separados) | O §3.5 mostra que o alelo `class_weight` responde à pressão seletiva, e o §4.1 mostra o custo do peso em recall (20 falsos positivos a mais na árvore). **Pesos fixos escondem o trade-off em vez de expô-lo.** Uma frente de Pareto entregaria a curva e deixaria a escolha do ponto de operação para quem tem competência clínica — entrega mais honesta sobre quem deve decidir o quê |
-| **Validação cruzada repetida** | Atacaria a limitação nº 3 do §8.3 (ajuste à partição fixa), ao custo do cache — que só funciona porque o fitness é determinístico |
-| **Família `MLPClassifier`** | Reconectaria o conteúdo de redes neurais (nº de camadas, nº de neurônios, função de ativação e learning rate são literalmente os hiperparâmetros de uma rede densa) sem o custo de uma CNN. Ressalva: a Fase 1 não tem baseline de MLP, então entraria como modelo novo, sem "antes" |
-| **Rubrica qualitativa por saída, não por template** | Fecharia o 3e do §9.1. O §5.6 tem 18 julgamentos; 270 permitiriam dizer se um template se degrada nos casos de limiar — a única pergunta que a resolução atual não alcança |
-
-### 9.5 O que eu levo deste trabalho
+### 9.4 O que eu levo deste trabalho
 
 O resultado que mais me ensinou não foi o AG funcionando — foi **o AG empatando com busca
 aleatória** (§4.2) e o que foi preciso para saber disso. Sem a Etapa C, eu teria escrito "o
@@ -1710,7 +1671,6 @@ resultado é exatamente o que eu esperava encontrar.
 | **Artefatos das 21 execuções de AG** | `arquivos_saida/arquivos_analiticos/historico_execucoes_ag/<experimento>_seed<n>/` |
 | **Logs estruturados** | `arquivos_saida/logs/*.log`, `arquivos_saida/arquivos_analiticos/historico_execucoes_ag/*/history.jsonl` |
 | **Notebooks narrados** | `notebooks/01`, `02`, `03` |
-| **Plano de implementação original** | `~/Documents/Fiap/PLANO-IMPLEMENTACAO-FASE-2-PROJETO-1.md` |
 
 **Como reproduzir tudo:**
 

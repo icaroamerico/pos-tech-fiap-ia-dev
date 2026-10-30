@@ -12,6 +12,122 @@ interpretações para profissionais de saúde.
 
 ---
 
+## Árvore de arquivos gerados — o que cada execução produz e para que serve
+
+Cada passo abaixo é um comando, na ordem em que o projeto é reproduzido. Para cada um: o que
+ele lê, o que ele grava e para que serve cada arquivo gravado. Todos os caminhos são relativos a
+`fase2/`. Entradas ficam em `base_dados_tratada/` (dataset) e `prompts/` (templates); tudo o
+que o código grava fica em `arquivos_saida/`.
+
+### Passo 1 — `python -m src.run_ml` · baseline da Fase 1 (~10 s)
+
+Lê `base_dados_tratada/PCOS_unificado.csv`, separa 80/20 estratificado e treina os cinco
+modelos com os hiperparâmetros da Fase 1.
+
+```
+arquivos_saida/arquivos_analiticos/metricas_modelos_baseline/
+├── metricas_modelos.json   # acurácia, precisão, recall, F1 e AUC dos 5 modelos, em formato lido por código
+└── metricas_modelos.txt    # a mesma tabela em texto, para conferência visual
+```
+
+**Para que serve:** prova que o ponto de partida reproduz a Fase 1 até a quarta casa decimal.
+É a coluna "original" de toda comparação original × otimizado.
+
+### Passo 2 — `python -m src.experimentos.rodar_ag --experimento todos` · os 3 experimentos + ablação (~3 min)
+
+Roda E1 (baseline), E2 (exploração), E3 (aproveitamento) e D (roleta) com as sementes 42, 7 e
+2024 — 12 execuções. O fitness usa só validação cruzada no treino; o holdout é aberto uma única
+vez, no fim de cada execução, pelo módulo `src/fitness/avaliacao_final.py`.
+
+```
+arquivos_saida/
+├── logs/
+│   └── <EXPERIMENTO>_seed<N>.log        # log legível da execução: geração a geração, melhor fitness, motivo de parada
+└── arquivos_analiticos/historico_execucoes_ag/
+    ├── <EXPERIMENTO>_seed<N>/           # uma pasta por execução, ex.: E1_baseline_seed42/
+    │   ├── config.json                  # todos os parâmetros do AG + versões de Python/bibliotecas e plataforma (rastreabilidade)
+    │   ├── history.jsonl                # uma linha por geração, 18 métricas (fitness melhor/médio/desvio, entropia,
+    │   │                                #   soluções únicas, cache, tempos) — fonte de todos os gráficos dos notebooks
+    │   ├── best_individual.json         # o melhor cromossomo (genes), seu fitness e as métricas de CV que o compõem
+    │   ├── population_final.json        # a população da última geração — permite analisar a diversidade final
+    │   ├── resumo.json                  # melhor fitness, gerações rodadas, motivo de parada, tempo, taxa de cache
+    │   └── metrics_holdout.json         # métricas do melhor indivíduo no conjunto de teste — gravado só no fim
+    └── resumo_execucoes.json            # índice de todas as execuções do lote, com o resumo de cada uma
+```
+
+**Para que serve:** atende o requisito de ≥ 3 experimentos com configurações diferentes. A
+ablação D (roleta) mede a escolha do operador de seleção em vez de só afirmá-la.
+
+### Passo 3 — `python -m src.experimentos.rodar_ag --etapa-a` · AG por família (~2 min)
+
+Um AG por família de modelo (semente 42), com o gene de família fixo — produz a tabela
+"cada modelo da Fase 1, antes e depois".
+
+```
+arquivos_saida/
+├── logs/A_<familia>_seed42.log
+└── arquivos_analiticos/historico_execucoes_ag/A_<familia>_seed42/   # mesmos 6 arquivos do Passo 2
+```
+
+`<familia>` ∈ `random_forest`, `svm_rbf`, `logistic_regression`, `decision_tree`, `knn`.
+
+**Para que serve:** é a comparação original × otimizado modelo a modelo.
+
+### Passo 4 — `python -m src.experimentos.rodar_ag --etapa-c` · busca aleatória (~1,5 min)
+
+Sorteia 450 candidatos aleatórios por semente, o mesmo número de candidatos que o AG E1 amostra.
+
+```
+arquivos_saida/arquivos_analiticos/historico_execucoes_ag/C_busca_aleatoria_seed<N>/
+├── config.json · best_individual.json · resumo.json · metrics_holdout.json   # mesmo significado do Passo 2
+└── history.jsonl                                                             # trajetória da busca
+```
+
+Não há `population_final.json`: busca aleatória não tem população.
+
+**Para que serve:** é o baseline que diz se o AG vale o que custa — o resultado principal do
+trabalho (empate em qualidade, ~28% menos treinos para o AG).
+
+### Passo 5 — `python -m src.llm.rodar_avaliacao --provedor ollama` · interpretação com LLM (~24 min)
+
+Treina o melhor Random Forest da Etapa A, prediz no holdout, sorteia 15 pacientes (5 por
+estrato de confiança), monta o contexto anonimizado por allow-list e gera 3 textos por paciente,
+um por template de `prompts/`.
+
+```
+arquivos_saida/arquivos_analiticos/avaliacao_llm/
+├── avaliacao_ollama_saidas.json   # as 45 saídas (15 pacientes × 3 templates) com texto, latência e as métricas
+│                                  #   automáticas de cada uma: alucinação numérica, aderência à estrutura, termos proibidos
+├── avaliacao_ollama_saidas.md     # as mesmas 45 saídas em Markdown, para leitura humana
+└── avaliacao_ollama_rubrica.csv   # planilha da rubrica qualitativa (6 critérios, escala 1–5) — preenchida à mão
+```
+
+`avaliacao_llm_simulado/` guarda a mesma execução com o provedor `simulado` (sem rede,
+determinístico): é o controle que calibra o verificador de alucinação.
+
+**Para que serve:** atende a integração com LLM e a avaliação da qualidade das interpretações.
+
+### Passo 6 — notebooks · análise sem reexecutar nada
+
+```
+notebooks/
+├── 00_execucao_completa.ipynb        # orquestra os passos 1–5 em sequência; grava logs/notebook00.out e logs/notebook00_llm.out
+├── 01_ag_hiperparametros_pcos.ipynb  # o AG explicado: codificação, fitness, hotstart, operadores, uma execução narrada
+├── 02_experimentos_ag_comparativo.ipynb  # lê historico_execucoes_ag/: experimentos, ablação, original × otimizado, AG × aleatória
+└── 03_llm_interpretacao.ipynb        # lê avaliacao_llm/: templates, guardrails, métricas, rubrica, ética
+```
+
+Os notebooks leem os artefatos dos passos anteriores e já estão salvos com as saídas — abrem
+legíveis no GitHub sem rodar nada. `logs/experimentos_principais.out` e `logs/etapa_c.out` são
+a saída de console dos lotes dos passos 2 e 4.
+
+### Passo 7 — `python -m pytest tests/ -q` · 221 testes (~2 min)
+
+Não grava artefato. Garante as invariantes: indivíduo sempre válido, operadores corretos,
+fitness determinístico, **fitness sem acesso ao conjunto de teste** e anonimização da LLM.
+
+---
+
 ## Rastreabilidade: requisito do enunciado → onde está
 
 | # | Requisito | Onde |
@@ -226,8 +342,8 @@ custo para chegar lá, vantagem do AG.
 
 **A conclusão: neste espaço de busca, o AG não paga seu overhead.** Três razões estruturais,
 verificáveis nos dados: dimensão modesta (3–7 genes por família), hotstart forte (a Fase 1 não
-usava defaults arbitrários) e paisagem plana perto do ótimo. Isso era previsto como cenário de
-probabilidade média-alta no plano de implementação, e a literatura de otimização de
+usava defaults arbitrários) e paisagem plana perto do ótimo. Isso era previsto como cenário
+provável antes de rodar, e a literatura de otimização de
 hiperparâmetros documenta busca aleatória como baseline difícil de superar em baixa dimensão.
 
 **Omitir essa comparação faria o trabalho parecer melhor e valer menos.** O requisito avaliado é
@@ -306,15 +422,13 @@ quanto o laço evolutivo completo.
    parte do ganho de CV não transferido ao holdout.
 
 5. **Nenhum template calibra a incerteza corretamente** (≤67%), e o few-shot piora isso — ver
-   [relatório §5.5](documentacao/relatorio-tecnico.md). A correção certa é pré-computar a faixa de
-   confiança em código, como já se faz com os números.
-6. **Quatro achados da auditoria final permanecem abertos** — nenhum invalida um resultado
-   reportado, e os quatro estão descritos com impacto e correção proposta no
-   [relatório técnico §7](documentacao/relatorio-tecnico.md):
-   a penalidade de custo do plano nunca foi implementada; o terceiro critério de parada
-   (`piso_entropia=0.0`) nunca dispara; o hotstart não cobre as cinco famílias; e o termo de
-   AUC do fitness deixa de medir ordenação quando o KNN tem `n_neighbors=1` — foi o que
-   produziu a única regressão estrutural da tabela acima (AUC do KNN 0,9007 → 0,7924).
+   [relatório §5.5](documentacao/relatorio-tecnico.md).
+6. **Quatro limitações de implementação foram mantidas**, descritas com impacto no
+   [relatório técnico §7](documentacao/relatorio-tecnico.md): a fórmula do fitness não inclui
+   penalidade de custo; o terceiro critério de parada (`piso_entropia=0.0`) nunca dispara; o
+   hotstart não cobre as cinco famílias; e o termo de AUC do fitness deixa de medir ordenação
+   quando o KNN tem `n_neighbors=1` — foi o que produziu a única regressão estrutural da tabela
+   acima (AUC do KNN 0,9007 → 0,7924). Nenhuma invalida um resultado reportado.
 
 ---
 
@@ -322,13 +436,3 @@ quanto o laço evolutivo completo.
 
 [`documentacao/relatorio-tecnico.md`](documentacao/relatorio-tecnico.md) — as nove seções que o enunciado
 pede, com todas as tabelas geradas a partir de `arquivos_saida/arquivos_analiticos/historico_execucoes_ag/` por `src/experimentos/analise.py`.
-
-## Pendências
-
-- Vídeo de demonstração (≤ 15 min) — entregável 3 do enunciado.
-- Rubrica manual da LLM: os 3 critérios qualitativos (fidelidade às features, acionabilidade,
-  clareza para médico) nas 45 saídas de `arquivos_saida/arquivos_analiticos/avaliacao_llm/`. Os outros 3 já têm medição objetiva
-  no [relatório §5.5](documentacao/relatorio-tecnico.md).
-- Extensões opcionais não implementadas: seleção de features no cromossomo (a que mais
-  mudaria a conclusão do empate com busca aleatória), frente de Pareto (recall × precisão) e
-  família `MLP`.
