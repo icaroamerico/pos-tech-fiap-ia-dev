@@ -1,10 +1,11 @@
 # Relatório Técnico — Tech Challenge Fase 2, Projeto 1
 ## Otimização de Modelos de Diagnóstico com Algoritmo Genético e LLM
 
-**Aluno:** Icaro Minervini Americo — RM376755
-**Turma:** 10IADT · POS TECH FIAP, *IA para Devs*
-**Data:** 11/10/2026
-**Repositório:** `pos-tech-fiap-ia-dev-fase-2`
+**Aluno:** Icaro Minervini Americo — RM376755\
+**Turma:** 10IADT · POS TECH FIAP, *IA para Devs*\
+**Data:** 18/10/2026\
+**Repositório:** <https://github.com/icaroamerico/pos-tech-fiap-ia-dev/tree/main/fase2>\
+**Vídeo de demonstração:** <https://www.youtube.com/watch?v=1qFEbze5avE>\
 **Projeto escolhido:** Projeto 1 — *Otimização de Modelos de Diagnóstico*
 
 ---
@@ -23,6 +24,16 @@
 
 *Anexos:* [onde está cada artefato](#anexos--onde-está-cada-artefato) · [Anexo A — os 3 templates de prompt, texto integral](#anexo-a--os-três-templates-de-prompt-texto-integral)
 
+**Figuras** (geradas pelos notebooks `01` e `02` a partir dos artefatos em
+`arquivos_saida/arquivos_analiticos/historico_execucoes_ag/`; ficam em `documentacao/imagens/`)
+
+1. Convergência e diversidade de uma execução E1 (Notebook 01) — §2.7
+2. Convergência do AG em E1, E2 e E3, média ± desvio sobre 3 sementes — §3.2
+3. Diversidade da população em E1, E2 e E3 — §3.3
+4. Etapa D: ablação torneio vs. roleta — §3.4
+5. Distribuição das famílias na população, E1/semente 42 — §3.6
+6. Original vs. otimizado nos 5 modelos, conjunto de teste — §4.1
+
 > **Convenção deste relatório.** Cada decisão técnica é apresentada na mesma ordem:
 > **o que** foi feito → **por que** essa escolha e não outra → **como isso afeta o
 > resultado** → **como cheguei a essa conclusão** (qual evidência, qual conta, qual referência).
@@ -30,7 +41,8 @@
 
 > **Procedência dos números.** Todas as tabelas deste relatório foram geradas a partir dos
 > artefatos em `arquivos_saida/arquivos_analiticos/historico_execucoes_ag/` pelas funções de `src/experimentos/analise.py` — não foram
-> transcritas à mão. A razão está no §7, achado nº 10: transcrição manual foi exatamente a
+> transcritas à mão, exceto onde indicado (a tabela AG × busca aleatória do §4.2, cuja
+> procedência está descrita lá). A razão está no §7, achado nº 10: transcrição manual foi exatamente a
 > origem de cinco células erradas na documentação anterior.
 
 ---
@@ -120,7 +132,7 @@ O AG foi **implementado do zero** (numpy + Python padrão), sem DEAP ou PyGAD (A
 pronta esvaziaria exatamente a parte avaliada. O fluxo segue o laço evolutivo canônico:
 inicialização, avaliação, seleção, crossover, mutação, elitismo e critério de parada.
 
-**Tamanho da implementação:** 3.763 linhas em `src/` (17 módulos), 1.635 linhas em `tests/`
+**Tamanho da implementação:** 3.763 linhas em `src/` (17 módulos), 1.679 linhas em `tests/`
 (**221 testes, todos passando** — `pytest tests/ -q` em 105 s).
 
 ### 2.1 Codificação dos indivíduos — híbrida
@@ -177,7 +189,7 @@ de serem sorteados do zero. É o paralelo direto de material genético recessivo
 transforma o AG em algo mais do que busca de hiperparâmetros. Ele faz **seleção de modelo e
 ajuste de hiperparâmetros simultaneamente**: a pressão seletiva decide qual família merece
 orçamento de busca, em vez de eu decidir a priori. Isso gera uma pergunta de pesquisa que o
-§4.3 responde com dados — *o AG converge para Random Forest, como a Fase 1 sugeriria, ou
+§3.6 responde com dados — *o AG converge para Random Forest, como a Fase 1 sugeriria, ou
 outra família ultrapassa quando todas são bem ajustadas?*
 
 #### Espaço de busca por família
@@ -517,6 +529,17 @@ como duas soluções superestimava a diversidade e **escondia justamente o sinal
 convergência prematura que a métrica existe para detectar**. `numero_genotipos_unicos`
 existe à parte; comparar as duas mostra quanta diversidade é apenas latente.
 
+A Figura 1 mostra essas métricas numa execução real — a configuração E1 rodada no Notebook 01,
+que parou por estagnação na geração 5. A curva de melhor fitness é plana e fica acima da linha
+do melhor hotstart da Fase 1 desde a geração 0; a média sobe em direção a ela; e a entropia
+do gene de família cai a cerca de um terço (2,3 → 0,84 bits) em duas gerações.
+
+![Figura 1 — Convergência e diversidade de uma execução E1](imagens/01-execucao-e1-convergencia-diversidade.png)
+
+*Figura 1 — Execução E1 do Notebook 01. Esquerda: melhor e média do fitness por geração (faixa
+sombreada: média ± desvio padrão da população) e a linha do melhor hotstart da Fase 1 (0,8391).
+Direita: entropia genética do gene de família e nº de fenótipos distintos.*
+
 **`entropia_alelo` foi validada contra o valor analítico conhecido** (3 alelos
 equiprováveis → `H = log₂3 ≈ 1,585`), em `test_metricas.py`. Testar contra o número da
 teoria, e não
@@ -583,6 +606,13 @@ coincidência.
 | E3 — aproveitamento | 0,8715 ± 0,0032 | 1,0 | 12,0 | **18,7 s** |
 | D — roleta | 0,8746 ± 0,0037 | 0,7 | **6,7** | 19,6 s |
 
+![Figura 2 — Convergência do AG em E1, E2 e E3](imagens/02-convergencia-e1-e2-e3.png)
+
+*Figura 2 — Melhor fitness (esquerda) e fitness médio (direita) da população, média ± desvio
+sobre as 3 sementes. Cada curva vai só até a última geração presente nas três sementes daquele
+experimento — por isso E1 e E3 terminam na geração 5 e E2 na 8. Os valores finais da tabela
+acima são os do fim de cada execução, não os do fim da curva.*
+
 > ⚠️ **Por que as métricas de diversidade não podem ser comparadas "no fim".** Os
 > experimentos **param em gerações diferentes** (E1 rodou 6/15/15; D rodou 6/8/6). Comparar
 > "entropia final" entre eles compara pontos distintos da mesma trajetória: uma população
@@ -616,6 +646,12 @@ taxa de acerto do cache de fitness, **60,7% em E3 contra 13,8% em E1**, é a mes
 de outro ângulo: quase todo indivíduo gerado já havia sido avaliado antes. Platô mais baixo
 (0,8715, o pior dos quatro) na direção prevista. **✅ Hipótese E3 confirmada em todos os três
 observáveis.**
+
+![Figura 3 — Diversidade da população em E1, E2 e E3](imagens/03-diversidade-e1-e2-e3.png)
+
+*Figura 3 — Entropia do gene de família, nº de fenótipos distintos e distância euclidiana média,
+média sobre 3 sementes e truncadas como na Figura 2. E3 (verde) é o único que chega a entropia
+zero e a distância euclidiana perto de zero já na geração 5.*
 
 **E2 confirmou metade da previsão e contrariou a outra metade.** Fitness final o melhor dos
 quatro (0,8804) e com o **menor desvio entre sementes** (0,0012 contra 0,0039 de E1) —
@@ -658,6 +694,16 @@ entropia média, gerações 0→5:   torneio  2,245 1,981 1,510 1,219 1,238 1,01
 gap melhor−média, gerações 0→5: torneio  0,1372 0,0882 0,0636 0,0374 0,0393 0,0678
                                  roleta  0,1372 0,1092 0,1002 0,0634 0,0667 0,0632
 ```
+
+![Figura 4 — Etapa D: ablação torneio vs. roleta](imagens/04-ablacao-torneio-vs-roleta.png)
+
+*Figura 4 — Torneio `k=2` (E1) contra roleta (D), gerações 0 a 5, média sobre 3 sementes. Gap
+melhor − média e entropia ficam **acima** na roleta em quase todas as gerações: é a pressão
+seletiva fraca descrita acima, e o sinal oposto ao que a previsão (b) supunha. No painel da
+esquerda, na geração 5 casada, o melhor fitness da roleta está ligeiramente **acima** do torneio
+(0,8746 contra 0,8731, tabela do §3.2): a vantagem final do torneio na tabela acima vem de ele
+continuar melhorando até a geração 15 enquanto a roleta para por estagnação — é a observável (c),
+não a (a) medida em geração casada.*
 
 **A tese do §2.2 está confirmada; a observável que eu escolhi para testá-la estava
 invertida.** Mantive a previsão errada escrita porque corrigi-la retroativamente
@@ -721,7 +767,17 @@ O gene 0 deixa a escolha do modelo para a pressão seletiva. O resultado, nas 12
 
 E a distribuição da população mostra o processo, não só o resultado: em E1/semente 2024 e em
 E3/semente 2024 a população final é **100% Regressão Logística**; nas demais, RF e LR dividem
-a população e SVM/KNN/árvore são eliminados. **Como isso afeta a conclusão do trabalho:** a
+a população e SVM/KNN/árvore são eliminados.
+
+![Figura 5 — Distribuição das famílias na população, E1/semente 42](imagens/05-distribuicao-familias-e1-seed42.png)
+
+*Figura 5 — Fração da população por família (gene 0), E1/semente 42, gerações 0 a 5. A partir da
+geração 2, SVM, KNN e árvore caem a uma fração residual — reaparecem só como fatias finas,
+reintroduzidas por mutação; Random Forest e Regressão Logística dividem o resto. O melhor
+indivíduo desta execução é Regressão Logística, mesmo com RF sendo a maioria da população —
+a maioria mostra onde a busca concentrou esforço, não quem venceu.*
+
+**Como isso afeta a conclusão do trabalho:** a
 seleção de modelo simultânea ao ajuste de hiperparâmetros produziu uma inversão de ranking
 que nenhuma busca por família isolada revelaria — e o §4.1 confirma a mesma inversão por um
 caminho independente (a Etapa A, com o gene 0 fixado, dá à Regressão Logística o melhor
@@ -765,6 +821,12 @@ Agora o holdout — as 109 linhas tocadas uma única vez:
 *Score = 0,5·F1 + 0,3·recall + 0,2·AUC, a mesma função do fitness aplicada a métricas de
 holdout. **Por que comparar nessa métrica:** julgar o AG pelo F1 puro é julgá-lo por um
 objetivo que ele não perseguiu. A comparação justa usa a mesma função nos dois lados.*
+
+![Figura 6 — Original vs. otimizado nos 5 modelos, conjunto de teste](imagens/06-original-vs-otimizado-holdout.png)
+
+*Figura 6 — F1, recall e AUC no conjunto de teste (109 pacientes), Fase 1 (azul) contra o
+melhor indivíduo da Etapa A (laranja), semente 42. O recall sobe em 4 dos 5 modelos e o F1 cai em
+4 dos 5; a queda de AUC do KNN é o caso discutido logo abaixo.*
 
 **O padrão: recall sobe, F1 cai.** Recall melhorou em **4 de 5** modelos, F1 caiu em **4 de
 5**. Não é contradição — é **o trade-off precisão/recall aparecendo exatamente onde o fitness
@@ -815,7 +877,7 @@ mesma CV, mesmas 3 sementes, mesmo orçamento nominal de 450 candidatos.
 > (`src/experimentos/analise.py:175`) cobre parte dela e não toda: devolve **duas** linhas — `AG
 > (E1)` e `Busca aleatória` — com as colunas `Fitness CV (média)`, `Fitness CV (desvio)` e
 > `Score holdout (média)`. Portanto a função **não** produz o desvio padrão do holdout nem a
-> terceira linha, `D_roleta`, que entrou aqui como referência da ablação de seleção (§4.4).
+> terceira linha, `D_roleta`, que entrou aqui como referência da ablação de seleção (§3.4).
 >
 > Os números vêm, para as três sementes (42, 7, 2024) de cada execução: o fitness de CV de
 > `best_individual.json` (campo `fitness`, também espelhado em `resumo.json` como
@@ -915,7 +977,7 @@ sementes diferentes, chegaram exatamente ao mesmo classificador.
 **O ganho em pacientes, lido na matriz de confusão:** das 36 pacientes positivas do conjunto de
 teste, a Fase 1 identificava 29 e deixava passar 7; o modelo da Fase 2 identifica **33** e deixa
 passar 3 — **4 pacientes a mais corretamente sinalizadas**, com a acurácia global inalterada. O
-custo está na precisão: 6 falsos positivos contra os ~2 da Fase 1 — **4 exames a mais**. Trocar
+custo está na precisão: 6 falsos positivos contra os 2 da Fase 1 — **4 exames a mais**. Trocar
 4 diagnósticos perdidos por 4 exames a mais é o trade-off que o fitness do §2.4 foi projetado
 para buscar, e aqui ele saiu quase exatamente um por um.
 
@@ -1153,7 +1215,7 @@ O verificador testava `termo in texto`, **sem tratar negação**. Ou seja: ele a
 regra exatamente o texto que a **cumpria** — e, pior, acusava mais o template mais cuidadoso,
 porque V1 escreve mais ressalvas (é o mais verboso). **A métrica estava invertida: media o
 cumprimento da regra e reportava como violação.** Corrigido (§7, achado nº 12), o verificador
-passou a sinalizar **1 ocorrência nos 45 laudos**, no V1 — e a inspeção dela, descrita no §5.4,
+passou a sinalizar **1 ocorrência nos 45 laudos**, no V1 — e a inspeção dela, descrita acima no §5.5,
 mostra que também não é violação: o modelo encaminha o diagnóstico definitivo a um
 especialista. **Nenhum dos 45 laudos emitiu ato diagnóstico.** O que a correção não resolveu é
 a classe do instrumento: casar palavra-chave não distingue quem emite o diagnóstico, e por
@@ -1194,7 +1256,7 @@ aplicação dessa regra nos três estratos:
   exemplar sem transferir a condição que a justifica** — exatamente o risco que a literatura
   atribui a exemplares, observado nos meus próprios dados.
 
-**Como isso qualifica o ganho do few-shot:** V2 melhora a ancoragem numérica (+51% de números
+**Como isso qualifica o ganho do few-shot:** V2 melhora a ancoragem numérica (+49% de números
 citados) **e piora a calibração** (3 erros novos onde V1 tinha 0). Não é um trade-off que eu
 previ, e ele importa clinicamente mais que a ancoragem: um laudo que chama 3% de "baixa
 confiança" desorienta quem o lê. **Num uso real, a correção seria pré-computar a faixa de
@@ -1362,8 +1424,8 @@ também o que torna os notebooks reexecutáveis em segundos durante a gravação
 - **Barra de progresso** por geração e log de uma linha por geração, com melhor/médio/desvio,
   entropia, únicos, família do melhor, cache e tempo.
 
-**21 execuções de AG estão gravadas em `arquivos_saida/arquivos_analiticos/historico_execucoes_ag/`**, incluindo as 12 principais, as 5 da Etapa A,
-as 3 da Etapa C e 1 de verificação.
+**20 execuções de AG estão gravadas em `arquivos_saida/arquivos_analiticos/historico_execucoes_ag/`**, incluindo as 12 principais, as 5 da Etapa A
+e as 3 da Etapa C.
 
 ### 6.3 "Variação de demanda" → eficiência e paralelismo, com os números medidos
 
@@ -1459,13 +1521,12 @@ na vizinhança da Fase 1, e guarda explícita contra modelo degenerado (F1 = 0 o
 
 | # | Problema | Impacto | Estado |
 |---|---|---|---|
-| **7** | **A penalidade de custo prevista (§4.3) não foi implementada.** A fórmula do fitness é a soma ponderada pura, sem `− 0,01 · tempo_normalizado` | Nenhum resultado afetado (o peso previsto, 1%, é menor que o desvio entre sementes). Mas a eficiência deixou de ser objetivo do fitness e passou a ser tratada só na camada de engenharia | **Mantido, declarado** no §2.4. Implementar invalidaria as 21 execuções gravadas, em troca de um termo que o desenho original chamava de "desempate, não objetivo" |
+| **7** | **A penalidade de custo prevista (§4.3) não foi implementada.** A fórmula do fitness é a soma ponderada pura, sem `− 0,01 · tempo_normalizado` | Nenhum resultado afetado (o peso previsto, 1%, é menor que o desvio entre sementes). Mas a eficiência deixou de ser objetivo do fitness e passou a ser tratada só na camada de engenharia | **Mantido, declarado** no §2.4. Implementar invalidaria as 20 execuções gravadas, em troca de um termo que o desenho original chamava de "desempate, não objetivo" |
 | **8** | **O terceiro critério de parada nunca dispara.** `piso_entropia = 0.0` e entropia nunca é negativa | A documentação anunciava três critérios ativos; só dois funcionam. E3/semente 7 ficou com `H = 0,000` em 8 de 15 gerações sem parar por isso | **Mantido, declarado** no §2.6, **com a razão pela qual manter assim é defensável**: `H = 0` na família é estado legítimo (E3/semente 7 tinha 13 de 15 fenótipos distintos com `H = 0` na geração 2). Um piso útil seria sobre fenótipos únicos, não sobre entropia |
 | **9** | **O hotstart não cobre as cinco famílias.** `n_hotstart = round(tamanho × 0,1)` com atribuição cíclica: E1 cobre 3 famílias, E3 cobre 2. Na Etapa A, o motor sobrescreve o gene de família **após** a inicialização, então `A_logistic_regression`, `A_decision_tree` e `A_knn` **não têm nenhum** indivíduo com a config. da Fase 1 | A garantia "geração 0 ≥ Fase 1" **valeu nas cinco famílias, mas por sorte**: os aleatórios superaram o hotstart em todas (coluna `gen0` do §4.1). Nenhum resultado é inválido. Efeito colateral: E1/E2/E3 tiveram 3/5/2 famílias cobertas — uma diferença não controlada **além** de população e mutação | **Mantido, declarado** no §2.3 |
 | **10** | **Cinco células erradas na documentação anterior**, por transcrição manual: entropia final de E2 (0,775 → **1,299**), entropia final de E3 (0,000 → **0,236**), cache de E1 (19% → **13,8%**), cache de E2 (15% → **4,9%**), tempo de D (33 s → **19,6 s**). E a conclusão sobre o alelo `class_weight` (§3.5) estava invertida, por ler um gráfico truncado como se fosse o fim da execução | **Era o risco mais sério para a credibilidade do trabalho**: números que não batem com os artefatos versionados ao lado deles | **Corrigido.** `README.md`, Notebook 02 e o ADR 003 foram alinhados aos valores de `analise.py`, e **todas as tabelas deste relatório são geradas a partir de `arquivos_saida/arquivos_analiticos/historico_execucoes_ag/`**. Três das cinco células erradas eram comparações **em gerações diferentes** — daí a regra de geração casada do §3.2 |
 | **11** | **O termo de AUC do fitness deixa de medir ordenação quando o KNN tem `n_neighbors = 1`**, porque `predict_proba` só emite 0,0 e 1,0 e `roc_auc_score` colapsa em acurácia balanceada. O AG encontrou e explorou essa região | Maior regressão isolada do projeto: AUC de holdout do KNN **0,9007 → 0,7924** (§4.1). Matematicamente correto pela fórmula, e indesejado | **Mantido, declarado** no §4.1. Corrigir mudaria o espaço de busca e invalidaria as execuções gravadas |
-
-| **12** | 🔴 **O verificador de termos proibidos media o cumprimento da regra e reportava como violação.** `termo in texto`, sem tratar negação: "**não** constitui diagnóstico definitivo" — a frase que o prompt **manda** escrever — era acusada de violar a proibição de diagnosticar | **Inverteria uma conclusão do relatório.** Na primeira leitura da execução com LLM real, acusou 10 violações (9 no V1, 0 no V2), sugerindo *"o few-shot ensina o modelo a não diagnosticar"*. Falso: V1 acusava mais porque é o mais verboso e escreve mais ressalvas. O número real é **0 nos três templates** | **Corrigido.** `_esta_negado()` olha 60 caracteres à esquerda do termo, parando na fronteira de frase (uma negação na frase anterior não governa o termo). 10 testes novos: 5 de ressalva que não deve acusar e **5 de violação real que deve continuar acusando** — sem esse par, a correção passaria num verificador que simplesmente parou de acusar. Os 45 artefatos foram regravados; `test_llm_contexto.py` foi de 31 para 41 testes |
+| **12** | 🔴 **O verificador de termos proibidos media o cumprimento da regra e reportava como violação.** `termo in texto`, sem tratar negação: "**não** constitui diagnóstico definitivo" — a frase que o prompt **manda** escrever — era acusada de violar a proibição de diagnosticar | **Inverteria uma conclusão do relatório.** Na primeira leitura da execução com LLM real, acusou 10 violações (9 no V1, 0 no V2), sugerindo *"o few-shot ensina o modelo a não diagnosticar"*. Falso: V1 acusava mais porque é o mais verboso e escreve mais ressalvas. Após a correção, **1 ocorrência sinalizada em 45 laudos (no V1) e 0 violações reais** — a única ocorrência encaminha o diagnóstico a um especialista (§5.5) | **Corrigido.** `_esta_negado()` olha 60 caracteres à esquerda do termo, parando na fronteira de frase (uma negação na frase anterior não governa o termo). 10 testes novos: 5 de ressalva que não deve acusar e **5 de violação real que deve continuar acusando** — sem esse par, a correção passaria num verificador que simplesmente parou de acusar. Os 45 artefatos foram regravados; `test_llm_contexto.py` foi de 31 para 41 testes (hoje são 47; ver §6.4) |
 
 ### Lacunas menores de artefato
 
@@ -1561,22 +1622,22 @@ amostra" fica mais forte justamente porque eu não tentei corrigi-lo com AG** (A
 | 1d · Comparar otimizado vs. original | §4.1, §4.3 | ✅ 5 famílias, antes/depois, + baseline aleatório (§4.2) |
 | 1e · ≥3 experimentos com configs diferentes | §3 | ✅ **4** configurações × 3 sementes = 12 execuções |
 | 2 · Escalabilidade para variação de demanda | §6.3 | ✅ paralelismo, cache, parada antecipada — com números medidos |
-| 2a · Monitoramento e logging | §6.2 | ✅ 18 métricas/geração em JSONL, 21 execuções gravadas |
+| 2a · Monitoramento e logging | §6.2 | ✅ 18 métricas/geração em JSONL, 20 execuções gravadas |
 | 2b · Documentar arquitetura e decisões | §6.1, `documentacao/` | ✅ diagramas Mermaid + **9 ADRs** |
 | 3 · Integrar LLM pré-treinada | §5.1, `src/llm/` | ✅ três provedores atrás de interface fina |
 | 3a · Explicações em linguagem natural | §5.2 | ✅ |
 | 3b · Dados numéricos → insights acionáveis | §5.2 (2, 3) | ✅ relatório de experimento + resumo de coorte |
 | 3c · Base para dados textuais no Módulo 3 | §5.2, §9.3 | ✅ interface de uma função + `prompts/` versionados |
-| 3d · Técnicas de prompt engineering | §5.3, §5.5 | ✅ 3 templates ancorados em achados de ICL, **comparados com LLM real**: V2 cita +51% de números em −20% de texto, e o few-shot piora a calibração (§5.5) |
+| 3d · Técnicas de prompt engineering | §5.3, §5.5 | ✅ 3 templates ancorados em achados de ICL, **comparados com LLM real**: V2 cita +49% de números em −19% de texto, e o few-shot piora a calibração (§5.5) |
 | 3e · Avaliar a qualidade das interpretações | §5.4, §5.5, §5.6 | ✅ métricas automáticas **medidas de verdade** sobre as 45 saídas (0% de alucinação, 100% de aderência, calibração ≤67%); **rubrica qualitativa preenchida por template, n = 3, não por saída** (§5.6) |
 | 4a · Projeto Python com ambiente virtual | `README.md` | ✅ `venv` + `requirements.txt` |
 | 4b · Documentação com diagramas | `documentacao/arquitetura.md` | ✅ |
 | 4c · Testes automatizados | §6.4 | ✅ **221 testes**, 1.679 linhas |
 | 4d · IaC | — | 🚫 fora de escopo (nuvem opcional) |
 
-**O 3d fechou** com a execução de 14/10/2026 contra `llama3.2:3b` local: os três templates
-produzem saídas distintas e a comparação tem sinal. **O 3e segue com ⚠️**, e a razão agora é
-precisa: as duas formas de avaliação exigidas existem — automática no §5.5 sobre as 45 saídas, e
+**O 3d fechou** com a execução de 16/10/2026 contra `llama3.2:3b` local: os três templates
+produzem saídas distintas e a comparação tem sinal. **O 3e está atendido, com uma ressalva de
+resolução**: as duas formas de avaliação exigidas existem — automática no §5.5 sobre as 45 saídas, e
 qualitativa no §5.6 — mas a qualitativa tem resolução de template (18 julgamentos), não de saída
 (270). Escolher entre templates ela resolve; perfilar comportamento por paciente, não.
 
@@ -1668,7 +1729,7 @@ resultado é exatamente o que eu esperava encontrar.
 | **Execução de controle (`simulado`)** | `arquivos_saida/arquivos_analiticos/avaliacao_llm_simulado/` — alucinação zero por construção, calibra o verificador |
 | **Decisões arquiteturais (9 ADRs)** | `documentacao/decisoes/001` a `009` |
 | **Diagramas de componentes e de sequência** | `documentacao/arquitetura.md` |
-| **Artefatos das 21 execuções de AG** | `arquivos_saida/arquivos_analiticos/historico_execucoes_ag/<experimento>_seed<n>/` |
+| **Artefatos das 20 execuções de AG** | `arquivos_saida/arquivos_analiticos/historico_execucoes_ag/<experimento>_seed<n>/` |
 | **Logs estruturados** | `arquivos_saida/logs/*.log`, `arquivos_saida/arquivos_analiticos/historico_execucoes_ag/*/history.jsonl` |
 | **Notebooks narrados** | `notebooks/01`, `02`, `03` |
 
@@ -1694,9 +1755,9 @@ string no código:** prompt é artefato experimental, e precisa de diff legível
 mostrar a evolução das versões (§5.2). O enunciado pede "os prompts utilizados" no relatório —
 por isso o texto integral está aqui, e não apenas referenciado.
 
-> ⚠️ Nas execuções reportadas, o provedor `simulado` **ignora o template** e os três produzem
-> saída byte a byte idêntica — ver §5.5. Os templates abaixo são o que seria enviado a um
-> provedor generativo real.
+> ⚠️ Os templates abaixo são exatamente o que foi enviado ao `llama3.2:3b` na execução
+> reportada no §5.5. O provedor `simulado`, mantido só como controle, **ignora o template** e
+> produz a mesma saída para os três.
 
 
 ### A.1 — V1: zero-shot com papel e estrutura
